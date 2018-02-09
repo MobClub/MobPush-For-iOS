@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                  = 'mob_pushsdk'
-  s.version               = "1.1.0"
+  s.version               = "1.1.1"
   s.summary               = 'mob.com 官方提供的推送SDK'
   s.license               = 'MIT'
   s.author                = { "mob" => "mobproducts@163.com" }

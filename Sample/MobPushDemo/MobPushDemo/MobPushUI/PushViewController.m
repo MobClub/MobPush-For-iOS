@@ -100,7 +100,16 @@
                                                       options:NSStringDrawingUsesLineFragmentOrigin| NSStringDrawingUsesFontLeading
                                                    attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]}
                                                       context:nil];
-    des.frame = (CGRect){20, 80 , textRect.size};
+    
+    
+    if ([UIScreen mainScreen].bounds.size.height == 812)
+    {
+        des.frame = (CGRect){20, 110 , textRect.size};
+    }
+    else
+    {
+        des.frame = (CGRect){20, 80 , textRect.size};
+    }
     des.text = self.vDescription;
     des.numberOfLines = 0;
     des.textColor = [UIColor colorWithRed:207/255.0 green:207/255.0 blue:217/255.0 alpha:1.0];
@@ -211,9 +220,10 @@
             
             NSDate *currentDate = [NSDate dateWithTimeIntervalSinceNow:0];
             NSTimeInterval nowtime = [currentDate timeIntervalSince1970] *1000;
+            
+            //设置几分钟后发起本地推送
             NSTimeInterval taskDate = nowtime + self.timeValue*60*1000;
             message.taskDate = taskDate;
-            
             [MobPush addLocalNotification:message];
             
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
