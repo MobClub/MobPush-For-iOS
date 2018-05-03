@@ -2,7 +2,7 @@
 //  UITextView+MPushPlaceholder.h
 //  MobPush
 //
-//  Created by 刘靖煌 on 2017/9/16.
+//  Created by LeeJay on 2017/9/16.
 //  Copyright © 2017年 mob.com. All rights reserved.
 //
 

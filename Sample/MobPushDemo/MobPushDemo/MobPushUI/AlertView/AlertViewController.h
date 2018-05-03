@@ -2,7 +2,7 @@
 //  AlertViewController.h
 //  MobPushDemo
 //
-//  Created by 刘靖煌 on 2017/11/7.
+//  Created by LeeJay on 2017/11/7.
 //  Copyright © 2017年 mob.com. All rights reserved.
 //
 

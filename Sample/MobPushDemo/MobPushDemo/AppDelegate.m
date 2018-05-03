@@ -2,40 +2,165 @@
 //  AppDelegate.m
 //  MobPushDemo
 //
-//  Created by 刘靖煌 on 2017/9/27.
-//  Copyright © 2017年 com.mob. All rights reserved.
+//  Created by LeeJay on 2017/9/6.
+//  Copyright © 2017年 mob.com. All rights reserved.
 //
 
 #import "AppDelegate.h"
 #import "ViewController.h"
-
+#import "MOBNavigationViewController.h"
 #import <MobPush/MobPush.h>
+#import "AlertViewController.h"
+#import "MBProgressHUD+Extension.h"
+#import "WebViewController.h"
+
+@interface AppDelegate () <UIAlertViewDelegate, IAlertViewControllerDelegate>
+
+@property (nonatomic, strong) MPushMessage *message;
+@property (nonatomic, strong) AlertViewController *alertView;
+@property (nonatomic, strong) UIWindow *alertWindow;
+
+@end
 
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    // 设置推送环境
+#ifdef DEBUG
+    [MobPush setAPNsForProduction:NO];
+#else
+    [MobPush setAPNsForProduction:YES];
+#endif
     
-    //MobPush推送设置
+    //MobPush推送设置（获得角标、声音、弹框提醒权限）
     MPushNotificationConfiguration *configuration = [[MPushNotificationConfiguration alloc] init];
     configuration.types = MPushAuthorizationOptionsBadge | MPushAuthorizationOptionsSound | MPushAuthorizationOptionsAlert;
     [MobPush setupNotification:configuration];
     
-    //UI相关
-    self.window = [[UIWindow alloc]init];
+    self.window = [[UIWindow alloc] init];
     self.window.frame = [UIScreen mainScreen].bounds;
     ViewController *viewC = [[ViewController alloc] init];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewC];
+    MOBNavigationViewController *nav = [[MOBNavigationViewController alloc] initWithRootViewController:viewC];
     self.window.rootViewController = nav;
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveMessage:) name:MobPushDidReceiveMessageNotification object:nil];
     
     return YES;
 }
 
+// 收到通知回调
+- (void)didReceiveMessage:(NSNotification *)notification
+{
+    MPushMessage *message = notification.object;
+    
+    switch (message.messageType)
+    {
+        case MPushMessageTypeNotification:
+        {// UDP 通知
+            
+        }
+            break;
+        case MPushMessageTypeCustom:
+        {// 自定义消息
+            self.alertView = [[AlertViewController alloc] initWithTitle:@"收到推送" content:message.content];
+            self.alertView.delegate = self;
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                _alertWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+                _alertWindow.windowLevel = [UIApplication sharedApplication].keyWindow.windowLevel + 1;
+                _alertWindow.userInteractionEnabled = YES;
+                _alertWindow.rootViewController = self.alertView;
+                [_alertWindow makeKeyAndVisible];
+                
+            });
+        }
+            break;
+        case MPushMessageTypeAPNs:
+        {// APNs 回调
+            NSLog(@"%@", message.apnsDict);
+            
+            if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive)
+            { // 前台
+                [self showAlertWithMessage:message];
+            }
+            else
+            { // 后台
+                [self pushVCWithMessage:message];
+            }
+        }
+            break;
+        case MPushMessageTypeLocal:
+        { // 本地通知回调
+            NSString *body = message.notification.body;
+            NSString *title = message.notification.title;
+            NSString *subtitle = message.notification.subTitle;
+            NSInteger badge = message.notification.badge;
+            NSString *sound = message.notification.sound;
+            
+            NSLog(@"收到本地通知:{\nbody:%@，\ntitle:%@,\nsubtitle:%@,\nbadge：%ld，\nsound：%@，\n}",body, title, subtitle, badge, sound);
+        }
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)selectOKWithData:(id)data
+{
+    if (_alertWindow)
+    {
+        [_alertWindow resignKeyWindow];
+        _alertWindow.hidden = YES;
+        _alertWindow = nil;
+    }
+}
+
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    //清掉角标和列表
     [application setApplicationIconBadgeNumber:0];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        [self pushVCWithMessage:_message];
+    }
+}
+
+- (void)showAlertWithMessage:(MPushMessage *)message
+{
+    NSString *url = message.apnsDict[@"url"];
+    if (url)
+    {
+        _message = message;
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"收到推送"
+                                                            message:nil
+                                                           delegate:self
+                                                  cancelButtonTitle:@"取消"
+                                                  otherButtonTitles:@"查看", nil];
+        [alertView show];
+    }
+}
+
+- (void)pushVCWithMessage:(MPushMessage *)message
+{
+    NSString *url = message.apnsDict[@"url"];
+    if (url)
+    {
+        UINavigationController *nav = (UINavigationController *)self.window.rootViewController;
+        WebViewController *webVC = [[WebViewController alloc] init];
+        webVC.url = url;
+        [nav pushViewController:webVC animated:YES];
+    }
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

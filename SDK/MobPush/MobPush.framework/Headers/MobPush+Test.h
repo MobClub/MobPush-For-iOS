@@ -2,7 +2,7 @@
 //  MobPush+Test.h
 //  MobPush
 //
-//  Created by 刘靖煌 on 2017/11/27.
+//  Created by LeeJay on 2017/11/27.
 //  Copyright © 2017年 com.mob. All rights reserved.
 //
 
@@ -27,12 +27,14 @@ typedef NS_ENUM(NSUInteger, MPushMsgType)
  @param content 模拟发送内容
  @param space 定时消息时间（仅对定时消息有效，单位分钟，默认值为1）
  @param isProduction 开否为生产环境（跟证书相关）
+ @param extras 额外字段
  @param handler 结果
  */
 + (void)sendMessageWithMessageType:(MPushMsgType)msgType
                            content:(NSString *)content
                              space:(NSNumber *)space
            isProductionEnvironment:(BOOL)isProduction
+                            extras:(NSDictionary *)extras
                             result:(void (^)(NSError *error))handler;
 
 @end

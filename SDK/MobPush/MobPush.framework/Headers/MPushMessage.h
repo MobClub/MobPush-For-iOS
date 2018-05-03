@@ -2,24 +2,28 @@
 //  MPushMessage.h
 //  MobPush
 //
-//  Created by 刘靖煌 on 2017/9/26.
+//  Created by LeeJay on 2017/9/26.
 //  Copyright © 2017年 mob.com. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "MPushNotification.h"
 #import "MPushCustomMessage.h"
 
 /**
  消息类型
 
- - MPushMessageTypeNotification: 通知
- - MPushMessageTypeCustom: 自定义消息
+ - MPushMessageTypeNotification: UDP 通知
+ - MPushMessageTypeCustom: UDP 自定义消息
+ - MPushMessageTypeAPNs: APNs
+ - MPushMessageTypeLocal: 本地通知
  */
 typedef NS_ENUM(NSUInteger, MPushMessageType)
 {
     MPushMessageTypeNotification = 1,
     MPushMessageTypeCustom = 2,
+    MPushMessageTypeAPNs = 3,
+    MPushMessageTypeLocal = 4,
 };
 
 /**
@@ -63,7 +67,7 @@ typedef NS_ENUM(NSUInteger, MPushMessageType)
 @property (nonatomic, assign) NSTimeInterval currentServerTimestamp;
 
 /**
- 通知类型，当 MPushMessageType 为 MPushMessageTypeNotification，这个字段才会有数据。
+ 通知类型，当 MPushMessageType 为 MPushMessageTypeNotification 或者 MPushMessageTypeLocal，这个字段才会有数据。
  */
 @property (nonatomic, strong) MPushNotification *notification;
 
@@ -73,13 +77,13 @@ typedef NS_ENUM(NSUInteger, MPushMessageType)
 @property (nonatomic, strong) MPushCustomMessage *customMessage;
 
 /**
- *  字典转模型
+ APNs 类型，当 MPushMessageType 为 MPushMessageTypeAPNs 时，这个字段才会有数据。
  */
-+ (instancetype)messageWithDict:(NSDictionary *)dict;
+@property (nonatomic, copy) NSDictionary *apnsDict;
 
 /**
  *  字典转模型
  */
-- (instancetype)initWithDict:(NSDictionary *)dict;
++ (instancetype)messageWithDict:(NSDictionary *)dict;
 
 @end

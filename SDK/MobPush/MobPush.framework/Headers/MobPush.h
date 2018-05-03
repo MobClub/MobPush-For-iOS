@@ -2,7 +2,7 @@
 //  MobPush.h
 //  MobPush
 //
-//  Created by 刘靖煌 on 2017/9/6.
+//  Created by LeeJay on 2017/9/6.
 //  Copyright © 2017年 mob.com. All rights reserved.
 //
 
@@ -11,7 +11,7 @@
 #import "MPushMessage.h"
 
 /**
- 收到消息通知（数据是MPushMessage对象，可能是推送数据，也可能是自定义消息数据，非APNs通道数据）
+ 收到消息通知（数据是MPushMessage对象，可能是推送数据、自定义消息数据，APNs、本地通知等的回调）
  */
 extern NSString *const MobPushDidReceiveMessageNotification;
 
@@ -21,6 +21,13 @@ extern NSString *const MobPushDidReceiveMessageNotification;
 @interface MobPush : NSObject
 
 #pragma mark APNs（苹果公司提供的推送系统）
+
+/**
+ 设置推送环境
+
+ @param isProduction 是否生产环境。 如果为开发状态，设置为 NO； 如果为生产状态，应改为 YES。 Default 为 YES 生产状态
+ */
++ (void)setAPNsForProduction:(BOOL)isProduction;
 
 /**
  设置推送配置

@@ -2,7 +2,7 @@
 //  AlertViewController.m
 //  MobPushDemo
 //
-//  Created by 刘靖煌 on 2017/11/7.
+//  Created by LeeJay on 2017/11/7.
 //  Copyright © 2017年 mob.com. All rights reserved.
 //
 
@@ -60,7 +60,7 @@
     UIButton *btnOK = [[UIButton alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(content.frame) + 20, self.containerView.frame.size.width - 40, 40)];
     btnOK.titleLabel.font = [UIFont systemFontOfSize:16.0];
     [btnOK setTitle:@"我知道了" forState:UIControlStateNormal];
-    btnOK.backgroundColor = [UIColor colorWithRed:24/255.0 green:170/255.0 blue:255/255.0 alpha:1.0];
+    btnOK.backgroundColor = [MOBFColor colorWithRGB:0x7B91FF];
     [btnOK setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [btnOK addTarget:self action:@selector(pickerViewBtnOk:) forControlEvents:UIControlEventTouchUpInside];
     [self.containerView addSubview:btnOK];

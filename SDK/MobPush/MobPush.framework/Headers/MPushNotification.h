@@ -2,7 +2,7 @@
 //  MPushNotification.h
 //  MobPush
 //
-//  Created by 刘靖煌 on 2017/9/8.
+//  Created by LeeJay on 2017/9/8.
 //  Copyright © 2017年 mob.com. All rights reserved.
 //
 
@@ -22,6 +22,11 @@
  副标题
  */
 @property (nonatomic, copy) NSString *subTitle;
+
+/**
+ 推送消息体
+ */
+@property (nonatomic, copy) NSString *body;
 
 /**
  指定声音的文件名(默认值为"default")

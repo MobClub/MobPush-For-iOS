@@ -2,7 +2,7 @@
 //  TimeTableViewCell.m
 //  MobPush
 //
-//  Created by 刘靖煌 on 2017/9/15.
+//  Created by LeeJay on 2017/9/15.
 //  Copyright © 2017年 mob.com. All rights reserved.
 //
 
