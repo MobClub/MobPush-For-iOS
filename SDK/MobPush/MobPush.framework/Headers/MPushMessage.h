@@ -12,22 +12,17 @@
 
 /**
  消息类型
-
- - MPushMessageTypeNotification: UDP 通知
- - MPushMessageTypeCustom: UDP 自定义消息
- - MPushMessageTypeAPNs: APNs
- - MPushMessageTypeLocal: 本地通知
  */
 typedef NS_ENUM(NSUInteger, MPushMessageType)
 {
-    MPushMessageTypeNotification = 1,
-    MPushMessageTypeCustom = 2,
-    MPushMessageTypeAPNs = 3,
-    MPushMessageTypeLocal = 4,
+    MPushMessageTypeUDPNotify = 1, //UDP通知
+    MPushMessageTypeCustom = 2, //UDP自定义消息
+    MPushMessageTypeAPNs = 3, //APNs推送
+    MPushMessageTypeLocal = 4, //本地推送
 };
 
 /**
- 消息
+ 消息对象
  */
 @interface MPushMessage : NSObject
 
@@ -67,19 +62,27 @@ typedef NS_ENUM(NSUInteger, MPushMessageType)
 @property (nonatomic, assign) NSTimeInterval currentServerTimestamp;
 
 /**
- 通知类型，当 MPushMessageType 为 MPushMessageTypeNotification 或者 MPushMessageTypeLocal，这个字段才会有数据。
+当 MPushMessageType为MPushMessageTypeUDPNotify||MPushMessageTypeLocal时，这个字段才会有数据。
  */
 @property (nonatomic, strong) MPushNotification *notification;
 
 /**
- 自定义消息类型，当 MPushMessageType 为 MPushMessageTypeCustom时，这个字段才会有数据。
+当 MPushMessageType为MPushMessageTypeCustom时 这个字段才会有数据。
  */
 @property (nonatomic, strong) MPushCustomMessage *customMessage;
 
 /**
- APNs 类型，当 MPushMessageType 为 MPushMessageTypeAPNs 时，这个字段才会有数据。
+当 MPushMessageType为MPushMessageTypeAPNs时，这个字段才会有数据。
  */
-@property (nonatomic, copy) NSDictionary *apnsDict;
+@property (nonatomic, strong) NSDictionary *apnsDict __attribute__((deprecated("MobPush 1.4.0 版本已弃用 use 'msgInfo' instead")));
+
+/**
+ 当 MPushMessageType为MPushMessageTypeAPNs时，返回aps消息数据以及场景还原数据。
+ 当 MPushMessageType为MPushMessageTypeLocal时，返回场景还原数据。
+ "mobpush_link_k" :点击Apns消息场景还原的控制器路径。
+ "mobpush_link_v" :点击Apns消息场景还原的参数。
+ */
+@property (nonatomic, strong) NSDictionary *msgInfo;
 
 /**
  *  字典转模型

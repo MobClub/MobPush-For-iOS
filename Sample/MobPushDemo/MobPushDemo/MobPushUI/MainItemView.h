@@ -2,7 +2,7 @@
 //  MainItemView.h
 //  MobPushDemo
 //
-//  Created by 刘靖煌 on 2017/9/12.
+//  Created by LeeJay on 2017/9/12.
 //  Copyright © 2017年 mob.com. All rights reserved.
 //
 

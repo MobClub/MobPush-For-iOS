@@ -75,24 +75,29 @@
 #endif
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-    [MobPush sendMessageWithMessageType:MPushMsgTypeNotification
+
+    [MobPush sendMessageWithMessageType:MSendMessageTypeAPNs
                                 content:self.textView.text
                                   space:0
                 isProductionEnvironment:isProductionEnvironment
                                  extras:@{@"url" : urlStr}
+                             linkScheme:nil
+                               linkData:nil
                                  result:^(NSError *error) {
-                                
-                                     [MBProgressHUD hideHUDForView:self.view animated:YES];
 
-                                     if (error)
-                                     {
-                                         [MBProgressHUD showTitle:@"发送失败"];
-                                     }
-                                     else
-                                     {
-                                         [MBProgressHUD showTitle:@"推送发送成功，5s左右您将收到一条打开链接的消息"];
-                                     }
+                                     dispatch_async(dispatch_get_main_queue(), ^{
+                                         
+                                         [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                         
+                                         if (error)
+                                         {
+                                             [MBProgressHUD showTitle:@"发送失败"];
+                                         }
+                                         else
+                                         {
+                                             [MBProgressHUD showTitle:@"发送成功"];
+                                         }
+                                     });
                                      
                                  }];
 }

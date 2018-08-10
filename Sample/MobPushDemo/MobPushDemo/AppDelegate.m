@@ -38,6 +38,11 @@
     configuration.types = MPushAuthorizationOptionsBadge | MPushAuthorizationOptionsSound | MPushAuthorizationOptionsAlert;
     [MobPush setupNotification:configuration];
     
+    [MobPush getRegistrationID:^(NSString *registrationID, NSError *error) {
+        NSLog(@"registrationID = %@--error = %@", registrationID, error);
+    }];
+    
+    
     self.window = [[UIWindow alloc] init];
     self.window.frame = [UIScreen mainScreen].bounds;
     ViewController *viewC = [[ViewController alloc] init];
@@ -46,7 +51,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveMessage:) name:MobPushDidReceiveMessageNotification object:nil];
-    
+
     return YES;
 }
 
@@ -57,30 +62,22 @@
     
     switch (message.messageType)
     {
-        case MPushMessageTypeNotification:
-        {// UDP 通知
-            
-        }
-            break;
         case MPushMessageTypeCustom:
         {// 自定义消息
             self.alertView = [[AlertViewController alloc] initWithTitle:@"收到推送" content:message.content];
             self.alertView.delegate = self;
             
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
-                _alertWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-                _alertWindow.windowLevel = [UIApplication sharedApplication].keyWindow.windowLevel + 1;
-                _alertWindow.userInteractionEnabled = YES;
-                _alertWindow.rootViewController = self.alertView;
-                [_alertWindow makeKeyAndVisible];
-                
-            });
+            _alertWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+            _alertWindow.windowLevel = [UIApplication sharedApplication].keyWindow.windowLevel + 1;
+            _alertWindow.userInteractionEnabled = YES;
+            _alertWindow.rootViewController = self.alertView;
+            [_alertWindow makeKeyAndVisible];
+            
         }
             break;
         case MPushMessageTypeAPNs:
         {// APNs 回调
-            NSLog(@"%@", message.apnsDict);
+            NSLog(@"msgInfo---%@", message.msgInfo);
             
             if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive)
             { // 前台
@@ -94,13 +91,24 @@
             break;
         case MPushMessageTypeLocal:
         { // 本地通知回调
+            
+            if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive)
+            { // 前台
+                [self showAlertWithMessage:message];
+            }
+            else
+            { // 后台
+                [self pushVCWithMessage:message];
+            }
+            
             NSString *body = message.notification.body;
             NSString *title = message.notification.title;
             NSString *subtitle = message.notification.subTitle;
             NSInteger badge = message.notification.badge;
             NSString *sound = message.notification.sound;
+
+            NSLog(@"收到本地通知:{\nbody:%@，\ntitle:%@,\nsubtitle:%@,\nbadge：%ld，\nsound：%@，\n}",body, title, subtitle, (long)badge, sound);
             
-            NSLog(@"收到本地通知:{\nbody:%@，\ntitle:%@,\nsubtitle:%@,\nbadge：%ld，\nsound：%@，\n}",body, title, subtitle, badge, sound);
         }
             break;
         default:
@@ -118,10 +126,6 @@
     }
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    [application setApplicationIconBadgeNumber:0];
-}
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -133,7 +137,8 @@
 
 - (void)showAlertWithMessage:(MPushMessage *)message
 {
-    NSString *url = message.apnsDict[@"url"];
+    NSString *url = message.msgInfo[@"url"];
+    
     if (url)
     {
         _message = message;
@@ -148,7 +153,8 @@
 
 - (void)pushVCWithMessage:(MPushMessage *)message
 {
-    NSString *url = message.apnsDict[@"url"];
+    NSString *url = message.msgInfo[@"url"];
+    
     if (url)
     {
         UINavigationController *nav = (UINavigationController *)self.window.rootViewController;

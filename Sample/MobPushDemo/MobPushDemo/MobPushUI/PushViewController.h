@@ -16,13 +16,13 @@
 - (instancetype)initWithTitle:(NSString *)title
                   description:(NSString *)description
          buttonBackgroudColor:(UIColor *)color
-                  messageType:(MPushMsgType)type
+                  messageType:(MSendMessageType)type
                   isTimedPush:(BOOL)isTimedPush;
 
 - (instancetype)initWithTitle:(NSString *)title
                   description:(NSString *)description
          buttonBackgroudColor:(UIColor *)color
-                  messageType:(MPushMsgType)type
+                  messageType:(MSendMessageType)type
                   isTimedPush:(BOOL)isTimedPush
                           tag:(NSInteger)tag;
 

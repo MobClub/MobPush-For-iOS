@@ -8,11 +8,11 @@
 
 #import <MobPush/MobPush.h>
 
-typedef NS_ENUM(NSUInteger, MPushMsgType)
+typedef NS_ENUM(NSInteger, MSendMessageType)
 {
-    MPushMsgTypeNotification = 1,       //通知类型
-    MPushMsgTypeMessage = 2,            //内推类型
-    MPushMsgTypeTimeMessage = 3,        //定时类型
+    MSendMessageTypeAPNs = 1,         //推送类型
+    MSendMessageTypeCustom = 2,       //自定义消息类型
+    MSendMessageTypeTimed = 3,        //定时通知类型
 };
 
 /**
@@ -28,13 +28,17 @@ typedef NS_ENUM(NSUInteger, MPushMsgType)
  @param space 定时消息时间（仅对定时消息有效，单位分钟，默认值为1）
  @param isProduction 开否为生产环境（跟证书相关）
  @param extras 额外字段
+ @param linkScheme 界面还原路径
+ @param linkData 界面还原参数
  @param handler 结果
  */
-+ (void)sendMessageWithMessageType:(MPushMsgType)msgType
++ (void)sendMessageWithMessageType:(MSendMessageType)msgType
                            content:(NSString *)content
                              space:(NSNumber *)space
            isProductionEnvironment:(BOOL)isProduction
                             extras:(NSDictionary *)extras
+                        linkScheme:(NSString *)linkScheme
+                          linkData:(NSString *)linkData
                             result:(void (^)(NSError *error))handler;
 
 @end

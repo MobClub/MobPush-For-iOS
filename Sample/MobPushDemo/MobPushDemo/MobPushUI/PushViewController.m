@@ -11,6 +11,7 @@
 #import "TimeTableViewCell.h"
 #import "MBProgressHUD+Extension.h"
 #import <MOBFoundation/MOBFoundation.h>
+#import <MobPush/UIViewController+MobPush.h>
 
 @interface PushViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -22,18 +23,45 @@
 
 @property (nonatomic, strong) NSMutableArray *selectStatus;
 @property (nonatomic, assign) NSInteger timeValue;
-@property (nonatomic, assign) MPushMsgType messageType;
+@property (nonatomic, assign) MSendMessageType messageType;
 @property (nonatomic, strong) MobPush *mobPush;
 @property (nonatomic, assign) NSInteger tag;
+//场景还原页面参数
+@property (nonatomic,strong) NSDictionary *params;
 
 @end
 
 @implementation PushViewController
 
+#pragma mark ---场景还原---
+
+//点击推送场景还原路径
++(NSString *)MobPushPath
+{
+    return @"/path/PushViewController";
+}
+
+//点击推送场景还原页面参数
+-(instancetype)initWithMobPushScene:(NSDictionary *)params
+{
+    if (self = [super init]) {
+        self.params = params;
+        self.vTitle = self.params[@"title"];
+        self.vDescription = self.params[@"desc"];
+        self.buttonColor = [MOBFColor colorWithRGB:[self.params[@"color"] integerValue]];
+        self.messageType = [self.params[@"msgType"] integerValue];
+        self.isTimedPush = [self.params[@"isTimedPush"] boolValue];
+        self.tag = [self.params[@"tag"] integerValue];
+    }
+    return self;
+}
+
+
+#pragma mark ---初始化控制器---
 - (instancetype)initWithTitle:(NSString *)title
                   description:(NSString *)description
          buttonBackgroudColor:(UIColor *)color
-                  messageType:(MPushMsgType)type
+                  messageType:(MSendMessageType)type
                   isTimedPush:(BOOL)isTimedPush
 {
     return [self initWithTitle:title
@@ -47,7 +75,7 @@
 - (instancetype)initWithTitle:(NSString *)title
                   description:(NSString *)description
          buttonBackgroudColor:(UIColor *)color
-                  messageType:(MPushMsgType)type
+                  messageType:(MSendMessageType)type
                   isTimedPush:(BOOL)isTimedPush
                           tag:(NSInteger)tag
 {
@@ -64,6 +92,7 @@
     return self;
 }
 
+
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -79,13 +108,13 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.selectStatus = [NSMutableArray arrayWithObjects:@(NO),@(NO),@(NO),@(NO),@(NO), nil];
-    
+
     UILabel *des = [[UILabel alloc] init];
     CGRect textRect = [self.vDescription boundingRectWithSize:CGSizeMake(self.view.frame.size.width - 40, MAXFLOAT)
                                                       options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
                                                    attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]}
                                                       context:nil];
-    des.frame = (CGRect){20, 80, textRect.size};
+    des.frame = (CGRect){20, 16, textRect.size};
     des.text = self.vDescription;
     des.numberOfLines = 0;
     des.textColor = [MOBFColor colorWithRGB:0xA6A6B2];
@@ -183,15 +212,18 @@
 #else
     isProductionEnvironment = YES;
 #endif
-    if (self.tag == 1)
+
+    if (self.tag == 1)//应用内消息
     {
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        
+
         [MobPush sendMessageWithMessageType:self.messageType
                                     content:self.content.text.length ? self.content.text : self.content.placeholder
                                       space:@(self.timeValue)
                     isProductionEnvironment:isProductionEnvironment
                                      extras:nil
+                                 linkScheme:nil
+                                   linkData:nil
                                      result:^(NSError *error) {
                                          
                                          dispatch_async(dispatch_get_main_queue(), ^{
@@ -217,13 +249,16 @@
         }
         else
         {
-            if (self.tag == 4)
+            if (self.tag == 4)//本地通知
             {
                 MPushMessage *message = [[MPushMessage alloc] init];
                 message.messageType = MPushMessageTypeLocal;
                 MPushNotification *noti = [[MPushNotification alloc] init];
                 noti.body = self.content.text;
                 noti.title = @"标题";
+                noti.subTitle = @"子标题";
+                noti.sound = @"unbelievable.caf";
+                noti.badge = 999;
                 message.notification = noti;
                 
                 NSDate *currentDate = [NSDate dateWithTimeIntervalSinceNow:0];
@@ -236,15 +271,17 @@
                 
                 [MBProgressHUD showTitle:@"发送成功"];
             }
-            else
+            else//Apns推送
             {
                 [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-                
+
                 [MobPush sendMessageWithMessageType:self.messageType
                                             content:self.content.text
                                               space:@(self.timeValue)
                             isProductionEnvironment:isProductionEnvironment
                                              extras:nil
+                                         linkScheme:nil
+                                           linkData:nil
                                              result:^(NSError *error) {
                                                  dispatch_async(dispatch_get_main_queue(), ^{
                                                      

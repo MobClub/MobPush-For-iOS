@@ -108,4 +108,5 @@ extern NSString *const MobPushDidReceiveMessageNotification;
  */
 + (void)getRegistrationID:(void(^)(NSString *registrationID, NSError *error))handler;
 
+
 @end
