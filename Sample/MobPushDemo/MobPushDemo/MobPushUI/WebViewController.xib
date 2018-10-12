@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment version="2304" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -28,12 +27,11 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="wed-JZ-8cc" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="5ps-1x-P3N"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="wed-JZ-8cc" secondAttribute="trailing" id="CTH-bN-dhY"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="wed-JZ-8cc" secondAttribute="bottom" id="LCe-bQ-AGZ"/>
-                <constraint firstItem="wed-JZ-8cc" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="xWh-tq-6jI"/>
+                <constraint firstItem="wed-JZ-8cc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="5ps-1x-P3N"/>
+                <constraint firstAttribute="trailing" secondItem="wed-JZ-8cc" secondAttribute="trailing" id="CTH-bN-dhY"/>
+                <constraint firstAttribute="bottom" secondItem="wed-JZ-8cc" secondAttribute="bottom" id="LCe-bQ-AGZ"/>
+                <constraint firstItem="wed-JZ-8cc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="xWh-tq-6jI"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
         </view>
     </objects>
 </document>

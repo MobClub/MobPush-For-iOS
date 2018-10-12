@@ -108,5 +108,17 @@ extern NSString *const MobPushDidReceiveMessageNotification;
  */
 + (void)getRegistrationID:(void(^)(NSString *registrationID, NSError *error))handler;
 
+/**
+ 设置角标值到Mob服务器
+ 本地先调用setApplicationIconBadgeNumber函数来显示角标，再将该角标值同步到Mob服务器，
+ @param badge 新的角标值（会覆盖服务器上保存的值）
+ */
++ (void)setBadge:(NSInteger)badge;
+
+/**
+ 清除角标，但不清空通知栏消息
+ */
++ (void)clearBadge;
+
 
 @end

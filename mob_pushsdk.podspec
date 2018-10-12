@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                  = 'mob_pushsdk'
-  s.version               = "1.4.0"
+  s.version               = "1.5.0"
   s.summary               = 'mob.com 官方提供的推送SDK'
   s.license               = 'MIT'
   s.author                = { "mob" => "mobproducts@163.com" }
@@ -14,6 +14,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'MobPush' do |sp|
       sp.vendored_frameworks   = 'SDK/MobPush/MobPush.framework'
+      sp.vendored_frameworks   = 'SDK/MobPush/MobPushServiceExtension.framework'
   end
 
 end

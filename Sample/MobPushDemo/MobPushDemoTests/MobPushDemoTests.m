@@ -57,13 +57,6 @@
     [MobPush setupNotification:@""];
 }
 
-- (void)testSetupNotificationWithBadNetwork
-{
-    //MobPush推送设置（获得角标、声音、弹框提醒权限）
-    MPushNotificationConfiguration *configuration = [[MPushNotificationConfiguration alloc] init];
-    configuration.types = MPushAuthorizationOptionsBadge | MPushAuthorizationOptionsSound | MPushAuthorizationOptionsAlert;
-    [MobPush setupNotification:configuration];
-}
 
 - (void)testAddLocalNotification
 {
@@ -80,23 +73,6 @@
     [MobPush addLocalNotification:message];
 }
 
-- (void)testAddLocalNotificationFor100
-{
-    for(int i = 0 ; i <100 ;i++)
-    {
-        MPushMessage *message = [[MPushMessage alloc] init];
-        message.messageType = MPushMessageTypeLocal;
-        message.content = @"本地推送内容";
-        
-        NSDate *currentDate = [NSDate dateWithTimeIntervalSinceNow:0];
-        NSTimeInterval nowtime = [currentDate timeIntervalSince1970] *1000;
-        
-        //设置0.06秒后发起本地推送
-        NSTimeInterval taskDate = nowtime + 0.001*60*1000;
-        message.taskDate = taskDate;
-        [MobPush addLocalNotification:message];
-    }
-}
 
 - (void)testAddLocalNotificationWithNil
 {
@@ -108,20 +84,6 @@
     [MobPush addLocalNotification:@""];
 }
 
-- (void)testAddLocalNotificationWithBadNetwork
-{
-    MPushMessage *message = [[MPushMessage alloc] init];
-    message.messageType = MPushMessageTypeLocal;
-    message.content = @"本地推送内容";
-    
-    NSDate *currentDate = [NSDate dateWithTimeIntervalSinceNow:0];
-    NSTimeInterval nowtime = [currentDate timeIntervalSince1970] *1000;
-    
-    //设置0.06秒后发起本地推送
-    NSTimeInterval taskDate = nowtime + 0.001*60*1000;
-    message.taskDate = taskDate;
-    [MobPush addLocalNotification:message];
-}
 
 - (void)testGetTagsWithResult
 {
@@ -134,8 +96,6 @@
     
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue addOperationWithBlock:^{
-        //模拟这个异步操作需要3秒后才能获取结果，比如一个异步网络请求
-        sleep(3);
         [MobPush getTagsWithResult:^(NSArray *tags, NSError *error){
             
             XCTAssertNil(error, @"Fail to get tags.");
@@ -164,8 +124,6 @@
     
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue addOperationWithBlock:^{
-        //模拟这个异步操作需要3秒后才能获取结果，比如一个异步网络请求
-        sleep(3);
         for (int i = 0; i < 100; i++)
         {
             dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -187,36 +145,6 @@
                                  handler:^(NSError * _Nullable error) {}];
 }
 
-- (void)testGetTagsWithResultWithBadNetwork
-{
-    [self expectationForNotification:@"testGetTagsWithResult"
-                              object:nil
-                             handler:^BOOL(NSNotification * _Nonnull notification) {
-                                 
-                                 return YES;
-                             }];
-    
-    NSOperationQueue *queue = [[NSOperationQueue alloc]init];
-    [queue addOperationWithBlock:^{
-        //模拟这个异步操作需要3秒后才能获取结果，比如一个异步网络请求
-        sleep(3);
-        
-        [MobPush getTagsWithResult:^(NSArray *tags, NSError *error) {
-            
-            XCTAssertNil(error, @"Fail to get tags.");
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"testGetTagsWithResult"
-                                                                object:nil
-                                                              userInfo:nil];
-            
-        }];
-    }];
-    
-    [self waitForExpectationsWithTimeout:10
-                                 handler:^(NSError * _Nullable error) {
-                                     
-                                 }];
-}
 
 - (void)testAddTags
 {
@@ -229,8 +157,6 @@
     
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue addOperationWithBlock:^{
-        //模拟这个异步操作需要3秒后才能获取结果，比如一个异步网络请求
-        sleep(3);
         
         [MobPush addTags:@[@"tag666"] result:^(NSError *error) {
             
@@ -258,8 +184,6 @@
     
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue addOperationWithBlock:^{
-        //模拟这个异步操作需要3秒后才能获取结果，比如一个异步网络请求
-        sleep(3);
         
         for (int i = 0; i < 100; i++)
         {
@@ -294,8 +218,6 @@
     
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue addOperationWithBlock:^{
-        //模拟这个异步操作需要3秒后才能获取结果，比如一个异步网络请求
-        sleep(3);
         
         [MobPush addTags:nil result:^(NSError *error) {
             
@@ -323,8 +245,6 @@
     
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue addOperationWithBlock:^{
-        //模拟这个异步操作需要3秒后才能获取结果，比如一个异步网络请求
-        sleep(3);
         
         [MobPush addTags:@(212) result:^(NSError *error) {
             
@@ -341,34 +261,6 @@
                                  handler:^(NSError * _Nullable error) {}];
 }
 
-- (void)testAddTagsWithBadNetwork
-{
-    [self expectationForNotification:@"testAddTagsWithBadNetwork"
-                              object:nil
-                             handler:^BOOL(NSNotification * _Nonnull notification) {
-                                 
-                                 return YES;
-                             }];
-    
-    NSOperationQueue *queue = [[NSOperationQueue alloc]init];
-    [queue addOperationWithBlock:^{
-        //模拟这个异步操作需要3秒后才能获取结果，比如一个异步网络请求
-        sleep(3);
-        
-        [MobPush addTags:@[@"tag777"] result:^(NSError *error) {
-            
-            XCTAssertNil(error, @"Fail to add tags because of the bad network.");
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"testAddTagsWithBadNetwork"
-                                                                object:nil
-                                                              userInfo:nil];
-            
-        }];
-    }];
-    
-    [self waitForExpectationsWithTimeout:10
-                                 handler:^(NSError * _Nullable error) {}];
-}
 
 - (void)testDeleteTags
 {
@@ -381,8 +273,6 @@
     
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue addOperationWithBlock:^{
-        //模拟这个异步操作需要3秒后才能获取结果，比如一个异步网络请求
-        sleep(3);
         
         [MobPush deleteTags:@[@"tag666"] result:^(NSError *error) {
             
@@ -409,8 +299,6 @@
     
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue addOperationWithBlock:^{
-        //模拟这个异步操作需要3秒后才能获取结果，比如一个异步网络请求
-        sleep(3);
         
         for (int i = 0; i < 100; i++)
         {
@@ -444,8 +332,6 @@
     
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue addOperationWithBlock:^{
-        //模拟这个异步操作需要3秒后才能获取结果，比如一个异步网络请求
-        sleep(3);
         
         [MobPush deleteTags:nil result:^(NSError *error) {
             
@@ -473,8 +359,6 @@
     
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue addOperationWithBlock:^{
-        //模拟这个异步操作需要3秒后才能获取结果，比如一个异步网络请求
-        sleep(3);
         
         [MobPush deleteTags:@(666) result:^(NSError *error) {
             
@@ -491,34 +375,6 @@
                                  handler:^(NSError * _Nullable error) {}];
 }
 
-- (void)testDeleteTagsWithBadNetwork
-{
-    [self expectationForNotification:@"testDeleteTagsWithBadNetwork"
-                              object:nil
-                             handler:^BOOL(NSNotification * _Nonnull notification) {
-                                 
-                                 return YES;
-                             }];
-    
-    NSOperationQueue *queue = [[NSOperationQueue alloc]init];
-    [queue addOperationWithBlock:^{
-        //模拟这个异步操作需要3秒后才能获取结果，比如一个异步网络请求
-        sleep(3);
-        
-        [MobPush deleteTags:@[@"tag666"] result:^(NSError *error) {
-            
-            XCTAssertNil(error, @"Fail to delete tags.");
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"testDeleteTagsWithBadNetwork"
-                                                                object:nil
-                                                              userInfo:nil];
-            
-        }];
-    }];
-    
-    [self waitForExpectationsWithTimeout:10
-                                 handler:^(NSError * _Nullable error) {}];
-}
 
 - (void)testCleanAllTagsWithResult
 {
@@ -531,88 +387,65 @@
     
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue addOperationWithBlock:^{
-        //模拟这个异步操作需要3秒后才能获取结果，比如一个异步网络请求
-        sleep(3);
-        
-        [MobPush cleanAllTags:^(NSError *error) {
-            
-            XCTAssertNil(error, @"Fail to clean tags.");
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"testCleanAllTagsWithResult"
-                                                                object:nil
-                                                              userInfo:nil];
-            
+
+        [MobPush addTags:@[@"AddTag"] result:^(NSError *error) {
+            if (!error) {
+                [MobPush cleanAllTags:^(NSError *error) {
+                    
+                    XCTAssertNil(error, @"Fail to clean tags.");
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"testCleanAllTagsWithResult"
+                                                                        object:nil
+                                                                      userInfo:nil];
+                    
+                }];
+            }
         }];
+        
     }];
     
     [self waitForExpectationsWithTimeout:20
                                  handler:^(NSError * _Nullable error) {}];
 }
 
-- (void)testCleanAllTagsWithResult100Times
-{
-    [self expectationForNotification:@"testCleanAllTagsWithResult100Times"
-                              object:nil
-                             handler:^BOOL(NSNotification * _Nonnull notification) {
-                                 
-                                 return YES;
-                             }];
-    
-    NSOperationQueue *queue = [[NSOperationQueue alloc]init];
-    [queue addOperationWithBlock:^{
-        //模拟这个异步操作需要3秒后才能获取结果，比如一个异步网络请求
-        sleep(3);
-        
-        for (int i = 0; i < 100; i++)
-        {
-            dispatch_async(dispatch_get_global_queue(0, 0), ^{
-                
-                [MobPush cleanAllTags:^(NSError *error) {
-                    
-                    XCTAssertNil(error, @"Fail to clean tags.");
-                    
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"testCleanAllTagsWithResult100Times"
-                                                                        object:nil
-                                                                      userInfo:nil];
-                    
-                }];
-                
-            });
-        }
-    }];
-    
-    [self waitForExpectationsWithTimeout:30
-                                 handler:^(NSError * _Nullable error) {}];
-}
+//- (void)testCleanAllTagsWithResult100Times
+//{
+//    [self expectationForNotification:@"testCleanAllTagsWithResult100Times"
+//                              object:nil
+//                             handler:^BOOL(NSNotification * _Nonnull notification) {
+//
+//                                 return YES;
+//                             }];
+//
+//    NSOperationQueue *queue = [[NSOperationQueue alloc]init];
+//    [queue addOperationWithBlock:^{
+//
+//        for (int i = 0; i < 100; i++)
+//        {
+//            dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//
+//                [MobPush addTags:@[@"AddTag"] result:^(NSError *error) {
+//                    if (!error) {
+//                        [MobPush cleanAllTags:^(NSError *error) {
+//
+//                            XCTAssertNil(error, @"Fail to clean tags.");
+//
+//                            [[NSNotificationCenter defaultCenter] postNotificationName:@"testCleanAllTagsWithResult100Times"
+//                                                                                object:nil
+//                                                                              userInfo:nil];
+//
+//                        }];
+//                    }
+//                }];
+//
+//            });
+//        }
+//    }];
+//
+//    [self waitForExpectationsWithTimeout:30
+//                                 handler:^(NSError * _Nullable error) {}];
+//}
 
-- (void)testCleanAllTagsWithBadNetwork
-{
-    [self expectationForNotification:@"testCleanAllTagsWithBadNetwork"
-                              object:nil
-                             handler:^BOOL(NSNotification * _Nonnull notification) {
-                                 
-                                 return YES;
-                             }];
-    
-    NSOperationQueue *queue = [[NSOperationQueue alloc]init];
-    [queue addOperationWithBlock:^{
-        //模拟这个异步操作需要3秒后才能获取结果，比如一个异步网络请求
-        sleep(3);
-        
-        [MobPush cleanAllTags:^(NSError *error) {
-            
-            XCTAssertNil(error, @"Fail to clean tags.");
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"testCleanAllTagsWithBadNetwork"
-                                                                object:nil
-                                                              userInfo:nil];
-            
-        }];
-    }];
-    
-    [self waitForExpectationsWithTimeout:10
-                                 handler:^(NSError * _Nullable error) {}];
-}
 
 - (void)testGetAliasWithResult
 {
@@ -625,8 +458,6 @@
     
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue addOperationWithBlock:^{
-        //模拟这个异步操作需要3秒后才能获取结果，比如一个异步网络请求
-        sleep(3);
         
         [MobPush getAliasWithResult:^(NSString *alias, NSError *error) {
             
@@ -654,8 +485,6 @@
     
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue addOperationWithBlock:^{
-        //模拟这个异步操作需要3秒后才能获取结果，比如一个异步网络请求
-        sleep(3);
         
         for (int i = 0; i < 100; i++)
         {
@@ -679,34 +508,6 @@
                                  handler:^(NSError * _Nullable error) {}];
 }
 
-- (void)testGetAliasWithResultWithBadNetwork
-{
-    [self expectationForNotification:@"testGetTagsWithResult"
-                              object:nil
-                             handler:^BOOL(NSNotification * _Nonnull notification) {
-                                 
-                                 return YES;
-                             }];
-    
-    NSOperationQueue *queue = [[NSOperationQueue alloc]init];
-    [queue addOperationWithBlock:^{
-        //模拟这个异步操作需要3秒后才能获取结果，比如一个异步网络请求
-        sleep(3);
-        
-        [MobPush getAliasWithResult:^(NSString *alias, NSError *error) {
-            
-            XCTAssertNil(error, @"Fail to get alias.");
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"testGetTagsWithResult"
-                                                                object:nil
-                                                              userInfo:nil];
-            
-        }];
-    }];
-    
-    [self waitForExpectationsWithTimeout:10
-                                 handler:^(NSError * _Nullable error) {}];
-}
 
 - (void)testSetAlias
 {
@@ -719,8 +520,6 @@
     
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue addOperationWithBlock:^{
-        //模拟这个异步操作需要3秒后才能获取结果，比如一个异步网络请求
-        sleep(3);
         
         [MobPush setAlias:@"6666" result:^(NSError *error) {
             
@@ -748,8 +547,6 @@
     
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue addOperationWithBlock:^{
-        //模拟这个异步操作需要3秒后才能获取结果，比如一个异步网络请求
-        sleep(3);
         
         for (int i = 0; i < 100; i++)
         {
@@ -783,8 +580,6 @@
     
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue addOperationWithBlock:^{
-        //模拟这个异步操作需要3秒后才能获取结果，比如一个异步网络请求
-        sleep(3);
         
         [MobPush setAlias:nil result:^(NSError *error) {
             
@@ -812,8 +607,6 @@
     
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue addOperationWithBlock:^{
-        //模拟这个异步操作需要3秒后才能获取结果，比如一个异步网络请求
-        sleep(3);
         
         [MobPush setAlias:@(666) result:^(NSError *error) {
             
@@ -831,34 +624,6 @@
 }
 
 
-- (void)testSetAliasWithBadNetwork
-{
-    [self expectationForNotification:@"testSetAlias"
-                              object:nil
-                             handler:^BOOL(NSNotification * _Nonnull notification) {
-                                 
-                                 return YES;
-                             }];
-    
-    NSOperationQueue *queue = [[NSOperationQueue alloc]init];
-    [queue addOperationWithBlock:^{
-        //模拟这个异步操作需要3秒后才能获取结果，比如一个异步网络请求
-        sleep(3);
-        
-        [MobPush setAlias:@"alias777" result:^(NSError *error) {
-            
-            XCTAssertNil(error, @"Fail to set alias because of the bad network.");
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"testSetAlias"
-                                                                object:nil
-                                                              userInfo:nil];
-            
-        }];
-    }];
-    
-    [self waitForExpectationsWithTimeout:10
-                                 handler:^(NSError * _Nullable error) {}];
-}
 
 - (void)testDeleteAlias
 {
@@ -871,8 +636,6 @@
     
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue addOperationWithBlock:^{
-        //模拟这个异步操作需要3秒后才能获取结果，比如一个异步网络请求
-        sleep(3);
         
         [MobPush deleteAlias:^(NSError *error) {
             
@@ -900,8 +663,6 @@
     
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue addOperationWithBlock:^{
-        //模拟这个异步操作需要3秒后才能获取结果，比如一个异步网络请求
-        sleep(3);
         
         for (int i = 0; i < 100; i++)
         {
@@ -924,33 +685,6 @@
                                  handler:^(NSError * _Nullable error) {}];
 }
 
-- (void)testDeleteAliasWithBadNetwork
-{
-    [self expectationForNotification:@"testDeleteAlias"
-                              object:nil
-                             handler:^BOOL(NSNotification * _Nonnull notification) {
-                                 
-                                 return YES;
-                             }];
-    
-    NSOperationQueue *queue = [[NSOperationQueue alloc]init];
-    [queue addOperationWithBlock:^{
-        //模拟这个异步操作需要3秒后才能获取结果，比如一个异步网络请求
-        sleep(3);
-        
-        [MobPush deleteAlias:^(NSError *error) {
-            
-            XCTAssertNil(error, @"Fail to delete alias.");
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"testDeleteAlias"
-                                                                object:nil
-                                                              userInfo:nil];
-        }];
-    }];
-    
-    [self waitForExpectationsWithTimeout:10
-                                 handler:^(NSError * _Nullable error) {}];
-}
 
 - (void)testGetRegistrationID
 {
@@ -963,8 +697,6 @@
     
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue addOperationWithBlock:^{
-        //模拟这个异步操作需要3秒后才能获取结果，比如一个异步网络请求
-        sleep(3);
         
         [MobPush getRegistrationID:^(NSString *registrationID, NSError *error) {
             
@@ -992,8 +724,6 @@
     
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue addOperationWithBlock:^{
-        //模拟这个异步操作需要3秒后才能获取结果，比如一个异步网络请求
-        sleep(3);
         
         for (int i = 0; i < 100; i++)
         {
@@ -1017,47 +747,12 @@
                                  handler:^(NSError * _Nullable error) {}];
 }
 
-- (void)testGetRegistrationIDWithBadNetwork
+
+- (void)testSetBadge
 {
-    [self expectationForNotification:@"testGetRegistrationID"
-                              object:nil
-                             handler:^BOOL(NSNotification * _Nonnull notification) {
-                                 
-                                 return YES;
-                             }];
-    
-    NSOperationQueue *queue = [[NSOperationQueue alloc]init];
-    [queue addOperationWithBlock:^{
-        //模拟这个异步操作需要3秒后才能获取结果，比如一个异步网络请求
-        sleep(3);
-        
-        [MobPush getRegistrationID:^(NSString *registrationID, NSError *error) {
-            
-            XCTAssertNil(error, @"Fail to get alias.");
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"testGetRegistrationID"
-                                                                object:nil
-                                                              userInfo:nil];
-            
-        }];
-    }];
-    
-    
-    [self waitForExpectationsWithTimeout:10
-                                 handler:^(NSError * _Nullable error) {}];
+    [MobPush setBadge:0];
 }
 
-// iOS 10 后台点击通知
-- (void)mpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler
-{
-    
-}
-
-// iOS 10 前台收到通知
-- (void)mpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSUInteger))completionHandler
-{
-    
-}
 
 @end
 

@@ -13,9 +13,14 @@
 		3C5EDF0320E9CE30002D1670 /* RestoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C5EDF0120E9CE30002D1670 /* RestoreViewController.xib */; };
 		3C5EDF0A20E9D3B3002D1670 /* select@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C5EDF0820E9D3B3002D1670 /* select@3x.png */; };
 		3C5EDF0B20E9D3B3002D1670 /* select@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C5EDF0920E9D3B3002D1670 /* select@2x.png */; };
+		3C5F76C8212FF83300C2F035 /* MobPushServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CBF72EF212D4FA0009DC3C3 /* MobPushServiceExtension.framework */; };
 		3C745E5E20BF943D00E7CE5E /* MOBFoundationEx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C745E5B20BF943D00E7CE5E /* MOBFoundationEx.framework */; };
 		3C745E5F20BF943D00E7CE5E /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C745E5C20BF943D00E7CE5E /* MOBFoundation.framework */; };
 		3C745EA920BF9D1F00E7CE5E /* MobPush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C745EA820BF9D1F00E7CE5E /* MobPush.framework */; };
+		3CBF72F0212D4FA0009DC3C3 /* MobPushServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CBF72EF212D4FA0009DC3C3 /* MobPushServiceExtension.framework */; };
+		3CD9A21D212D15580032AFF6 /* NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CD9A21C212D15580032AFF6 /* NotificationService.m */; };
+		3CD9A221212D15580032AFF6 /* MobPushServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3CD9A219212D15580032AFF6 /* MobPushServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3CF9386C214F981B0000AD18 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CF9386B214F981B0000AD18 /* libc++.tbd */; };
 		4441D2B32084B0F1000B879B /* MainItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4441D28D2084B0F1000B879B /* MainItemView.m */; };
 		4441D2B42084B0F1000B879B /* UITextView+MPushPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4441D28F2084B0F1000B879B /* UITextView+MPushPlaceholder.m */; };
 		4441D2B52084B0F1000B879B /* PushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4441D2902084B0F1000B879B /* PushViewController.m */; };
@@ -44,12 +49,18 @@
 		DE2B9A341F7B52C60077BE5F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE2B9A321F7B52C60077BE5F /* Main.storyboard */; };
 		DE2B9A361F7B52C60077BE5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE2B9A351F7B52C60077BE5F /* Assets.xcassets */; };
 		DE2B9A391F7B52C60077BE5F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE2B9A371F7B52C60077BE5F /* LaunchScreen.storyboard */; };
-		DE40B87C1FC3E38B0067EF79 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DE40B87B1FC3E38B0067EF79 /* libstdc++.tbd */; };
 		DE40B87E1FC3FE110067EF79 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE40B87D1FC3FE110067EF79 /* CoreLocation.framework */; };
 		DE5591D31FFF64CC00FCCBBA /* unbelievable.caf in Resources */ = {isa = PBXBuildFile; fileRef = DE5591D21FFF64CC00FCCBBA /* unbelievable.caf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3CD9A21F212D15580032AFF6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE2B9A1E1F7B52C50077BE5F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3CD9A218212D15580032AFF6;
+			remoteInfo = MobPushServiceExtension;
+		};
 		44543C0020BFACB200B6B45E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DE2B9A1E1F7B52C50077BE5F /* Project object */;
@@ -58,6 +69,20 @@
 			remoteInfo = MobPushDemo;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3CD9A225212D15580032AFF6 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				3CD9A221212D15580032AFF6 /* MobPushServiceExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3C5EDEFB20E9CA8E002D1670 /* linkitem@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linkitem@3x.png"; sourceTree = "<group>"; };
@@ -71,6 +96,13 @@
 		3C745E5B20BF943D00E7CE5E /* MOBFoundationEx.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundationEx.framework; sourceTree = "<group>"; };
 		3C745E5C20BF943D00E7CE5E /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
 		3C745EA820BF9D1F00E7CE5E /* MobPush.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MobPush.framework; sourceTree = "<group>"; };
+		3CBF72EF212D4FA0009DC3C3 /* MobPushServiceExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MobPushServiceExtension.framework; sourceTree = "<group>"; };
+		3CC815A0212EB5F2009ECAFB /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		3CD9A219212D15580032AFF6 /* MobPushServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MobPushServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CD9A21B212D15580032AFF6 /* NotificationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationService.h; sourceTree = "<group>"; };
+		3CD9A21C212D15580032AFF6 /* NotificationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationService.m; sourceTree = "<group>"; };
+		3CD9A21E212D15580032AFF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3CF9386B214F981B0000AD18 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		4441D28D2084B0F1000B879B /* MainItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainItemView.m; sourceTree = "<group>"; };
 		4441D28E2084B0F1000B879B /* TimeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeTableViewCell.h; sourceTree = "<group>"; };
 		4441D28F2084B0F1000B879B /* UITextView+MPushPlaceholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+MPushPlaceholder.m"; sourceTree = "<group>"; };
@@ -115,12 +147,19 @@
 		DE2B9A381F7B52C60077BE5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DE2B9A3A1F7B52C60077BE5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE40B86E1FC3D2D60067EF79 /* MobPushDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MobPushDemo.entitlements; sourceTree = "<group>"; };
-		DE40B87B1FC3E38B0067EF79 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		DE40B87D1FC3FE110067EF79 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		DE5591D21FFF64CC00FCCBBA /* unbelievable.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = unbelievable.caf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3CD9A216212D15580032AFF6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C5F76C8212FF83300C2F035 /* MobPushServiceExtension.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		44543BF820BFACB200B6B45E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -132,11 +171,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CF9386C214F981B0000AD18 /* libc++.tbd in Frameworks */,
 				DE40B87E1FC3FE110067EF79 /* CoreLocation.framework in Frameworks */,
 				3C745E5F20BF943D00E7CE5E /* MOBFoundation.framework in Frameworks */,
 				3C745EA920BF9D1F00E7CE5E /* MobPush.framework in Frameworks */,
-				DE40B87C1FC3E38B0067EF79 /* libstdc++.tbd in Frameworks */,
 				3C745E5E20BF943D00E7CE5E /* MOBFoundationEx.framework in Frameworks */,
+				3CBF72F0212D4FA0009DC3C3 /* MobPushServiceExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,9 +205,20 @@
 		3C745EA720BF9D1F00E7CE5E /* MobPush */ = {
 			isa = PBXGroup;
 			children = (
+				3CBF72EF212D4FA0009DC3C3 /* MobPushServiceExtension.framework */,
 				3C745EA820BF9D1F00E7CE5E /* MobPush.framework */,
 			);
 			path = MobPush;
+			sourceTree = "<group>";
+		};
+		3CD9A21A212D15580032AFF6 /* MobPushServiceExtension */ = {
+			isa = PBXGroup;
+			children = (
+				3CD9A21B212D15580032AFF6 /* NotificationService.h */,
+				3CD9A21C212D15580032AFF6 /* NotificationService.m */,
+				3CD9A21E212D15580032AFF6 /* Info.plist */,
+			);
+			path = MobPushServiceExtension;
 			sourceTree = "<group>";
 		};
 		4441D28C2084B0F1000B879B /* MobPushUI */ = {
@@ -252,6 +303,7 @@
 				3C745E5720BF943D00E7CE5E /* SDK */,
 				DE2B9A281F7B52C60077BE5F /* MobPushDemo */,
 				44543BFC20BFACB200B6B45E /* MobPushDemoTests */,
+				3CD9A21A212D15580032AFF6 /* MobPushServiceExtension */,
 				DE2B9A271F7B52C60077BE5F /* Products */,
 				DE40B8751FC3D7810067EF79 /* Frameworks */,
 			);
@@ -262,6 +314,7 @@
 			children = (
 				DE2B9A261F7B52C60077BE5F /* MobPushDemo.app */,
 				44543BFB20BFACB200B6B45E /* MobPushDemoTests.xctest */,
+				3CD9A219212D15580032AFF6 /* MobPushServiceExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -298,8 +351,9 @@
 		DE40B8751FC3D7810067EF79 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3CF9386B214F981B0000AD18 /* libc++.tbd */,
+				3CC815A0212EB5F2009ECAFB /* UserNotifications.framework */,
 				DE40B87D1FC3FE110067EF79 /* CoreLocation.framework */,
-				DE40B87B1FC3E38B0067EF79 /* libstdc++.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -307,6 +361,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3CD9A218212D15580032AFF6 /* MobPushServiceExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3CD9A224212D15580032AFF6 /* Build configuration list for PBXNativeTarget "MobPushServiceExtension" */;
+			buildPhases = (
+				3CD9A215212D15580032AFF6 /* Sources */,
+				3CD9A216212D15580032AFF6 /* Frameworks */,
+				3CD9A217212D15580032AFF6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MobPushServiceExtension;
+			productName = MobPushServiceExtension;
+			productReference = 3CD9A219212D15580032AFF6 /* MobPushServiceExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		44543BFA20BFACB200B6B45E /* MobPushDemoTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 44543C0420BFACB200B6B45E /* Build configuration list for PBXNativeTarget "MobPushDemoTests" */;
@@ -332,10 +403,12 @@
 				DE2B9A221F7B52C60077BE5F /* Sources */,
 				DE2B9A231F7B52C60077BE5F /* Frameworks */,
 				DE2B9A241F7B52C60077BE5F /* Resources */,
+				3CD9A225212D15580032AFF6 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				3CD9A220212D15580032AFF6 /* PBXTargetDependency */,
 			);
 			name = MobPushDemo;
 			productName = MobPushDemo;
@@ -351,6 +424,11 @@
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = com.mob;
 				TargetAttributes = {
+					3CD9A218212D15580032AFF6 = {
+						CreatedOnToolsVersion = 9.4.1;
+						DevelopmentTeam = LW5266U92D;
+						ProvisioningStyle = Manual;
+					};
 					44543BFA20BFACB200B6B45E = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
@@ -383,11 +461,19 @@
 			targets = (
 				DE2B9A251F7B52C60077BE5F /* MobPushDemo */,
 				44543BFA20BFACB200B6B45E /* MobPushDemoTests */,
+				3CD9A218212D15580032AFF6 /* MobPushServiceExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3CD9A217212D15580032AFF6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		44543BF920BFACB200B6B45E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -425,6 +511,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3CD9A215212D15580032AFF6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CD9A21D212D15580032AFF6 /* NotificationService.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		44543BF720BFACB200B6B45E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -457,6 +551,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3CD9A220212D15580032AFF6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3CD9A218212D15580032AFF6 /* MobPushServiceExtension */;
+			targetProxy = 3CD9A21F212D15580032AFF6 /* PBXContainerItemProxy */;
+		};
 		44543C0120BFACB200B6B45E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = DE2B9A251F7B52C60077BE5F /* MobPushDemo */;
@@ -484,6 +583,60 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3CD9A222212D15580032AFF6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = LW5266U92D;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../../SDK/**";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = MobPushServiceExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mob.MobPush.MobPushServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "71b95e15-a886-4234-9dc0-356dd4ab09ad";
+				PROVISIONING_PROFILE_SPECIFIER = MobPushServiceExtensionDev;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3CD9A223212D15580032AFF6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = LW5266U92D;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../../SDK/**";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = MobPushServiceExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mob.MobPush.MobPushServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "d33dbcd9-44b9-44a8-8617-3955ddfa1d0f";
+				PROVISIONING_PROFILE_SPECIFIER = MobPushServiceExtensionInHouse;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		44543C0220BFACB200B6B45E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -679,6 +832,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3CD9A224212D15580032AFF6 /* Build configuration list for PBXNativeTarget "MobPushServiceExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3CD9A222212D15580032AFF6 /* Debug */,
+				3CD9A223212D15580032AFF6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		44543C0420BFACB200B6B45E /* Build configuration list for PBXNativeTarget "MobPushDemoTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

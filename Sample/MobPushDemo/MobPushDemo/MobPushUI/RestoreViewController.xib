@@ -278,7 +278,7 @@
                 <constraint firstItem="oF6-Y1-yI9" firstAttribute="trailing" secondItem="jJO-91-jBg" secondAttribute="trailing" constant="20" id="ynN-Dy-xWh"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="oF6-Y1-yI9"/>
-            <point key="canvasLocation" x="33.5" y="53.5"/>
+            <point key="canvasLocation" x="-94" y="-17"/>
         </view>
     </objects>
     <resources>

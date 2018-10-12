@@ -258,7 +258,7 @@
                 noti.title = @"标题";
                 noti.subTitle = @"子标题";
                 noti.sound = @"unbelievable.caf";
-                noti.badge = 999;
+                noti.badge = [UIApplication sharedApplication].applicationIconBadgeNumber+1;
                 message.notification = noti;
                 
                 NSDate *currentDate = [NSDate dateWithTimeIntervalSinceNow:0];

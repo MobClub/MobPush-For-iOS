@@ -1,4 +1,4 @@
-//
+ //
 //  AppDelegate.m
 //  MobPushDemo
 //
@@ -37,11 +37,12 @@
     MPushNotificationConfiguration *configuration = [[MPushNotificationConfiguration alloc] init];
     configuration.types = MPushAuthorizationOptionsBadge | MPushAuthorizationOptionsSound | MPushAuthorizationOptionsAlert;
     [MobPush setupNotification:configuration];
+    //程序启动时,清除角标，但不清空通知栏消息(开发者根据业务需求，自行调用)
+    //[MobPush clearBadge];
     
     [MobPush getRegistrationID:^(NSString *registrationID, NSError *error) {
         NSLog(@"registrationID = %@--error = %@", registrationID, error);
     }];
-    
     
     self.window = [[UIWindow alloc] init];
     self.window.frame = [UIScreen mainScreen].bounds;
