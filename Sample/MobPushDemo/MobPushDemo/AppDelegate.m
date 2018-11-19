@@ -17,7 +17,7 @@
 @interface AppDelegate () <UIAlertViewDelegate, IAlertViewControllerDelegate>
 
 @property (nonatomic, strong) MPushMessage *message;
-@property (nonatomic, strong) AlertViewController *alertView;
+@property (nonatomic, strong) AlertViewController *alertVC;
 @property (nonatomic, strong) UIWindow *alertWindow;
 
 @end
@@ -38,7 +38,7 @@
     configuration.types = MPushAuthorizationOptionsBadge | MPushAuthorizationOptionsSound | MPushAuthorizationOptionsAlert;
     [MobPush setupNotification:configuration];
     //程序启动时,清除角标，但不清空通知栏消息(开发者根据业务需求，自行调用)
-    //[MobPush clearBadge];
+    [MobPush clearBadge];
     
     [MobPush getRegistrationID:^(NSString *registrationID, NSError *error) {
         NSLog(@"registrationID = %@--error = %@", registrationID, error);
@@ -64,54 +64,43 @@
     switch (message.messageType)
     {
         case MPushMessageTypeCustom:
-        {// 自定义消息
-            self.alertView = [[AlertViewController alloc] initWithTitle:@"收到推送" content:message.content];
-            self.alertView.delegate = self;
+        {// 自定义消息回调
+            self.alertVC = [[AlertViewController alloc] initWithTitle:@"收到推送" content:message.content];
+            self.alertVC.delegate = self;
             
             _alertWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
             _alertWindow.windowLevel = [UIApplication sharedApplication].keyWindow.windowLevel + 1;
             _alertWindow.userInteractionEnabled = YES;
-            _alertWindow.rootViewController = self.alertView;
+            _alertWindow.rootViewController = self.alertVC;
             [_alertWindow makeKeyAndVisible];
-            
         }
             break;
         case MPushMessageTypeAPNs:
-        {// APNs 回调
+        {// APNs回调
             NSLog(@"msgInfo---%@", message.msgInfo);
-            
-            if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive)
-            { // 前台
-                [self showAlertWithMessage:message];
-            }
-            else
-            { // 后台
-                [self pushVCWithMessage:message];
-            }
         }
             break;
         case MPushMessageTypeLocal:
-        { // 本地通知回调
-            
-            if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive)
-            { // 前台
-                [self showAlertWithMessage:message];
-            }
-            else
-            { // 后台
-                [self pushVCWithMessage:message];
-            }
-            
+        {// 本地通知回调
             NSString *body = message.notification.body;
             NSString *title = message.notification.title;
             NSString *subtitle = message.notification.subTitle;
             NSInteger badge = message.notification.badge;
             NSString *sound = message.notification.sound;
-
             NSLog(@"收到本地通知:{\nbody:%@，\ntitle:%@,\nsubtitle:%@,\nbadge：%ld，\nsound：%@，\n}",body, title, subtitle, (long)badge, sound);
-            
         }
             break;
+        case MPushMessageTypeClicked:
+        {// 点击通知回调
+            if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive)
+            { // 前台
+                [self showAlertWithMessage:message];
+            }
+            else
+            { // 后台
+                [self pushVCWithMessage:message];
+            }
+        }
         default:
             break;
     }

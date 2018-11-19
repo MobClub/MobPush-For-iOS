@@ -19,6 +19,7 @@ typedef NS_ENUM(NSUInteger, MPushMessageType)
     MPushMessageTypeCustom = 2, //UDP自定义消息
     MPushMessageTypeAPNs = 3, //APNs推送
     MPushMessageTypeLocal = 4, //本地推送
+    MPushMessageTypeClicked = 5,//点击通知
 };
 
 /**
@@ -77,7 +78,7 @@ typedef NS_ENUM(NSUInteger, MPushMessageType)
 @property (nonatomic, strong) NSDictionary *apnsDict __attribute__((deprecated("MobPush 1.4.0 版本已弃用 use 'msgInfo' instead")));
 
 /**
- 当 MPushMessageType为MPushMessageTypeAPNs时，返回aps消息数据以及场景还原数据。
+ 当 MPushMessageType为MPushMessageTypeAPNs时，返回apns消息数据以及场景还原数据。
  当 MPushMessageType为MPushMessageTypeLocal时，返回场景还原数据。
  "mobpush_link_k" :点击Apns消息场景还原的控制器路径。
  "mobpush_link_v" :点击Apns消息场景还原的参数。
