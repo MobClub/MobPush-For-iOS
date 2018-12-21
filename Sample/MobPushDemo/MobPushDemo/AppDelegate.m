@@ -43,6 +43,12 @@
     [MobPush getRegistrationID:^(NSString *registrationID, NSError *error) {
         NSLog(@"registrationID = %@--error = %@", registrationID, error);
     }];
+//    [MobPush addTags:@[@"ios标签"] result:^(NSError *error) {
+//
+//    }];
+//    [MobPush setAlias:@"ios别名" result:^(NSError *error) {
+//
+//    }];
     
     self.window = [[UIWindow alloc] init];
     self.window.frame = [UIScreen mainScreen].bounds;
@@ -52,7 +58,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveMessage:) name:MobPushDidReceiveMessageNotification object:nil];
-
+    
     return YES;
 }
 

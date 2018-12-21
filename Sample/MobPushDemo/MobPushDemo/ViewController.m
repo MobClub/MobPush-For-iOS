@@ -24,13 +24,13 @@
 #pragma mark ---场景还原---
 
 //点击推送场景还原路径
-+(NSString *)MobPushPath
++ (NSString *)MobPushPath
 {
     return @"/path/ViewController";
 }
 
 //点击推送场景还原页面参数
--(instancetype)initWithMobPushScene:(NSDictionary *)params
+- (instancetype)initWithMobPushScene:(NSDictionary *)params
 {
     if (self = [super init]) {
         //self.params = params;

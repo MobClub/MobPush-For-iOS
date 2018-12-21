@@ -36,13 +36,13 @@
 #pragma mark ---场景还原---
 
 //点击推送场景还原路径
-+(NSString *)MobPushPath
++ (NSString *)MobPushPath
 {
     return @"/path/PushViewController";
 }
 
 //点击推送场景还原页面参数
--(instancetype)initWithMobPushScene:(NSDictionary *)params
+- (instancetype)initWithMobPushScene:(NSDictionary *)params
 {
     if (self = [super init]) {
         self.params = params;
@@ -55,7 +55,6 @@
     }
     return self;
 }
-
 
 #pragma mark ---初始化控制器---
 - (instancetype)initWithTitle:(NSString *)title
@@ -258,7 +257,7 @@
                 noti.title = @"标题";
                 noti.subTitle = @"子标题";
                 noti.sound = @"unbelievable.caf";
-                noti.badge = [UIApplication sharedApplication].applicationIconBadgeNumber+1;
+                noti.badge = ([UIApplication sharedApplication].applicationIconBadgeNumber <0 ? 0 : [UIApplication sharedApplication].applicationIconBadgeNumber) +1;
                 message.notification = noti;
                 
                 NSDate *currentDate = [NSDate dateWithTimeIntervalSinceNow:0];
