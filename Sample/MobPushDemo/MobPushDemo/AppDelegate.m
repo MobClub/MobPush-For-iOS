@@ -37,18 +37,16 @@
     MPushNotificationConfiguration *configuration = [[MPushNotificationConfiguration alloc] init];
     configuration.types = MPushAuthorizationOptionsBadge | MPushAuthorizationOptionsSound | MPushAuthorizationOptionsAlert;
     [MobPush setupNotification:configuration];
-    //程序启动时,清除角标，但不清空通知栏消息(开发者根据业务需求，自行调用)
-    [MobPush clearBadge];
     
     [MobPush getRegistrationID:^(NSString *registrationID, NSError *error) {
         NSLog(@"registrationID = %@--error = %@", registrationID, error);
     }];
-//    [MobPush addTags:@[@"ios标签"] result:^(NSError *error) {
-//
-//    }];
-//    [MobPush setAlias:@"ios别名" result:^(NSError *error) {
-//
-//    }];
+    [MobPush addTags:@[@"biaoqian"] result:^(NSError *error) {
+
+    }];
+    [MobPush setAlias:@"bieming" result:^(NSError *error) {
+
+    }];
     
     self.window = [[UIWindow alloc] init];
     self.window.frame = [UIScreen mainScreen].bounds;
@@ -60,6 +58,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveMessage:) name:MobPushDidReceiveMessageNotification object:nil];
     
     return YES;
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application
+{   //程序进入前台时,清除角标，但不清空通知栏消息(开发者根据业务需求，自行调用)
+    [MobPush clearBadge];
 }
 
 // 收到通知回调
@@ -83,7 +86,8 @@
             break;
         case MPushMessageTypeAPNs:
         {// APNs回调
-            NSLog(@"msgInfo---%@", message.msgInfo);
+            NSLog(@"msgInfo---%@--%@", message.msgInfo, message.extraInfomation);
+            [[[UIAlertView alloc] initWithTitle:message.msgInfo.description message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
         }
             break;
         case MPushMessageTypeLocal:
@@ -122,7 +126,6 @@
     }
 }
 
-
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1)
@@ -158,6 +161,15 @@
         webVC.url = url;
         [nav pushViewController:webVC animated:YES];
     }
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    NSString *token = [[[[deviceToken description] stringByReplacingOccurrencesOfString:@"<"withString:@""]
+                        stringByReplacingOccurrencesOfString:@">" withString:@""]
+                       stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSLog(@"devicetoken%@", token);
+//    [[[UIAlertView alloc] initWithTitle:token message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
 }
 
 - (void)dealloc

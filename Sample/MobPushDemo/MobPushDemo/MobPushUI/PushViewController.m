@@ -44,7 +44,8 @@
 //点击推送场景还原页面参数
 - (instancetype)initWithMobPushScene:(NSDictionary *)params
 {
-    if (self = [super init]) {
+    if (self = [super init])
+    {
         self.params = params;
         self.vTitle = self.params[@"title"];
         self.vDescription = self.params[@"desc"];

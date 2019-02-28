@@ -120,5 +120,31 @@ extern NSString *const MobPushDidReceiveMessageNotification;
  */
 + (void)clearBadge;
 
+/**
+ 绑定手机号
+
+ @param phoneNum 手机号
+ @param handler 回调
+ */
++ (void)bindPhoneNum:(NSString *)phoneNum result:(void (^) (NSError *error))handler;
+
+/**  下面的 API，方便开发者在 APP 内添加 "关闭推送" 的按钮 **/
+
+/**
+ 当前远程推送是否关闭
+ 
+ @return YES：推送关闭状态，NO：推送打开状态
+ */
++ (BOOL)isPushStopped;
+
+/**
+ 关闭远程推送（应用内推送和本地通知不送影响，只关闭远程推送）
+ */
++ (void)stopPush;
+
+/**
+ 打开远程推送
+ */
++ (void)restartPush;
 
 @end
