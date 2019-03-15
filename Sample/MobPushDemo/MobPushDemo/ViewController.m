@@ -14,6 +14,7 @@
 #import "OpenPageViewController.h"
 #import "RestoreViewController.h"
 #import <MobPush/UIViewController+MobPush.h>
+#import "SettingViewController.h"
 
 @interface ViewController () <IMainItemViewDelegate>
 
@@ -32,10 +33,17 @@
 //点击推送场景还原页面参数
 - (instancetype)initWithMobPushScene:(NSDictionary *)params
 {
-    if (self = [super init]) {
+    if (self = [super init])
+    {
         //self.params = params;
     }
     return self;
+}
+
+- (void)onTap:(UIButton *)sender
+{
+    SettingViewController *setVC = [[SettingViewController alloc] init];
+    [self.navigationController pushViewController:setVC animated:YES];
 }
 
 - (void)viewDidLoad
@@ -43,10 +51,19 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 
+#ifdef DEBUG
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 50)];
+    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+    [btn addTarget:self action:@selector(onTap:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    [btn setTitle:@"设置" forState:UIControlStateNormal];
+#endif
+
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
     UILabel *selectedLabel = [[UILabel alloc] init];
-    selectedLabel.frame = CGRectMake(self.view.frame.size.width*0.1, 16,self.view.frame.size.width*0.8 , 40);
+    selectedLabel.frame = CGRectMake(self.view.frame.size.width*0.1, 16, self.view.frame.size.width*0.8, 40);
     selectedLabel.text = @"选择你想测试的推送类型";
     selectedLabel.textAlignment = NSTextAlignmentCenter;
     selectedLabel.font = [UIFont systemFontOfSize:20];
@@ -99,9 +116,9 @@
     [self.view addSubview:pushVC];
     
     MainItemView *linkItemView = [MainItemView viewWithTitle:@"推送打开应用内指定页面"
-                                                 image:[UIImage imageNamed:@"linkitem"]
-                                       backgroundImage:nil
-                                       backgroundColor:[MOBFColor colorWithRGB:0xf2f3f7]];
+                                                       image:[UIImage imageNamed:@"linkitem"]
+                                             backgroundImage:nil
+                                             backgroundColor:[MOBFColor colorWithRGB:0xf2f3f7]];
     linkItemView.delegate = self;
     linkItemView.tag = 6;
     linkItemView.frame = CGRectMake(self.view.frame.size.width*0.55, CGRectGetMaxY(schedulePush.frame) + 20, self.view.frame.size.width*0.35, self.view.frame.size.width*0.4);
