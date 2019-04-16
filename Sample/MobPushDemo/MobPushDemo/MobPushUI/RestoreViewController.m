@@ -18,11 +18,10 @@
     IBOutletCollection(UILabel) NSArray *_arrayTitleLabel;
     IBOutletCollection(UIImageView) NSArray *_arraySelectImg;
     __weak IBOutlet UIButton *_btnTest;
-    
 }
 
-@property (nonatomic ,copy) NSString *path;
-@property (nonatomic ,strong) NSDictionary *params;
+@property (nonatomic, copy) NSString *path;
+@property (nonatomic, strong) NSDictionary *params;
 
 @end
 
@@ -44,7 +43,6 @@
     _params = @{};
 }
 
-
 #pragma mark - 任何空白区域键盘事件
 - (void)setUpForDismissKeyboard
 {
@@ -57,33 +55,40 @@
     [self.view endEditing:YES];
 }
 
--(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
-    if ([text isEqualToString:@"\n"]) {
-        
+    if ([text isEqualToString:@"\n"])
+    {
         [textView resignFirstResponder];
         
         return NO;
     }
-    
     return YES;
 }
 
 //界面还原选择
-- (IBAction)onSelectLinkVC:(UIButton *)sender {
+- (IBAction)onSelectLinkVC:(UIButton *)sender
+{
     [self.view endEditing:YES];
-    for (UILabel *lbTitle in _arrayTitleLabel) {
-        if (lbTitle.tag == sender.tag) {
+    for (UILabel *lbTitle in _arrayTitleLabel)
+    {
+        if (lbTitle.tag == sender.tag)
+        {
             lbTitle.textColor = [MOBFColor colorWithRGB:0x00d098];
-        }else{
+        }
+        else
+        {
             lbTitle.textColor = [MOBFColor colorWithRGB:0x272831];
         }
     }
-    for (UIImageView *selectImg in _arraySelectImg) {
+    
+    for (UIImageView *selectImg in _arraySelectImg)
+    {
         selectImg.hidden = selectImg.tag != sender.tag;
     }
     
-    switch (sender.tag) {
+    switch (sender.tag)
+    {
         case 0://首页
         {
             _path = @"/path/ViewController";
@@ -117,7 +122,8 @@
 }
 
 //点击测试
-- (IBAction)onSendApnsMsg:(id)sender {
+- (IBAction)onSendApnsMsg:(id)sender
+{
     if (_textView.text.length < 1 || _textView.text.length > 35)
     {
         [MBProgressHUD showTitle:@"内容不能为空或超过35个字符"];

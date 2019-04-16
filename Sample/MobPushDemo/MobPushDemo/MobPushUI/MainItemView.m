@@ -54,7 +54,7 @@
     
     self.itemImage.frame = CGRectMake(self.frame.size.width*0.25, self.frame.size.height*0.05, self.frame.size.width*0.5, self.frame.size.height*0.7);
     
-   self.tagLabel.frame = CGRectMake(0, CGRectGetMaxY(self.itemImage.frame) + self.frame.size.height*0.05, self.frame.size.width, self.frame.size.height*0.1);
+    self.tagLabel.frame = CGRectMake(0, CGRectGetMaxY(self.itemImage.frame) + self.frame.size.height*0.05, self.frame.size.width, self.frame.size.height*0.1);
 }
 
 - (void)selectedItem:(UIButton *)sender
@@ -74,7 +74,7 @@
     return [[MainItemView alloc] initWithTitle:title
                                          image:image
                                backgroundImage:bImage
-                               backgroundColor:bColor];;
+                               backgroundColor:bColor];
 }
 
 @end

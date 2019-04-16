@@ -13,6 +13,7 @@
 #import "AlertViewController.h"
 #import "MBProgressHUD+Extension.h"
 #import "WebViewController.h"
+#import <MOBFoundation/MobSDK.h>
 
 @interface AppDelegate () <UIAlertViewDelegate, IAlertViewControllerDelegate>
 
@@ -32,11 +33,17 @@
 #else
     [MobPush setAPNsForProduction:YES];
 #endif
-    
+
     //MobPush推送设置（获得角标、声音、弹框提醒权限）
     MPushNotificationConfiguration *configuration = [[MPushNotificationConfiguration alloc] init];
     configuration.types = MPushAuthorizationOptionsBadge | MPushAuthorizationOptionsSound | MPushAuthorizationOptionsAlert;
     [MobPush setupNotification:configuration];
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"NotAPNsShowForeground"])
+    {
+        // 设置后，应用在前台时不展示通知横幅、角标、声音。（iOS 10 以后有效，iOS 10 以前本来就不展示）
+        [MobPush setAPNsShowForegroundType:MPushAuthorizationOptionsNone];
+    }
     
     [MobPush getRegistrationID:^(NSString *registrationID, NSError *error) {
         NSLog(@"registrationID = %@--error = %@", registrationID, error);
@@ -60,9 +67,9 @@
     return YES;
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{   //程序进入前台时,清除角标，但不清空通知栏消息(开发者根据业务需求，自行调用)
-    [MobPush clearBadge];
+- (void)applicationDidEnterBackground:(UIApplication *)application
+{   //程序进入后台时,清除角标，但不清空通知栏消息(开发者根据业务需求，自行调用)
+//    [MobPush clearBadge];
 }
 
 // 收到通知回调

@@ -51,14 +51,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 
-#ifdef DEBUG
+//#ifdef DEBUG
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 50)];
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
     [btn addTarget:self action:@selector(onTap:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
     [btn setTitle:@"设置" forState:UIControlStateNormal];
-#endif
+//#endif
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
     

@@ -88,10 +88,8 @@
         self.isTimedPush = isTimedPush;
         self.tag = tag;
     }
-    
     return self;
 }
-
 
 - (void)dealloc
 {
@@ -103,6 +101,8 @@
     [super viewDidLoad];
     
     self.edgesForExtendedLayout = UIRectEdgeNone;
+    
+    _timeValue = 0;
     
     self.title = self.vTitle;
     self.view.backgroundColor = [UIColor whiteColor];
@@ -258,15 +258,22 @@
                 noti.title = @"标题";
                 noti.subTitle = @"子标题";
                 noti.sound = @"unbelievable.caf";
-                noti.badge = ([UIApplication sharedApplication].applicationIconBadgeNumber <0 ? 0 : [UIApplication sharedApplication].applicationIconBadgeNumber) +1;
+                noti.badge = ([UIApplication sharedApplication].applicationIconBadgeNumber < 0 ? 0 : [UIApplication sharedApplication].applicationIconBadgeNumber) + 1;
                 message.notification = noti;
                 
-                NSDate *currentDate = [NSDate dateWithTimeIntervalSinceNow:0];
-                NSTimeInterval nowtime = [currentDate timeIntervalSince1970] * 1000;
-                
-                //设置几分钟后发起本地推送
-                NSTimeInterval taskDate = nowtime + self.timeValue*60*1000;
-                message.taskDate = taskDate;
+                if (self.timeValue)
+                {
+                    // 设置几分钟后发起本地推送
+                    NSDate *currentDate = [NSDate dateWithTimeIntervalSinceNow:0];
+                    NSTimeInterval nowtime = [currentDate timeIntervalSince1970] * 1000;
+                    NSTimeInterval taskDate = nowtime + self.timeValue*60*1000;
+                    message.taskDate = taskDate;
+                }
+                else
+                {
+                    message.isInstantMessage = YES;
+                }
+              
                 [MobPush addLocalNotification:message];
                 
                 [MBProgressHUD showTitle:@"发送成功"];
@@ -300,6 +307,15 @@
             }
         }
     }
+}
+
+//获取当前时间戳
+- (NSString *)currentTimeStr
+{
+    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:0];//获取当前时间0秒后的时间
+    NSTimeInterval time = [date timeIntervalSince1970] * 1000;// *1000 是精确到毫秒，不乘就是精确到秒
+    NSString *timeString = [NSString stringWithFormat:@"%f", time];
+    return timeString;
 }
 
 #pragma mark - 任何空白区域键盘事件

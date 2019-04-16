@@ -36,6 +36,14 @@ extern NSString *const MobPushDidReceiveMessageNotification;
  */
 + (void)setupNotification:(MPushNotificationConfiguration *)configuration;
 
+/**
+ 设置应用在前台有 Badge、Sound、Alert 三种类型，默认3个选项都有，iOS 10 以后设置有效。
+ 如果不想前台有 Badge、Sound、Alert，设置 MPushAuthorizationOptionsNone
+
+ @param type 类型
+ */
++ (void)setAPNsShowForegroundType:(MPushAuthorizationOptions)type;
+
 #pragma mark 本地推送
 
 /**
@@ -44,6 +52,13 @@ extern NSString *const MobPushDidReceiveMessageNotification;
  @param message 消息数据
  */
 + (void)addLocalNotification:(MPushMessage *)message;
+
+/**
+ 删除指定的本地通知（可以删除未发送或者已经发送的本地通知）
+
+ @param identifiers 推送请求标识数组，为nil，删除所有通知
+ */
++ (void)removeNotificationWithIdentifiers:(NSArray <NSString *> *)identifiers;
 
 #pragma mark 推送设置
 

@@ -78,6 +78,11 @@ typedef NS_ENUM(NSUInteger, MPushMessageType)
 @property (nonatomic, strong) NSDictionary *apnsDict __attribute__((deprecated("MobPush 1.4.0 版本已弃用 use 'msgInfo' instead")));
 
 /**
+ 推送的唯一标识(两条推送该属性不能一样，否则通知栏显示，新的推送会覆盖旧推送，删除推送功能可以设置该属性，默认值是当前时间戳)
+ */
+@property (nonatomic, copy) NSString *identifier;
+
+/**
  当 MPushMessageType为MPushMessageTypeAPNs时，返回apns消息数据以及场景还原数据。
  当 MPushMessageType为MPushMessageTypeLocal时，返回场景还原数据。
  "mobpush_link_k" :点击Apns消息场景还原的控制器路径。
