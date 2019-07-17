@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.dependency 'MOBFoundation'
 
   s.subspec 'MobPush' do |sp|
-      sp.vendored_frameworks   = 'SDK/MobPush/MobPush.framework','SDK/MobPush/MobPushServiceExtension.framework'
+      sp.vendored_frameworks   = 'MobPush/MobPush.framework','MobPush/MobPushServiceExtension.framework'
   end
 
 end
