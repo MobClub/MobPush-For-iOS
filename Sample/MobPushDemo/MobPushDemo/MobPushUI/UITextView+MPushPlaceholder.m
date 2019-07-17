@@ -9,7 +9,6 @@
 #import "UITextView+MPushPlaceholder.h"
 #import <objc/runtime.h>
 
-
 @implementation UITextView (MPushPlaceholder)
 
 #pragma mark - Swizzle Dealloc
@@ -53,7 +52,7 @@
     dispatch_once(&onceToken, ^{
         UITextField *textField = [[UITextField alloc] init];
         textField.placeholder = @" ";
-        color = [textField valueForKeyPath:@"_placeholderLabel.textColor"];
+        color = [UIColor lightGrayColor];
     });
     return color;
 }
@@ -215,6 +214,5 @@
     CGFloat height = [self.placeholderLabel sizeThatFits:CGSizeMake(width, 0)].height;
     self.placeholderLabel.frame = CGRectMake(x, y, width, height);
 }
-
 
 @end

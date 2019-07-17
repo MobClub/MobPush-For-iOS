@@ -57,7 +57,7 @@
     }
     else
     {
-        if ([self.textField.text containsString:@"http://"] || [self.textField.text containsString:@"http://"])
+        if ([self.textField.text containsString:@"http"])
         {
             urlStr = self.textField.text;
         }

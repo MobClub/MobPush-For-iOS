@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment version="2304" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -128,10 +128,18 @@
                         <action selector="setBadge:" destination="-1" eventType="touchUpInside" id="p7I-xK-guf"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gyf-Ym-n6Y">
+                    <rect key="frame" x="133.5" y="454" width="108" height="30"/>
+                    <state key="normal" title="设置别名和标签"/>
+                    <connections>
+                        <action selector="setAliasOrTags:" destination="-1" eventType="touchUpInside" id="bwa-9h-neu"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="78t-ZF-6dT" firstAttribute="top" secondItem="dnU-3E-dQ8" secondAttribute="bottom" constant="20" id="27t-Hj-jiY"/>
+                <constraint firstItem="gyf-Ym-n6Y" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="4Uj-T7-4Ff"/>
                 <constraint firstItem="XsU-AY-LgW" firstAttribute="leading" secondItem="78t-ZF-6dT" secondAttribute="leading" id="80u-me-rsp"/>
                 <constraint firstItem="78t-ZF-6dT" firstAttribute="leading" secondItem="asl-NO-pWn" secondAttribute="leading" id="8jC-Mi-jrx"/>
                 <constraint firstItem="dnU-3E-dQ8" firstAttribute="centerY" secondItem="Wbq-cT-kas" secondAttribute="centerY" id="9qi-wJ-Yez"/>
@@ -139,6 +147,7 @@
                 <constraint firstItem="Wbq-cT-kas" firstAttribute="top" secondItem="sSz-5o-ARc" secondAttribute="bottom" constant="24" id="D0W-OB-2xF"/>
                 <constraint firstItem="aEa-to-4TA" firstAttribute="top" secondItem="dnU-3E-dQ8" secondAttribute="bottom" constant="40" id="E7h-lm-HA0"/>
                 <constraint firstItem="DzQ-Rw-XZt" firstAttribute="top" secondItem="asl-NO-pWn" secondAttribute="bottom" constant="15" id="FLw-Uo-Cpb"/>
+                <constraint firstItem="gyf-Ym-n6Y" firstAttribute="top" secondItem="FG7-Mr-N6N" secondAttribute="bottom" constant="50" id="JEr-iO-jeR"/>
                 <constraint firstItem="XiI-DR-4OQ" firstAttribute="centerY" secondItem="asl-NO-pWn" secondAttribute="centerY" id="JHw-0h-KMh"/>
                 <constraint firstItem="TvF-gL-FTk" firstAttribute="centerY" secondItem="sSz-5o-ARc" secondAttribute="centerY" id="KKD-2d-vYf"/>
                 <constraint firstItem="dnU-3E-dQ8" firstAttribute="trailing" secondItem="TvF-gL-FTk" secondAttribute="trailing" id="Nec-cb-rGg"/>

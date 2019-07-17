@@ -19,7 +19,8 @@
 @implementation NotificationService
 
 //重写你的通知内容，也可以在这里下载附件内容
-- (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler {
+- (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler
+{
     self.contentHandler = contentHandler;
     self.bestAttemptContent = [request.content mutableCopy];
     
@@ -31,17 +32,18 @@
     
 #pragma mark ----将APNs信息交由MobPush处理----
     //获取富媒体附件下载地址
-    NSString * attachUrl = request.content.userInfo[@"attachment"];
+    NSString *attachUrl = request.content.userInfo[@"attachment"];
+    
     [MobPushServiceExtension handelNotificationServiceRequestUrl:attachUrl withAttachmentsComplete:^(NSArray *attachments, NSError *error) {
-
-        if (attachments.count > 0) {
+        if (attachments.count > 0)
+        {
             self.bestAttemptContent.attachments = attachments; //设置通知中的多媒体附件
             self.contentHandler(self.bestAttemptContent);
-
-        }else{
+        }
+        else
+        {
             self.contentHandler(self.bestAttemptContent);
         }
-
     }];
 }
 

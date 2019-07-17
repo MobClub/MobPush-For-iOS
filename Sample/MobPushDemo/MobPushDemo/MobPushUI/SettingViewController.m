@@ -9,6 +9,7 @@
 #import "SettingViewController.h"
 #import <MobPush/MobPush.h>
 #import "MBProgressHUD+Extension.h"
+#import "TagsAndAliasViewController.h"
 
 @interface SettingViewController ()
 
@@ -142,6 +143,11 @@
     [UIApplication sharedApplication].applicationIconBadgeNumber = [self.badgeTF.text integerValue];
     // 再将该角标值同步到Mob服务器
     [MobPush setBadge:[self.badgeTF.text integerValue]];
+}
+
+- (IBAction)setAliasOrTags:(id)sender {
+    TagsAndAliasViewController *vc = [TagsAndAliasViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

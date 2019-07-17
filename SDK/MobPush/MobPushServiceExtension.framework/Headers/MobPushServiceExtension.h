@@ -15,5 +15,4 @@
  */
 + (void)handelNotificationServiceRequestUrl:(NSString *)requestUrl withAttachmentsComplete:(void (^)(NSArray *attachments, NSError *error))completeBlock;
 
-
 @end

@@ -276,7 +276,7 @@
               
                 [MobPush addLocalNotification:message];
                 
-                [MBProgressHUD showTitle:@"发送成功"];
+//                [MBProgressHUD showTitle:@"发送成功"];
             }
             else//Apns推送
             {
@@ -286,7 +286,12 @@
                                             content:self.content.text
                                               space:@(self.timeValue)
                             isProductionEnvironment:isProductionEnvironment
-                                             extras:nil
+                                             extras:@{
+                                                 @"path": @"https://www.baidu.com/",
+                                                 @"ordertype": @3,
+                                                 @"type": @"reservation",
+                                                 @"id": @"d3e6b3c4-38c7-4e69-9fa7-264a83411718"
+                                             }
                                          linkScheme:nil
                                            linkData:nil
                                              result:^(NSError *error) {

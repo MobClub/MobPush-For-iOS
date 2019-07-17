@@ -13,7 +13,6 @@
 #import "AlertViewController.h"
 #import "MBProgressHUD+Extension.h"
 #import "WebViewController.h"
-#import <MOBFoundation/MobSDK.h>
 
 @interface AppDelegate () <UIAlertViewDelegate, IAlertViewControllerDelegate>
 
@@ -33,11 +32,12 @@
 #else
     [MobPush setAPNsForProduction:YES];
 #endif
-
+    
     //MobPush推送设置（获得角标、声音、弹框提醒权限）
     MPushNotificationConfiguration *configuration = [[MPushNotificationConfiguration alloc] init];
     configuration.types = MPushAuthorizationOptionsBadge | MPushAuthorizationOptionsSound | MPushAuthorizationOptionsAlert;
     [MobPush setupNotification:configuration];
+    
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"NotAPNsShowForeground"])
     {
@@ -48,13 +48,7 @@
     [MobPush getRegistrationID:^(NSString *registrationID, NSError *error) {
         NSLog(@"registrationID = %@--error = %@", registrationID, error);
     }];
-    [MobPush addTags:@[@"biaoqian"] result:^(NSError *error) {
-
-    }];
-    [MobPush setAlias:@"bieming" result:^(NSError *error) {
-
-    }];
-    
+        
     self.window = [[UIWindow alloc] init];
     self.window.frame = [UIScreen mainScreen].bounds;
     ViewController *viewC = [[ViewController alloc] init];
@@ -76,7 +70,7 @@
 - (void)didReceiveMessage:(NSNotification *)notification
 {
     MPushMessage *message = notification.object;
-    
+        
     switch (message.messageType)
     {
         case MPushMessageTypeCustom:
@@ -168,20 +162,6 @@
         webVC.url = url;
         [nav pushViewController:webVC animated:YES];
     }
-}
-
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
-{
-    NSString *token = [[[[deviceToken description] stringByReplacingOccurrencesOfString:@"<"withString:@""]
-                        stringByReplacingOccurrencesOfString:@">" withString:@""]
-                       stringByReplacingOccurrencesOfString:@" " withString:@""];
-    NSLog(@"devicetoken%@", token);
-//    [[[UIAlertView alloc] initWithTitle:token message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
-}
-
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

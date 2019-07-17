@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2F1C7E0821F1A7240041D287 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F1C7E0621F1A7240041D287 /* SettingViewController.m */; };
 		2F1C7E0921F1A7240041D287 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F1C7E0721F1A7240041D287 /* SettingViewController.xib */; };
+		2F1D906C22B73E2B002DCD2A /* TagsAndAliasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F1D906A22B73E2B002DCD2A /* TagsAndAliasViewController.m */; };
+		2F1D906D22B73E2B002DCD2A /* TagsAndAliasViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F1D906B22B73E2B002DCD2A /* TagsAndAliasViewController.xib */; };
 		3C5EDEFD20E9CA8E002D1670 /* linkitem@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C5EDEFB20E9CA8E002D1670 /* linkitem@3x.png */; };
 		3C5EDEFE20E9CA8E002D1670 /* linkitem@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C5EDEFC20E9CA8E002D1670 /* linkitem@2x.png */; };
 		3C5EDF0220E9CE30002D1670 /* RestoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C5EDF0020E9CE30002D1670 /* RestoreViewController.m */; };
@@ -90,6 +92,9 @@
 		2F1C7E0521F1A7240041D287 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		2F1C7E0621F1A7240041D287 /* SettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		2F1C7E0721F1A7240041D287 /* SettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
+		2F1D906922B73E2B002DCD2A /* TagsAndAliasViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagsAndAliasViewController.h; sourceTree = "<group>"; };
+		2F1D906A22B73E2B002DCD2A /* TagsAndAliasViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagsAndAliasViewController.m; sourceTree = "<group>"; };
+		2F1D906B22B73E2B002DCD2A /* TagsAndAliasViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagsAndAliasViewController.xib; sourceTree = "<group>"; };
 		3C5EDEFB20E9CA8E002D1670 /* linkitem@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linkitem@3x.png"; sourceTree = "<group>"; };
 		3C5EDEFC20E9CA8E002D1670 /* linkitem@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linkitem@2x.png"; sourceTree = "<group>"; };
 		3C5EDEFF20E9CE2F002D1670 /* RestoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RestoreViewController.h; sourceTree = "<group>"; };
@@ -252,6 +257,9 @@
 				2F1C7E0521F1A7240041D287 /* SettingViewController.h */,
 				2F1C7E0621F1A7240041D287 /* SettingViewController.m */,
 				2F1C7E0721F1A7240041D287 /* SettingViewController.xib */,
+				2F1D906922B73E2B002DCD2A /* TagsAndAliasViewController.h */,
+				2F1D906A22B73E2B002DCD2A /* TagsAndAliasViewController.m */,
+				2F1D906B22B73E2B002DCD2A /* TagsAndAliasViewController.xib */,
 			);
 			path = MobPushUI;
 			sourceTree = "<group>";
@@ -462,6 +470,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -502,6 +511,7 @@
 				DE2B9A391F7B52C60077BE5F /* LaunchScreen.storyboard in Resources */,
 				4441D2CB2084B0F1000B879B /* WebViewController.xib in Resources */,
 				DE2B9A361F7B52C60077BE5F /* Assets.xcassets in Resources */,
+				2F1D906D22B73E2B002DCD2A /* TagsAndAliasViewController.xib in Resources */,
 				4441D2C82084B0F1000B879B /* OpenPageViewController.xib in Resources */,
 				2F1C7E0921F1A7240041D287 /* SettingViewController.xib in Resources */,
 				4441D2C02084B0F1000B879B /* localNotication@2x.png in Resources */,
@@ -545,6 +555,7 @@
 			files = (
 				4441D2C62084B0F1000B879B /* TimeTableViewCell.m in Sources */,
 				4441D2CC2084B0F1000B879B /* OpenPageViewController.m in Sources */,
+				2F1D906C22B73E2B002DCD2A /* TagsAndAliasViewController.m in Sources */,
 				4441D2CA2084B0F1000B879B /* MBProgressHUD+Extension.m in Sources */,
 				3C5EDF0220E9CE30002D1670 /* RestoreViewController.m in Sources */,
 				4441D2B32084B0F1000B879B /* MainItemView.m in Sources */,
