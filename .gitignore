@@ -19,6 +19,7 @@ index/
 xcuserdata/
 
 ## Other
+.DS_Store
 *.moved-aside
 *.xcuserstate
 
