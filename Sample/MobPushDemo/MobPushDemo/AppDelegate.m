@@ -63,7 +63,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {   //程序进入后台时,清除角标，但不清空通知栏消息(开发者根据业务需求，自行调用)
-//    [MobPush clearBadge];
+    [MobPush clearBadge];
 }
 
 // 收到通知回调
