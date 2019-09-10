@@ -14,6 +14,11 @@
 #import "MBProgressHUD+Extension.h"
 #import "WebViewController.h"
 
+// bugly
+#import <Bugly/Bugly.h>
+// bugly app id
+#define BUGLY_APP_ID @"5abda4b390"
+
 @interface AppDelegate () <UIAlertViewDelegate, IAlertViewControllerDelegate>
 
 @property (nonatomic, strong) MPushMessage *message;
@@ -26,6 +31,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    // Demo集成bugly,便于定位崩溃,与MobPushSDK集成无关
+    [self setupBugly];
+    
     // 设置推送环境
 #ifdef DEBUG
     [MobPush setAPNsForProduction:NO];
@@ -60,6 +69,7 @@
     
     return YES;
 }
+
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {   //程序进入后台时,清除角标，但不清空通知栏消息(开发者根据业务需求，自行调用)
@@ -98,7 +108,7 @@
             NSString *subtitle = message.notification.subTitle;
             NSInteger badge = message.notification.badge;
             NSString *sound = message.notification.sound;
-            NSLog(@"收到本地通知:{\nbody:%@，\ntitle:%@,\nsubtitle:%@,\nbadge：%ld，\nsound：%@，\n}",body, title, subtitle, (long)badge, sound);
+            NSLog(@"收到本地通知:{\nbody:%@，\ntitle:%@,\nsubtitle:%@,\nbadge:%ld,\nsound:%@,\n}",body, title, subtitle, (long)badge, sound);
         }
             break;
         case MPushMessageTypeClicked:
@@ -162,6 +172,65 @@
         webVC.url = url;
         [nav pushViewController:webVC animated:YES];
     }
+}
+
+
+
+
+// Bugly
+- (void)setupBugly
+{
+    // Get the default config
+    BuglyConfig * config = [[BuglyConfig alloc] init];
+    
+    // Open the debug mode to print the sdk log message.
+    // Default value is NO, please DISABLE it in your RELEASE version.
+#ifdef DEBUG
+    config.debugMode = YES;
+#else
+    config.debugMode = NO;
+#endif
+    
+    // Open the customized log record and report, BuglyLogLevelWarn will report Warn, Error log message.
+    // Default value is BuglyLogLevelSilent that means DISABLE it.
+    // You could change the value according to you need.
+    //    config.reportLogLevel = BuglyLogLevelWarn;
+    
+    // Open the STUCK scene data in MAIN thread record and report.
+    // Default value is NO
+    config.blockMonitorEnable = YES;
+    
+    // Set the STUCK THRESHOLD time, when STUCK time > THRESHOLD it will record an event and report data when the app launched next time.
+    // Default value is 3.5 second.
+    config.blockMonitorTimeout = 1.5;
+    
+    // Set the app channel to deployment
+    config.channel = @"Bugly";
+    
+    config.delegate = self;
+    
+    config.consolelogEnable = NO;
+    config.viewControllerTrackingEnable = NO;
+    
+    // NOTE:Required
+    // Start the Bugly sdk with APP_ID and your config
+    [Bugly startWithAppId:BUGLY_APP_ID
+#if DEBUG
+        developmentDevice:YES
+#endif
+                   config:config];
+    
+    // Set the customizd tag thats config in your APP registerd on the  bugly.qq.com
+    // [Bugly setTag:1799];
+    [Bugly setUserIdentifier:[NSString stringWithFormat:@"User: %@", [UIDevice currentDevice].name]];
+    
+    [Bugly setUserValue:[NSProcessInfo processInfo].processName forKey:@"Process"];
+}
+
+#pragma mark - BuglyDelegate
+- (NSString *)attachmentForException:(NSException *)exception {
+    NSLog(@"(%@:%d) %s %@",[[NSString stringWithUTF8String:__FILE__] lastPathComponent], __LINE__, __PRETTY_FUNCTION__,exception);
+    return @"This is an attachment";
 }
 
 @end

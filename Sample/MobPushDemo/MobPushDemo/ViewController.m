@@ -64,7 +64,7 @@
     
     UILabel *selectedLabel = [[UILabel alloc] init];
     selectedLabel.frame = CGRectMake(self.view.frame.size.width*0.1, 16, self.view.frame.size.width*0.8, 40);
-    selectedLabel.text = @"选择你想测试的推送类型";
+    selectedLabel.text = @"选择你想测试的推送类型:";
     selectedLabel.textAlignment = NSTextAlignmentCenter;
     selectedLabel.font = [UIFont systemFontOfSize:20];
     selectedLabel.textColor = [UIColor blackColor];

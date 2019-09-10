@@ -16,6 +16,7 @@
 typedef NS_ENUM(NSUInteger, MPushMessageType)
 {
     MPushMessageTypeUDPNotify = 1, //UDP通知
+    MPushMessageTypeTCPNotify = MPushMessageTypeUDPNotify,
     MPushMessageTypeCustom = 2, //UDP自定义消息
     MPushMessageTypeAPNs = 3, //APNs推送
     MPushMessageTypeLocal = 4, //本地推送

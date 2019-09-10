@@ -13,6 +13,8 @@
 
 @interface SettingViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *sdkVerLable;
+
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UISwitch *switchBtn;
 @property (weak, nonatomic) IBOutlet UIButton *bindBtn;
@@ -30,6 +32,8 @@
     // Do any additional setup after loading the view from its nib.
     
     self.title = @"设置";
+    
+    self.sdkVerLable.text = [NSString stringWithFormat:@"MobPushSDK:v%@",[MobPush sdkVersion]];
     
     self.edgesForExtendedLayout = UIRectEdgeNone;
     

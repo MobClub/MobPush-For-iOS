@@ -129,6 +129,12 @@
         [MBProgressHUD showTitle:@"内容不能为空或超过35个字符"];
         return;
     }
+    NSString *content_tmp = [_textView.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    if (content_tmp.length == 0)
+    {
+        [MBProgressHUD showTitle:@"内容不能为空或超过35个字符"];
+        return;
+    }
     
     BOOL isProductionEnvironment;
 #ifdef DEBUG

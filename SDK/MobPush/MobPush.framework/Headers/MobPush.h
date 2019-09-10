@@ -162,4 +162,9 @@ extern NSString *const MobPushDidReceiveMessageNotification;
  */
 + (void)restartPush;
 
+/**
+ SDK版本
+ */
++ (NSString *)sdkVersion;
+
 @end

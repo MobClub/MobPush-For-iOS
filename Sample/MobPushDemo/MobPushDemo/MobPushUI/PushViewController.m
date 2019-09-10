@@ -215,6 +215,18 @@
 
     if (self.tag == 1)//应用内消息
     {
+        if (self.content.text.length < 1 || self.content.text.length > 35)
+        {
+            [MBProgressHUD showTitle:@"内容不能为空或超过35个字符"];
+            return;
+        }
+        NSString *content_tmp = [self.content.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+        if (content_tmp.length == 0)
+        {
+            [MBProgressHUD showTitle:@"内容不能为空或超过35个字符"];
+            return;
+        }
+        
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
         [MobPush sendMessageWithMessageType:self.messageType
@@ -249,6 +261,13 @@
         }
         else
         {
+            NSString *content_tmp = [self.content.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+            if (content_tmp.length == 0)
+            {
+                [MBProgressHUD showTitle:@"内容不能为空或超过35个字符"];
+                return;
+            }
+            
             if (self.tag == 4)//本地通知
             {
                 MPushMessage *message = [[MPushMessage alloc] init];

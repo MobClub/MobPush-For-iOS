@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B63B8B92320F20300219CFC /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B63B8B82320F20300219CFC /* Bugly.framework */; };
 		2F1C7E0821F1A7240041D287 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F1C7E0621F1A7240041D287 /* SettingViewController.m */; };
 		2F1C7E0921F1A7240041D287 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F1C7E0721F1A7240041D287 /* SettingViewController.xib */; };
 		2F1D906C22B73E2B002DCD2A /* TagsAndAliasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F1D906A22B73E2B002DCD2A /* TagsAndAliasViewController.m */; };
@@ -89,6 +90,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0B63B8B82320F20300219CFC /* Bugly.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bugly.framework; sourceTree = "<group>"; };
 		2F1C7E0521F1A7240041D287 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		2F1C7E0621F1A7240041D287 /* SettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		2F1C7E0721F1A7240041D287 /* SettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 			files = (
 				3CF9386C214F981B0000AD18 /* libc++.tbd in Frameworks */,
 				DE40B87E1FC3FE110067EF79 /* CoreLocation.framework in Frameworks */,
+				0B63B8B92320F20300219CFC /* Bugly.framework in Frameworks */,
 				3C745E5F20BF943D00E7CE5E /* MOBFoundation.framework in Frameworks */,
 				3C745EA920BF9D1F00E7CE5E /* MobPush.framework in Frameworks */,
 				3C745E5E20BF943D00E7CE5E /* MOBFoundationEx.framework in Frameworks */,
@@ -193,6 +196,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B63B8B72320F20300219CFC /* ThirdLibs */ = {
+			isa = PBXGroup;
+			children = (
+				0B63B8B82320F20300219CFC /* Bugly.framework */,
+			);
+			path = ThirdLibs;
+			sourceTree = "<group>";
+		};
 		3C745E5720BF943D00E7CE5E /* SDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -348,6 +359,7 @@
 				DE1CB8981FC3D60200F60342 /* ViewController.m */,
 				DE2B9A3A1F7B52C60077BE5F /* Info.plist */,
 				DE2B9A291F7B52C60077BE5F /* Supporting Files */,
+				0B63B8B72320F20300219CFC /* ThirdLibs */,
 			);
 			path = MobPushDemo;
 			sourceTree = "<group>";
@@ -822,12 +834,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MobPushDemo/MobPushDemo.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 永超 李 (6L4556Q7ET)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 永超 李 (6L4556Q7ET)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = LW5266U92D;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../../SDK/**";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../../SDK/**",
+					"$(PROJECT_DIR)/MobPushDemo/ThirdLibs",
+				);
 				INFOPLIST_FILE = MobPushDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_GENERATE_MAP_FILE = YES;
@@ -844,12 +859,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MobPushDemo/MobPushDemo.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = LW5266U92D;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../../SDK/**";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../../SDK/**",
+					"$(PROJECT_DIR)/MobPushDemo/ThirdLibs",
+				);
 				INFOPLIST_FILE = MobPushDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_GENERATE_MAP_FILE = YES;

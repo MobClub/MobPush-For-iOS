@@ -49,6 +49,13 @@
         return;
     }
     
+    NSString *content_tmp = [self.textView.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    if (content_tmp.length == 0)
+    {
+        [MBProgressHUD showTitle:@"内容不能为空或超过35个字符"];
+        return;
+    }
+    
     NSString *urlStr;
     
     if (self.textField.text.length < 1)
