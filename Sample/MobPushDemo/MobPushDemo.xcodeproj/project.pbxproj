@@ -19,7 +19,6 @@
 		3C5EDF0A20E9D3B3002D1670 /* select@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C5EDF0820E9D3B3002D1670 /* select@3x.png */; };
 		3C5EDF0B20E9D3B3002D1670 /* select@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C5EDF0920E9D3B3002D1670 /* select@2x.png */; };
 		3C5F76C8212FF83300C2F035 /* MobPushServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CBF72EF212D4FA0009DC3C3 /* MobPushServiceExtension.framework */; };
-		3C745E5E20BF943D00E7CE5E /* MOBFoundationEx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C745E5B20BF943D00E7CE5E /* MOBFoundationEx.framework */; };
 		3C745E5F20BF943D00E7CE5E /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C745E5C20BF943D00E7CE5E /* MOBFoundation.framework */; };
 		3C745EA920BF9D1F00E7CE5E /* MobPush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C745EA820BF9D1F00E7CE5E /* MobPush.framework */; };
 		3CBF72F0212D4FA0009DC3C3 /* MobPushServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CBF72EF212D4FA0009DC3C3 /* MobPushServiceExtension.framework */; };
@@ -188,7 +187,6 @@
 				0B63B8B92320F20300219CFC /* Bugly.framework in Frameworks */,
 				3C745E5F20BF943D00E7CE5E /* MOBFoundation.framework in Frameworks */,
 				3C745EA920BF9D1F00E7CE5E /* MobPush.framework in Frameworks */,
-				3C745E5E20BF943D00E7CE5E /* MOBFoundationEx.framework in Frameworks */,
 				3CBF72F0212D4FA0009DC3C3 /* MobPushServiceExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -631,12 +629,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LW5266U92D;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../../SDK/**";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = MobPushServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 2.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mob.MobPush.MobPushServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "71b95e15-a886-4234-9dc0-356dd4ab09ad";
@@ -658,12 +658,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LW5266U92D;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../../SDK/**";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = MobPushServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 2.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mob.MobPush.MobPushServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "d33dbcd9-44b9-44a8-8617-3955ddfa1d0f";
@@ -837,6 +839,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: 永超 李 (6L4556Q7ET)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 永超 李 (6L4556Q7ET)";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LW5266U92D;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -862,6 +865,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LW5266U92D;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

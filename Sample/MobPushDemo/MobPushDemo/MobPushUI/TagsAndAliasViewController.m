@@ -66,7 +66,8 @@
     [MobPush setAlias:_aliasTF.text result:^(NSError *error) {
         if (!error)
         {
-            [self getAlias:nil];
+//            [self getAlias:nil];
+            [self getAliasWithContent:@"setAlias"];
         }
         else
         {
@@ -84,21 +85,26 @@
         }
         else
         {
-            [self inputContent:[NSString stringWithFormat:@"setAlias失败,error:%@", error]];
+            [self inputContent:[NSString stringWithFormat:@"deleteAlias失败,error:%@", error]];
         }
     }];
 }
 
 - (IBAction)getAlias:(id)sender
 {
+    [self getAliasWithContent:@"getAlias"];
+}
+
+- (void)getAliasWithContent:(NSString *)content
+{
     [MobPush getAliasWithResult:^(NSString *alias, NSError *error) {
         if (!error)
         {
-            [self inputContent:[NSString stringWithFormat:@"setAlias成功,alias:%@", alias]];
+            [self inputContent:[NSString stringWithFormat:@"%@成功,alias:%@", content, alias]];
         }
         else
         {
-            [self inputContent:[NSString stringWithFormat:@"setAlias失败,error:%@", error]];
+            [self inputContent:[NSString stringWithFormat:@"%@失败,error:%@", content, error]];
         }
     }];
 }
@@ -138,14 +144,14 @@
             }
             else
             {
-                [self inputContent:[NSString stringWithFormat:@"addTags失败,error:%@", error]];
+                [self inputContent:[NSString stringWithFormat:@"deleteTags失败,error:%@", error]];
             }
             
         }];
     }
     else
     {
-        [self inputContent:[NSString stringWithFormat:@"addTags失败，输入框不能为空"]];
+        [self inputContent:[NSString stringWithFormat:@"deleteTags失败，输入框不能为空"]];
     }
 }
 
