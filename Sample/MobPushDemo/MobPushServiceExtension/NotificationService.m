@@ -18,7 +18,7 @@
 
 @implementation NotificationService
 
-//重写你的通知内容，也可以在这里下载附件内容
+//重写你的通知内容，也可以在这里下载附件内容，30秒时间来处理和更改通知内容
 - (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler
 {
     self.contentHandler = contentHandler;

@@ -70,10 +70,16 @@
     return YES;
 }
 
+- (void)applicationWillEnterForeground:(UIApplication *)application
+{
+    //程序进入前台时,清除角标，但不清空通知栏消息(开发者根据业务需求，自行调用)
+    //注意：不建议在进入后台通知(applicationDidEnterBackground:)中调用此方法，原因进入后台将角标清空结果无法通过网络同步到服务器
+    [MobPush clearBadge];
+}
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
-{   //程序进入后台时,清除角标，但不清空通知栏消息(开发者根据业务需求，自行调用)
-    [MobPush clearBadge];
+{
+    
 }
 
 // 收到通知回调
