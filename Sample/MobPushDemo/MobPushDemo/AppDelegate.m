@@ -19,7 +19,7 @@
 // bugly app id
 #define BUGLY_APP_ID @"5abda4b390"
 
-@interface AppDelegate () <UIAlertViewDelegate, IAlertViewControllerDelegate>
+@interface AppDelegate () <UIAlertViewDelegate, IAlertViewControllerDelegate, BuglyDelegate>
 
 @property (nonatomic, strong) MPushMessage *message;
 @property (nonatomic, strong) AlertViewController *alertVC;
@@ -31,14 +31,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
-    // Demo集成bugly,便于定位崩溃,与MobPushSDK集成无关
-    [self setupBugly];
-    
     // 设置推送环境
 #ifdef DEBUG
     [MobPush setAPNsForProduction:NO];
 #else
+    // Demo集成bugly,便于定位崩溃,与MobPushSDK集成无关
+    [self setupBugly];
     [MobPush setAPNsForProduction:YES];
 #endif
     
@@ -46,7 +44,6 @@
     MPushNotificationConfiguration *configuration = [[MPushNotificationConfiguration alloc] init];
     configuration.types = MPushAuthorizationOptionsBadge | MPushAuthorizationOptionsSound | MPushAuthorizationOptionsAlert;
     [MobPush setupNotification:configuration];
-    
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"NotAPNsShowForeground"])
     {

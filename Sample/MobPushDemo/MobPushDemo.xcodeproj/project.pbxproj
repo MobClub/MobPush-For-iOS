@@ -18,10 +18,6 @@
 		3C5EDF0320E9CE30002D1670 /* RestoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C5EDF0120E9CE30002D1670 /* RestoreViewController.xib */; };
 		3C5EDF0A20E9D3B3002D1670 /* select@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C5EDF0820E9D3B3002D1670 /* select@3x.png */; };
 		3C5EDF0B20E9D3B3002D1670 /* select@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C5EDF0920E9D3B3002D1670 /* select@2x.png */; };
-		3C5F76C8212FF83300C2F035 /* MobPushServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CBF72EF212D4FA0009DC3C3 /* MobPushServiceExtension.framework */; };
-		3C745E5F20BF943D00E7CE5E /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C745E5C20BF943D00E7CE5E /* MOBFoundation.framework */; };
-		3C745EA920BF9D1F00E7CE5E /* MobPush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C745EA820BF9D1F00E7CE5E /* MobPush.framework */; };
-		3CBF72F0212D4FA0009DC3C3 /* MobPushServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CBF72EF212D4FA0009DC3C3 /* MobPushServiceExtension.framework */; };
 		3CD9A21D212D15580032AFF6 /* NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CD9A21C212D15580032AFF6 /* NotificationService.m */; };
 		3CD9A221212D15580032AFF6 /* MobPushServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3CD9A219212D15580032AFF6 /* MobPushServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3CF9386C214F981B0000AD18 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CF9386B214F981B0000AD18 /* libc++.tbd */; };
@@ -47,6 +43,13 @@
 		4441D2CC2084B0F1000B879B /* OpenPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4441D2B22084B0F1000B879B /* OpenPageViewController.m */; };
 		4441D2CF2084B120000B879B /* MOBNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4441D2CE2084B120000B879B /* MOBNavigationViewController.m */; };
 		44543BFE20BFACB200B6B45E /* MobPushDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44543BFD20BFACB200B6B45E /* MobPushDemoTests.m */; };
+		5092A2202382570D0068EFA8 /* warn.caf in Resources */ = {isa = PBXBuildFile; fileRef = 5092A21D2382570D0068EFA8 /* warn.caf */; };
+		5092A2212382570D0068EFA8 /* tech.caf in Resources */ = {isa = PBXBuildFile; fileRef = 5092A21E2382570D0068EFA8 /* tech.caf */; };
+		5092A2222382570D0068EFA8 /* bomb.caf in Resources */ = {isa = PBXBuildFile; fileRef = 5092A21F2382570D0068EFA8 /* bomb.caf */; };
+		50F7D0432370164D004B75C1 /* MobPushServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50F7D03F2370164D004B75C1 /* MobPushServiceExtension.framework */; };
+		50F7D0442370164D004B75C1 /* MobPushServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50F7D03F2370164D004B75C1 /* MobPushServiceExtension.framework */; };
+		50F7D0452370164D004B75C1 /* MobPush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50F7D0402370164D004B75C1 /* MobPush.framework */; };
+		50F7D0472370164D004B75C1 /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50F7D0422370164D004B75C1 /* MOBFoundation.framework */; };
 		DE1CB8A71FC3D60200F60342 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1CB8981FC3D60200F60342 /* ViewController.m */; };
 		DE2B9A2B1F7B52C60077BE5F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DE2B9A2A1F7B52C60077BE5F /* main.m */; };
 		DE2B9A2E1F7B52C60077BE5F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DE2B9A2D1F7B52C60077BE5F /* AppDelegate.m */; };
@@ -54,7 +57,6 @@
 		DE2B9A361F7B52C60077BE5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE2B9A351F7B52C60077BE5F /* Assets.xcassets */; };
 		DE2B9A391F7B52C60077BE5F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE2B9A371F7B52C60077BE5F /* LaunchScreen.storyboard */; };
 		DE40B87E1FC3FE110067EF79 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE40B87D1FC3FE110067EF79 /* CoreLocation.framework */; };
-		DE5591D31FFF64CC00FCCBBA /* unbelievable.caf in Resources */ = {isa = PBXBuildFile; fileRef = DE5591D21FFF64CC00FCCBBA /* unbelievable.caf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,10 +106,6 @@
 		3C5EDF0820E9D3B3002D1670 /* select@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "select@3x.png"; sourceTree = "<group>"; };
 		3C5EDF0920E9D3B3002D1670 /* select@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "select@2x.png"; sourceTree = "<group>"; };
 		3C5EE0F620EDD63E002D1670 /* MainItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainItemView.h; sourceTree = "<group>"; };
-		3C745E5B20BF943D00E7CE5E /* MOBFoundationEx.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundationEx.framework; sourceTree = "<group>"; };
-		3C745E5C20BF943D00E7CE5E /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
-		3C745EA820BF9D1F00E7CE5E /* MobPush.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MobPush.framework; sourceTree = "<group>"; };
-		3CBF72EF212D4FA0009DC3C3 /* MobPushServiceExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MobPushServiceExtension.framework; sourceTree = "<group>"; };
 		3CC815A0212EB5F2009ECAFB /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		3CD9A219212D15580032AFF6 /* MobPushServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MobPushServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CD9A21B212D15580032AFF6 /* NotificationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationService.h; sourceTree = "<group>"; };
@@ -147,6 +145,12 @@
 		44543BFB20BFACB200B6B45E /* MobPushDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobPushDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		44543BFD20BFACB200B6B45E /* MobPushDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MobPushDemoTests.m; sourceTree = "<group>"; };
 		44543BFF20BFACB200B6B45E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5092A21D2382570D0068EFA8 /* warn.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = warn.caf; sourceTree = "<group>"; };
+		5092A21E2382570D0068EFA8 /* tech.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tech.caf; sourceTree = "<group>"; };
+		5092A21F2382570D0068EFA8 /* bomb.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = bomb.caf; sourceTree = "<group>"; };
+		50F7D03F2370164D004B75C1 /* MobPushServiceExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MobPushServiceExtension.framework; sourceTree = "<group>"; };
+		50F7D0402370164D004B75C1 /* MobPush.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MobPush.framework; sourceTree = "<group>"; };
+		50F7D0422370164D004B75C1 /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
 		DE1CB8971FC3D60200F60342 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		DE1CB8981FC3D60200F60342 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		DE2B9A261F7B52C60077BE5F /* MobPushDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobPushDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,7 +163,6 @@
 		DE2B9A3A1F7B52C60077BE5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE40B86E1FC3D2D60067EF79 /* MobPushDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MobPushDemo.entitlements; sourceTree = "<group>"; };
 		DE40B87D1FC3FE110067EF79 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		DE5591D21FFF64CC00FCCBBA /* unbelievable.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = unbelievable.caf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,7 +170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C5F76C8212FF83300C2F035 /* MobPushServiceExtension.framework in Frameworks */,
+				50F7D0442370164D004B75C1 /* MobPushServiceExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,12 +185,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50F7D0472370164D004B75C1 /* MOBFoundation.framework in Frameworks */,
 				3CF9386C214F981B0000AD18 /* libc++.tbd in Frameworks */,
 				DE40B87E1FC3FE110067EF79 /* CoreLocation.framework in Frameworks */,
+				50F7D0452370164D004B75C1 /* MobPush.framework in Frameworks */,
 				0B63B8B92320F20300219CFC /* Bugly.framework in Frameworks */,
-				3C745E5F20BF943D00E7CE5E /* MOBFoundation.framework in Frameworks */,
-				3C745EA920BF9D1F00E7CE5E /* MobPush.framework in Frameworks */,
-				3CBF72F0212D4FA0009DC3C3 /* MobPushServiceExtension.framework in Frameworks */,
+				50F7D0432370164D004B75C1 /* MobPushServiceExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,34 +203,6 @@
 				0B63B8B82320F20300219CFC /* Bugly.framework */,
 			);
 			path = ThirdLibs;
-			sourceTree = "<group>";
-		};
-		3C745E5720BF943D00E7CE5E /* SDK */ = {
-			isa = PBXGroup;
-			children = (
-				3C745EA720BF9D1F00E7CE5E /* MobPush */,
-				3C745E5A20BF943D00E7CE5E /* Required */,
-			);
-			name = SDK;
-			path = ../../SDK;
-			sourceTree = "<group>";
-		};
-		3C745E5A20BF943D00E7CE5E /* Required */ = {
-			isa = PBXGroup;
-			children = (
-				3C745E5B20BF943D00E7CE5E /* MOBFoundationEx.framework */,
-				3C745E5C20BF943D00E7CE5E /* MOBFoundation.framework */,
-			);
-			path = Required;
-			sourceTree = "<group>";
-		};
-		3C745EA720BF9D1F00E7CE5E /* MobPush */ = {
-			isa = PBXGroup;
-			children = (
-				3CBF72EF212D4FA0009DC3C3 /* MobPushServiceExtension.framework */,
-				3C745EA820BF9D1F00E7CE5E /* MobPush.framework */,
-			);
-			path = MobPush;
 			sourceTree = "<group>";
 		};
 		3CD9A21A212D15580032AFF6 /* MobPushServiceExtension */ = {
@@ -322,13 +297,39 @@
 			path = MobPushDemoTests;
 			sourceTree = "<group>";
 		};
+		50F7D03D2370164D004B75C1 /* SDK */ = {
+			isa = PBXGroup;
+			children = (
+				50F7D03E2370164D004B75C1 /* MobPush */,
+				50F7D0412370164D004B75C1 /* Required */,
+			);
+			name = SDK;
+			path = ../../../SDK;
+			sourceTree = "<group>";
+		};
+		50F7D03E2370164D004B75C1 /* MobPush */ = {
+			isa = PBXGroup;
+			children = (
+				50F7D03F2370164D004B75C1 /* MobPushServiceExtension.framework */,
+				50F7D0402370164D004B75C1 /* MobPush.framework */,
+			);
+			path = MobPush;
+			sourceTree = "<group>";
+		};
+		50F7D0412370164D004B75C1 /* Required */ = {
+			isa = PBXGroup;
+			children = (
+				50F7D0422370164D004B75C1 /* MOBFoundation.framework */,
+			);
+			path = Required;
+			sourceTree = "<group>";
+		};
 		DE2B9A1D1F7B52C50077BE5F = {
 			isa = PBXGroup;
 			children = (
-				3C745E5720BF943D00E7CE5E /* SDK */,
 				DE2B9A281F7B52C60077BE5F /* MobPushDemo */,
-				44543BFC20BFACB200B6B45E /* MobPushDemoTests */,
 				3CD9A21A212D15580032AFF6 /* MobPushServiceExtension */,
+				44543BFC20BFACB200B6B45E /* MobPushDemoTests */,
 				DE2B9A271F7B52C60077BE5F /* Products */,
 				DE40B8751FC3D7810067EF79 /* Frameworks */,
 			);
@@ -347,6 +348,7 @@
 		DE2B9A281F7B52C60077BE5F /* MobPushDemo */ = {
 			isa = PBXGroup;
 			children = (
+				50F7D03D2370164D004B75C1 /* SDK */,
 				4441D28C2084B0F1000B879B /* MobPushUI */,
 				DE40B86E1FC3D2D60067EF79 /* MobPushDemo.entitlements */,
 				DE2B9A2C1F7B52C60077BE5F /* AppDelegate.h */,
@@ -365,7 +367,9 @@
 		DE2B9A291F7B52C60077BE5F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				DE5591D21FFF64CC00FCCBBA /* unbelievable.caf */,
+				5092A21F2382570D0068EFA8 /* bomb.caf */,
+				5092A21E2382570D0068EFA8 /* tech.caf */,
+				5092A21D2382570D0068EFA8 /* warn.caf */,
 				DE2B9A321F7B52C60077BE5F /* Main.storyboard */,
 				DE2B9A351F7B52C60077BE5F /* Assets.xcassets */,
 				DE2B9A371F7B52C60077BE5F /* LaunchScreen.storyboard */,
@@ -515,8 +519,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5092A2222382570D0068EFA8 /* bomb.caf in Resources */,
 				4441D2BC2084B0F1000B879B /* local@2x.png in Resources */,
-				DE5591D31FFF64CC00FCCBBA /* unbelievable.caf in Resources */,
 				3C5EDF0A20E9D3B3002D1670 /* select@3x.png in Resources */,
 				DE2B9A391F7B52C60077BE5F /* LaunchScreen.storyboard in Resources */,
 				4441D2CB2084B0F1000B879B /* WebViewController.xib in Resources */,
@@ -528,9 +532,11 @@
 				4441D2B82084B0F1000B879B /* selectRed@3x.png in Resources */,
 				4441D2BD2084B0F1000B879B /* return@3x.png in Resources */,
 				4441D2BB2084B0F1000B879B /* return@2x.png in Resources */,
+				5092A2202382570D0068EFA8 /* warn.caf in Resources */,
 				3C5EDEFD20E9CA8E002D1670 /* linkitem@3x.png in Resources */,
 				3C5EDF0320E9CE30002D1670 /* RestoreViewController.xib in Resources */,
 				4441D2BF2084B0F1000B879B /* remote@2x.png in Resources */,
+				5092A2212382570D0068EFA8 /* tech.caf in Resources */,
 				3C5EDF0B20E9D3B3002D1670 /* select@2x.png in Resources */,
 				4441D2BE2084B0F1000B879B /* schedule@2x.png in Resources */,
 				3C5EDEFE20E9CA8E002D1670 /* linkitem@2x.png in Resources */,
@@ -626,17 +632,17 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 永超 李 (6L4556Q7ET)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LW5266U92D;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../../SDK/**";
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../../SDK\"/**";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = MobPushServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.2;
+				MARKETING_VERSION = 2.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mob.MobPush.MobPushServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "71b95e15-a886-4234-9dc0-356dd4ab09ad";
@@ -660,12 +666,12 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LW5266U92D;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../../SDK/**";
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../../SDK\"/**";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = MobPushServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.2.2;
+				MARKETING_VERSION = 2.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mob.MobPush.MobPushServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "d33dbcd9-44b9-44a8-8617-3955ddfa1d0f";
