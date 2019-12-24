@@ -14,6 +14,10 @@
 #import <MobPush/UIViewController+MobPush.h>
 
 @interface PushViewController () <UITableViewDelegate, UITableViewDataSource>
+{
+    NSString *_sound;
+    UIButton *_selected;
+}
 
 @property (nonatomic, copy) NSString *vTitle;
 @property (nonatomic, copy) NSString *vDescription;
@@ -140,6 +144,7 @@
     [click addTarget:self action:@selector(clicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:click];
     
+    CGFloat maxY = CGRectGetMaxY(_content.frame) + 20;
     if (self.isTimedPush)
     {
         UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(self.content.frame) + 20, self.view.frame.size.width - 40, 150) style:UITableViewStylePlain];
@@ -148,15 +153,67 @@
         [tableView setScrollEnabled:NO];
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self.view addSubview:tableView];
-        
-        click.frame = CGRectMake(20, CGRectGetMaxY(tableView.frame) + 20, self.view.frame.size.width - 40, 40);
+        maxY = CGRectGetMaxY(tableView.frame) + 20;
     }
-    else
+
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, maxY, self.view.frame.size.width - 40, 40)];
+    label.text = @"自定义铃声：";
+    label.font = [UIFont systemFontOfSize:13];
+    label.textColor = [MOBFColor colorWithRGB:0xA6A6B2];
+    [self.view addSubview:label];
+    
+    NSArray *buttonNames = @[@"默认音",@"警告音",@"爆炸音",@"科技音"];
+    
+    for (int i=0; i<buttonNames.count; i++)
     {
-        click.frame = CGRectMake(20, CGRectGetMaxY(self.content.frame) + 20, self.view.frame.size.width - 40, 40);
+        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(20+(i%2)*((self.view.frame.size.width-60)/2+20), CGRectGetMaxY(label.frame)+(40+20)*(i/2), (self.view.frame.size.width-60)/2, 40)];
+        
+        btn.layer.cornerRadius = 2;
+        btn.layer.masksToBounds = YES;
+        btn.layer.borderWidth = 1;
+        btn.layer.borderColor = self.buttonColor.CGColor;
+        [btn setTitle:buttonNames[i] forState:UIControlStateNormal];
+        [btn setTitleColor:UIColor.whiteColor forState:UIControlStateSelected];
+        [btn setTitleColor:UIColor.darkTextColor forState:UIControlStateSelected];
+        [btn setTitleColor:UIColor.darkTextColor forState:UIControlStateNormal];
+        [[btn titleLabel] setFont:[UIFont systemFontOfSize:14]];
+        [btn setBackgroundImage: [self _imageWithColor:self.buttonColor Size:CGSizeMake((self.view.frame.size.width-60)/2, 40)] forState:UIControlStateSelected];
+        [btn addTarget:self action:@selector(_customSound:) forControlEvents:UIControlEventTouchUpInside];
+        btn.tag = 10000+i;
+        
+        if (i==0)
+        {
+            btn.selected = YES;
+            _selected = btn;
+        }
+        [self.view addSubview:btn];
     }
     
+    click.frame = CGRectMake(20, CGRectGetMaxY(label.frame) + 60*2+20, self.view.frame.size.width - 40, 40);
+    
     [self setUpForDismissKeyboard];
+}
+
+- (UIImage *)_imageWithColor:(UIColor *)color Size:(CGSize)size
+{
+
+    CGRect rect = CGRectMake(0.0, 0.0, size.width, size.height);
+
+    UIGraphicsBeginImageContext(size);
+
+    CGContextRef ref = UIGraphicsGetCurrentContext();
+
+    CGContextSetFillColorWithColor(ref, [color CGColor]);
+
+    CGContextFillRect(ref, rect);
+
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+
+    UIGraphicsEndImageContext();
+
+    return image;
+
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -204,6 +261,31 @@
     return 30;
 }
 
+- (void)_customSound:(UIButton *)sender
+{
+    _selected.selected = NO;
+    sender.selected = YES;
+    _selected  = sender;
+    
+    switch (sender.tag) {
+        case 10000:
+            _sound = @"default";
+            return;
+        case 10001:
+            _sound = @"warn.caf";
+            return;
+        case 10002:
+            _sound = @"bomb.caf";
+            return;
+        case 10003:
+            _sound = @"tech.caf";
+            return;
+            
+        default:
+            return;
+    }
+}
+
 - (void)clicked:(id)sender
 {
     BOOL isProductionEnvironment;
@@ -232,11 +314,13 @@
         [MobPush sendMessageWithMessageType:self.messageType
                                     content:self.content.text.length ? self.content.text : self.content.placeholder
                                       space:@(self.timeValue)
+                                      sound:_sound
                     isProductionEnvironment:isProductionEnvironment
                                      extras:nil
                                  linkScheme:nil
                                    linkData:nil
-                                     result:^(NSError *error) {
+                                    coverId:nil
+                                     result:^(NSString *workId, NSError *error) {
                                          
                                          dispatch_async(dispatch_get_main_queue(), ^{
                                              [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -271,12 +355,14 @@
             if (self.tag == 4)//本地通知
             {
                 MPushMessage *message = [[MPushMessage alloc] init];
+                message.identifier = @"111";
+                message.extraInfomation = @{@"test":@2222};
                 message.messageType = MPushMessageTypeLocal;
                 MPushNotification *noti = [[MPushNotification alloc] init];
                 noti.body = self.content.text;
                 noti.title = @"标题";
                 noti.subTitle = @"子标题";
-                noti.sound = @"unbelievable.caf";
+                noti.sound = _sound;
                 noti.badge = ([UIApplication sharedApplication].applicationIconBadgeNumber < 0 ? 0 : [UIApplication sharedApplication].applicationIconBadgeNumber) + 1;
                 message.notification = noti;
                 
@@ -304,6 +390,7 @@
                 [MobPush sendMessageWithMessageType:self.messageType
                                             content:self.content.text
                                               space:@(self.timeValue)
+                                              sound:_sound
                             isProductionEnvironment:isProductionEnvironment
                                              extras:@{
                                                  @"path": @"https://www.baidu.com/",
@@ -313,7 +400,8 @@
                                              }
                                          linkScheme:nil
                                            linkData:nil
-                                             result:^(NSError *error) {
+                                            coverId:nil
+                                             result:^(NSString *workId,NSError *error) {
                                                  dispatch_async(dispatch_get_main_queue(), ^{
                                                      
                                                      [MBProgressHUD hideHUDForView:self.view animated:YES];

@@ -70,6 +70,26 @@
     [MobPush addLocalNotification:message];
 }
 
+- (void)testNotificationCover
+{
+    MPushMessage *message = [[MPushMessage alloc] init];
+    message.messageType = MPushMessageTypeLocal;
+    message.content = @"本地推送内容";
+    message.identifier = @"1111111111";
+    
+    NSDate *currentDate = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval nowtime = [currentDate timeIntervalSince1970] *1000;
+    
+    //设置0.06秒后发起本地推送
+    NSTimeInterval taskDate = nowtime + 0.001*60*1000;
+    message.taskDate = taskDate;
+    [MobPush addLocalNotification:message];
+    
+    sleep(5);
+    message.content = @"";
+    [MobPush addLocalNotification:message];
+}
+
 
 - (void)testAddLocalNotificationWithNil
 {
@@ -229,16 +249,25 @@
     [self _wait:20 testOperation:^(void (^terminate)(void)) {
        
         [MobPush addTags:@[@"AddTag"] result:^(NSError *error) {
-            
-             XCTAssertNil(error, @"Fail to clean tags.");
-            if (!error) {
+                        
+            [MobPush getTagsWithResult:^(NSArray *tags, NSError *error) {
+                
+                NSLog(@"------>tags:%@",tags);
+                
                 [MobPush cleanAllTags:^(NSError *error) {
+                    NSLog(@"------>clear:%@",error);
                     
-                    XCTAssertNil(error, @"Fail to clean tags.");
-                    
-                    terminate();
+                    [MobPush getTagsWithResult:^(NSArray *tags, NSError *error) {
+
+                        NSLog(@"----->af tags:%@",tags);
+                        
+                        XCTAssertNil(error, @"Fail to clean tags.");
+                        
+                        terminate();
+                    }];
                 }];
-            }
+            }];
+
         }];
     }];
 }
