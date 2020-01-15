@@ -13,9 +13,9 @@
 #import "AlertViewController.h"
 #import "MBProgressHUD+Extension.h"
 #import "WebViewController.h"
-
 // bugly
 #import <Bugly/Bugly.h>
+#import <MOBFoundation/MobSDK.h>
 // bugly app id
 #define BUGLY_APP_ID @"5abda4b390"
 
@@ -39,6 +39,11 @@
     [self setupBugly];
     [MobPush setAPNsForProduction:YES];
 #endif
+    
+    //外部demo
+    [MobSDK registerAppKey:@"moba6b6c6d6" appSecret:@"b89d2427a3bc7ad1aea1e1e8c1d36bf3"];
+    //内部调试
+//    [MobSDK registerAppKey:@"2dbe655e88c80" appSecret:@"a7b9f1918c596eacbff8a172ba8ed158"];
     
     //MobPush推送设置（获得角标、声音、弹框提醒权限）
     MPushNotificationConfiguration *configuration = [[MPushNotificationConfiguration alloc] init];

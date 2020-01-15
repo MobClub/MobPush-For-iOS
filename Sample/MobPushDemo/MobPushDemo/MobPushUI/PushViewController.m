@@ -155,43 +155,45 @@
         [self.view addSubview:tableView];
         maxY = CGRectGetMaxY(tableView.frame) + 20;
     }
-
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, maxY, self.view.frame.size.width - 40, 40)];
-    label.text = @"自定义铃声：";
-    label.font = [UIFont systemFontOfSize:13];
-    label.textColor = [MOBFColor colorWithRGB:0xA6A6B2];
-    [self.view addSubview:label];
-    
-    NSArray *buttonNames = @[@"默认音",@"警告音",@"爆炸音",@"科技音"];
-    
-    for (int i=0; i<buttonNames.count; i++)
-    {
-        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(20+(i%2)*((self.view.frame.size.width-60)/2+20), CGRectGetMaxY(label.frame)+(40+20)*(i/2), (self.view.frame.size.width-60)/2, 40)];
+    if (self.messageType == MPushMessageTypeCustom) {
+        click.frame = CGRectMake(20, maxY, self.view.frame.size.width - 40, 40);
+    }else{
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, maxY, self.view.frame.size.width - 40, 40)];
+        label.text = @"自定义铃声：";
+        label.font = [UIFont systemFontOfSize:13];
+        label.textColor = [MOBFColor colorWithRGB:0xA6A6B2];
+        [self.view addSubview:label];
         
-        btn.layer.cornerRadius = 2;
-        btn.layer.masksToBounds = YES;
-        btn.layer.borderWidth = 1;
-        btn.layer.borderColor = self.buttonColor.CGColor;
-        [btn setTitle:buttonNames[i] forState:UIControlStateNormal];
-        [btn setTitleColor:UIColor.whiteColor forState:UIControlStateSelected];
-        [btn setTitleColor:UIColor.darkTextColor forState:UIControlStateSelected];
-        [btn setTitleColor:UIColor.darkTextColor forState:UIControlStateNormal];
-        [[btn titleLabel] setFont:[UIFont systemFontOfSize:14]];
-        [btn setBackgroundImage: [self _imageWithColor:self.buttonColor Size:CGSizeMake((self.view.frame.size.width-60)/2, 40)] forState:UIControlStateSelected];
-        [btn addTarget:self action:@selector(_customSound:) forControlEvents:UIControlEventTouchUpInside];
-        btn.tag = 10000+i;
+        NSArray *buttonNames = @[@"默认音",@"警告音",@"爆炸音",@"科技音"];
         
-        if (i==0)
+        for (int i=0; i<buttonNames.count; i++)
         {
-            btn.selected = YES;
-            _selected = btn;
+            UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(20+(i%2)*((self.view.frame.size.width-60)/2+20), CGRectGetMaxY(label.frame)+(40+20)*(i/2), (self.view.frame.size.width-60)/2, 40)];
+            
+            btn.layer.cornerRadius = 2;
+            btn.layer.masksToBounds = YES;
+            btn.layer.borderWidth = 1;
+            btn.layer.borderColor = self.buttonColor.CGColor;
+            [btn setTitle:buttonNames[i] forState:UIControlStateNormal];
+            [btn setTitleColor:UIColor.whiteColor forState:UIControlStateSelected];
+            [btn setTitleColor:UIColor.darkTextColor forState:UIControlStateSelected];
+            [btn setTitleColor:UIColor.darkTextColor forState:UIControlStateNormal];
+            [[btn titleLabel] setFont:[UIFont systemFontOfSize:14]];
+            [btn setBackgroundImage: [self _imageWithColor:self.buttonColor Size:CGSizeMake((self.view.frame.size.width-60)/2, 40)] forState:UIControlStateSelected];
+            [btn addTarget:self action:@selector(_customSound:) forControlEvents:UIControlEventTouchUpInside];
+            btn.tag = 10000+i;
+            
+            if (i==0)
+            {
+                btn.selected = YES;
+                _selected = btn;
+            }
+            [self.view addSubview:btn];
         }
-        [self.view addSubview:btn];
+        
+        click.frame = CGRectMake(20, CGRectGetMaxY(label.frame) + 60*2+20, self.view.frame.size.width - 40, 40);
     }
-    
-    click.frame = CGRectMake(20, CGRectGetMaxY(label.frame) + 60*2+20, self.view.frame.size.width - 40, 40);
-    
     [self setUpForDismissKeyboard];
 }
 
