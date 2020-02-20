@@ -16,6 +16,7 @@
 // bugly
 #import <Bugly/Bugly.h>
 #import <MOBFoundation/MobSDK.h>
+#import <MOBFoundation/MobSDK+Privacy.h>
 // bugly app id
 #define BUGLY_APP_ID @"5abda4b390"
 
@@ -68,6 +69,9 @@
     self.window.backgroundColor = [UIColor whiteColor];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveMessage:) name:MobPushDidReceiveMessageNotification object:nil];
+    [MobSDK uploadPrivacyPermissionStatus:YES onResult:^(BOOL success) {
+        NSLog(@"-------------->上传结果：%d",success);
+    }];
     
     return YES;
 }
