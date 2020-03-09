@@ -32,6 +32,6 @@ typedef NS_OPTIONS(NSUInteger, MPushAuthorizationOptions)
 /**
  注入的类别，iOS10以及以上使用UNNotificationCategory，iOS10以下使用UIUserNotificationCategory。
  */
-@property (nonatomic, strong) NSArray *categories;
+@property (nonatomic, strong) NSSet *categories;
 
 @end

@@ -15,6 +15,7 @@
 #import "RestoreViewController.h"
 #import <MobPush/UIViewController+MobPush.h>
 #import "SettingViewController.h"
+#import <MOBFoundation/MobSDK+Privacy.h>
 
 @interface ViewController () <IMainItemViewDelegate>
 
@@ -44,6 +45,48 @@
 {
     SettingViewController *setVC = [[SettingViewController alloc] init];
     [self.navigationController pushViewController:setVC animated:YES];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+//    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+//    NSNumber *res = [userDefault objectForKey:@"mob_privicy"];
+//
+//    if (!res)
+//    {
+//        [self testPrivicy];
+//    }else{
+//        [MobSDK uploadPrivacyPermissionStatus:res.boolValue onResult:^(BOOL success) {
+//            NSLog(@"-------------->上传结果：%d",success);
+//        }];
+//    }
+}
+
+- (void)testPrivicy
+{
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"用户协议" message:@"用户协议内容" preferredStyle:UIAlertControllerStyleAlert];
+    
+          UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"拒绝" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+              [userDefault setObject:@0 forKey:@"mob_privicy"];
+              [userDefault synchronize];
+              [MobSDK uploadPrivacyPermissionStatus:NO onResult:^(BOOL success) {
+                  NSLog(@"-------------->上传结果：%d",success);
+              }];
+          }];
+     
+          UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"同意" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+              [userDefault setObject:@1 forKey:@"mob_privicy"];
+              [userDefault synchronize];
+              [MobSDK uploadPrivacyPermissionStatus:YES onResult:^(BOOL success) {
+                  NSLog(@"-------------->上传结果：%d",success);
+              }];
+          }];
+    
+         [alert addAction:action1];
+         [alert addAction:action2];
+         [self.navigationController presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)viewDidLoad
