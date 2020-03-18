@@ -642,11 +642,11 @@
 				INFOPLIST_FILE = MobPushServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.3.2;
+				MARKETING_VERSION = 2.3.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mob.MobPush.MobPushServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "71b95e15-a886-4234-9dc0-356dd4ab09ad";
-				PROVISIONING_PROFILE_SPECIFIER = alex;
+				PROVISIONING_PROFILE_SPECIFIER = MobPushServiceExtensionDev;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -671,7 +671,7 @@
 				INFOPLIST_FILE = MobPushServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.3.2;
+				MARKETING_VERSION = 2.3.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mob.MobPush.MobPushServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "d33dbcd9-44b9-44a8-8617-3955ddfa1d0f";
@@ -860,7 +860,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mob.MobPush;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "8f5453ab-a204-4262-8284-300ca5f7e0c1";
-				PROVISIONING_PROFILE_SPECIFIER = al;
+				PROVISIONING_PROFILE_SPECIFIER = MobPushDev;
 			};
 			name = Debug;
 		};
