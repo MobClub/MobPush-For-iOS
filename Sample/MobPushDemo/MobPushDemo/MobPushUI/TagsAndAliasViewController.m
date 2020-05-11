@@ -180,7 +180,8 @@
         
         if (!error)
         {
-            [self inputContent:[NSString stringWithFormat:@"%@成功,tags:%@", content,tags]];
+            NSString *tagStr = [tags count]>0?[tags componentsJoinedByString:@","]:@"";
+            [self inputContent:[NSString stringWithFormat:@"%@成功,tags:%@", content,tagStr]];
         }
         else
         {

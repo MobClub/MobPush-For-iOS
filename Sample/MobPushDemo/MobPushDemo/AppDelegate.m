@@ -69,6 +69,8 @@
     self.window.backgroundColor = [UIColor whiteColor];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveMessage:) name:MobPushDidReceiveMessageNotification object:nil];
+    
+    // 注意：上传隐私协议接口，具体查看官方文档(http://www.mob.com/wiki/detailed?wiki=MobTechprivacypushios&id=136)
     [MobSDK uploadPrivacyPermissionStatus:YES onResult:^(BOOL success) {
         NSLog(@"-------------->上传结果：%d",success);
     }];

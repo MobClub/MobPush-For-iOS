@@ -86,6 +86,14 @@ extern NSString *const MobPushDidReceiveMessageNotification;
 + (void)deleteTags:(NSArray<NSString *> *)tags result:(void (^) (NSError *error))handler;
 
 /**
+ 替换标签
+
+ @param tags 需要删除的标签
+ @param handler 结果
+*/
++ (void)replaceTags:(NSArray *)tags result:(void (^)(NSError *error))handler;
+
+/**
  清空所有标签
 
  @param handler 结果
@@ -129,6 +137,12 @@ extern NSString *const MobPushDidReceiveMessageNotification;
  @param badge 新的角标值（会覆盖服务器上保存的值）
  */
 + (void)setBadge:(NSInteger)badge;
+
+/**
+ 获取服务器上的角标
+ @param handler 回调
+*/
++ (void)getBadgeWithhandler:(void (^)(NSInteger badge,NSError *error))handler;
 
 /**
  清除角标，但不清空通知栏消息
