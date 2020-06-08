@@ -13,12 +13,15 @@
 #import "AlertViewController.h"
 #import "MBProgressHUD+Extension.h"
 #import "WebViewController.h"
-// bugly
-#import <Bugly/Bugly.h>
 #import <MOBFoundation/MobSDK.h>
 #import <MOBFoundation/MobSDK+Privacy.h>
+
+// bugly
+#import <Bugly/Bugly.h>
 // bugly app id
 #define BUGLY_APP_ID @"5abda4b390"
+
+//#import <UserNotifications/UserNotifications.h>
 
 @interface AppDelegate () <UIAlertViewDelegate, IAlertViewControllerDelegate, BuglyDelegate>
 
@@ -60,14 +63,8 @@
     [MobPush getRegistrationID:^(NSString *registrationID, NSError *error) {
         NSLog(@"registrationID = %@--error = %@", registrationID, error);
     }];
-        
-    self.window = [[UIWindow alloc] init];
-    self.window.frame = [UIScreen mainScreen].bounds;
-    ViewController *viewC = [[ViewController alloc] init];
-    MOBNavigationViewController *nav = [[MOBNavigationViewController alloc] initWithRootViewController:viewC];
-    self.window.rootViewController = nav;
-    self.window.backgroundColor = [UIColor whiteColor];
     
+    // 监听推送通知 MobPush整合了系统iOS10以上及以下不同方式获取推送统一通过此监听获取，开发者通过原始方式亦不影响。
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveMessage:) name:MobPushDidReceiveMessageNotification object:nil];
     
     // 注意：上传隐私协议接口，具体查看官方文档(http://www.mob.com/wiki/detailed?wiki=MobTechprivacypushios&id=136)
@@ -90,16 +87,18 @@
     
 }
 
-// 收到通知回调
+// 收到推送通知回调
 - (void)didReceiveMessage:(NSNotification *)notification
 {
     MPushMessage *message = notification.object;
-        
+    
+    NSLog(@"message:%@", message.convertDictionary);
+    
     switch (message.messageType)
     {
         case MPushMessageTypeCustom:
         {// 自定义消息回调
-            self.alertVC = [[AlertViewController alloc] initWithTitle:@"收到推送" content:message.content];
+            self.alertVC = [[AlertViewController alloc] initWithTitle:@"收到推送" content:message.notification.body];
             self.alertVC.delegate = self;
             
             _alertWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -111,8 +110,7 @@
             break;
         case MPushMessageTypeAPNs:
         {// APNs回调
-            NSLog(@"msgInfo---%@--%@", message.msgInfo, message.extraInfomation);
-            [[[UIAlertView alloc] initWithTitle:message.msgInfo.description message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
+            [[[UIAlertView alloc] initWithTitle:message.notification.userInfo.description message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
         }
             break;
         case MPushMessageTypeLocal:
@@ -127,6 +125,8 @@
             break;
         case MPushMessageTypeClicked:
         {// 点击通知回调
+            
+            // 测试
             if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive)
             { // 前台
                 [self showAlertWithMessage:message];
@@ -161,7 +161,7 @@
 
 - (void)showAlertWithMessage:(MPushMessage *)message
 {
-    NSString *url = message.msgInfo[@"url"];
+    NSString *url = message.notification.userInfo[@"url"];
     
     if (url)
     {
@@ -177,7 +177,7 @@
 
 - (void)pushVCWithMessage:(MPushMessage *)message
 {
-    NSString *url = message.msgInfo[@"url"];
+    NSString *url = message.notification.userInfo[@"url"];
     
     if (url)
     {

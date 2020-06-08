@@ -46,7 +46,6 @@
 		5092A2202382570D0068EFA8 /* warn.caf in Resources */ = {isa = PBXBuildFile; fileRef = 5092A21D2382570D0068EFA8 /* warn.caf */; };
 		5092A2212382570D0068EFA8 /* tech.caf in Resources */ = {isa = PBXBuildFile; fileRef = 5092A21E2382570D0068EFA8 /* tech.caf */; };
 		5092A2222382570D0068EFA8 /* bomb.caf in Resources */ = {isa = PBXBuildFile; fileRef = 5092A21F2382570D0068EFA8 /* bomb.caf */; };
-		50F7D0432370164D004B75C1 /* MobPushServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50F7D03F2370164D004B75C1 /* MobPushServiceExtension.framework */; };
 		50F7D0442370164D004B75C1 /* MobPushServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50F7D03F2370164D004B75C1 /* MobPushServiceExtension.framework */; };
 		50F7D0452370164D004B75C1 /* MobPush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50F7D0402370164D004B75C1 /* MobPush.framework */; };
 		50F7D0472370164D004B75C1 /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50F7D0422370164D004B75C1 /* MOBFoundation.framework */; };
@@ -190,7 +189,6 @@
 				DE40B87E1FC3FE110067EF79 /* CoreLocation.framework in Frameworks */,
 				50F7D0452370164D004B75C1 /* MobPush.framework in Frameworks */,
 				0B63B8B92320F20300219CFC /* Bugly.framework in Frameworks */,
-				50F7D0432370164D004B75C1 /* MobPushServiceExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -641,7 +639,7 @@
 				INFOPLIST_FILE = MobPushServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 3.0.0;
+				MARKETING_VERSION = 3.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mob.MobPush.MobPushServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "71b95e15-a886-4234-9dc0-356dd4ab09ad";
@@ -669,7 +667,7 @@
 				INFOPLIST_FILE = MobPushServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 3.0.0;
+				MARKETING_VERSION = 3.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mob.MobPush.MobPushServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "d33dbcd9-44b9-44a8-8617-3955ddfa1d0f";
@@ -845,6 +843,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LW5266U92D;
 				ENABLE_BITCODE = NO;
+				EXPORTED_SYMBOLS_FILE = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../../SDK/**",
 					"$(PROJECT_DIR)/MobPushDemo/ThirdLibs",
@@ -853,8 +852,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_GENERATE_MAP_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 3.0.0;
-				OTHER_LDFLAGS = "-ObjC";
+				MARKETING_VERSION = 3.0.1;
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mob.MobPush;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "8f5453ab-a204-4262-8284-300ca5f7e0c1";
@@ -872,6 +871,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LW5266U92D;
 				ENABLE_BITCODE = NO;
+				EXPORTED_SYMBOLS_FILE = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../../SDK/**",
 					"$(PROJECT_DIR)/MobPushDemo/ThirdLibs",
@@ -880,8 +880,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_GENERATE_MAP_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 3.0.0;
-				OTHER_LDFLAGS = "-ObjC";
+				MARKETING_VERSION = 3.0.1;
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mob.MobPush;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "efeb3893-17c6-4c68-ab60-37eb29ed9da0";

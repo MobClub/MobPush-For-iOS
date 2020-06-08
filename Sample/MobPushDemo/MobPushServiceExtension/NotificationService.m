@@ -33,7 +33,7 @@
 #pragma mark ----将APNs信息交由MobPush处理----
     //获取富媒体附件下载地址
     NSString *attachUrl = request.content.userInfo[@"attachment"];
-    
+//    NSLog(@"===================%@===============",request.content.userInfo);
     [MobPushServiceExtension handelNotificationServiceRequestUrl:attachUrl withAttachmentsComplete:^(NSArray *attachments, NSError *error) {
         if (attachments.count > 0)
         {
