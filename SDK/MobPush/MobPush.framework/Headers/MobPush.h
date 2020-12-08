@@ -225,12 +225,19 @@ typedef NS_ENUM(NSInteger, MPushNotificationRequestStatus) {
 + (void)clearBadge;
 
 /**
- 绑定手机号
+ 绑定手机号,传字符串空为解除绑定
 
  @param phoneNum 手机号
  @param handler 回调
  */
 + (void)bindPhoneNum:(NSString *)phoneNum result:(void (^) (NSError *error))handler;
+
+/**
+ 获取绑定过的手机号码
+ 
+ @param handler 回调
+ */
++ (void)getPhoneNumWithResult:(void(^) (NSString *phoneNum, NSError *error))handler;
 
 /**  下面的 API，方便开发者在 APP 内添加 "关闭推送" 的按钮 **/
 
@@ -255,5 +262,9 @@ typedef NS_ENUM(NSInteger, MPushNotificationRequestStatus) {
  SDK版本
  */
 + (NSString *)sdkVersion;
+
+/// 设置区域id
+/// @param regionId 默认0（国内），1:海外
++ (void)setRegionID:(int)regionId;
 
 @end

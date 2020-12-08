@@ -45,9 +45,15 @@
 #endif
     
     //外部demo
-    [MobSDK registerAppKey:@"moba6b6c6d6" appSecret:@"b89d2427a3bc7ad1aea1e1e8c1d36bf3"];
+//    [MobSDK registerAppKey:@"moba6b6c6d6" appSecret:@"b89d2427a3bc7ad1aea1e1e8c1d36bf3"];
     //内部调试
 //    [MobSDK registerAppKey:@"2dbe655e88c80" appSecret:@"a7b9f1918c596eacbff8a172ba8ed158"];
+    
+    [MobSDK registerAppKey:@"2ecbc7bc53712" appSecret:@"785544d9f64bf1f51e7aa3b8f21d07e8"];
+
+//    [MobSDK registerAppKey:@"2c574691c6986" appSecret:@"4b5cd595eb07b5cf17bb269f7a51391d"];
+
+    
     
     //MobPush推送设置（获得角标、声音、弹框提醒权限）
     MPushNotificationConfiguration *configuration = [[MPushNotificationConfiguration alloc] init];

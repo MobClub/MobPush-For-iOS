@@ -12,6 +12,7 @@
 #import "MBProgressHUD+Extension.h"
 #import <MOBFoundation/MOBFoundation.h>
 #import <MobPush/UIViewController+MobPush.h>
+#import "Const.h"
 
 @interface PushViewController () <UITableViewDelegate, UITableViewDataSource>
 {
@@ -400,7 +401,16 @@
                 content.badge = ([UIApplication sharedApplication].applicationIconBadgeNumber < 0 ? 0 : [UIApplication sharedApplication].applicationIconBadgeNumber) + 1;
                 content.body = self.content.text;
                 content.action = @"action";// iOS10以下使用
-                content.userInfo = @{@"attachment":@"https://static.mob.com/img/f641a28.png", @"key01":@"value01"};//扩展信息(attachment为多媒体信息，亦可通过content.attachments添加UNNotificationAttachment对象)
+                
+                if (Const.shared.DemoAttachmentURL.length > 0 && [NSURL URLWithString:Const.shared.DemoAttachmentURL])
+                {
+                    content.userInfo = @{@"attachment":Const.shared.DemoAttachmentURL, @"key01":@"value01"};//扩展信息(attachment为多媒体信息，亦可通过content.attachments添加UNNotificationAttachment对象)
+                }
+                else
+                {
+                    content.userInfo = @{@"key01":@"value01"};
+                }
+                
                 content.sound = _sound; //本地资源警告音
                 //category、threadIdentifier、targetContentIdentifier、...
                 

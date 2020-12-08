@@ -10,6 +10,7 @@
 #import <MobPush/MobPush.h>
 #import "MBProgressHUD+Extension.h"
 #import "TagsAndAliasViewController.h"
+#import "Const.h"
 
 @interface SettingViewController ()<UIScrollViewDelegate>
 
@@ -22,6 +23,10 @@
 @property (weak, nonatomic) IBOutlet UISwitch *switchBtn1;
 @property (weak, nonatomic) IBOutlet UITextField *badgeTF;
 @property (weak, nonatomic) IBOutlet UISwitch *switchDelivered;
+
+@property (weak, nonatomic) IBOutlet UILabel *tipLable;
+
+@property (weak, nonatomic) IBOutlet UITextField *attachmentField;
 
 @end
 
@@ -43,6 +48,8 @@
     [self.bindBtn addTarget:self action:@selector(onBind) forControlEvents:UIControlEventTouchUpInside];
     
     self.switchBtn1.on = ![[NSUserDefaults standardUserDefaults] boolForKey:@"NotAPNsShowForeground"];
+    
+    self.attachmentField.text = Const.shared.DemoAttachmentURL;
 }
 
 - (void)onSwitch:(UISwitch *)sender
@@ -61,20 +68,45 @@
 
 - (void)onBind
 {
-    if ([self.textField.text isEqualToString:@""] || !self.textField.text)
-    {
-        [MBProgressHUD showTitle:@"请填写手机号"];
-        return;
-    }
+//    if ([self.textField.text isEqualToString:@""] || !self.textField.text)
+//    {
+//        [MBProgressHUD showTitle:@"请填写手机号"];
+//        return;
+//    }
     
-    [MobPush bindPhoneNum:self.textField.text result:^(NSError *error) {
+    NSString *phoneNum = [self.textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    [MobPush bindPhoneNum:phoneNum result:^(NSError *error) {
         if (!error)
         {
             [MBProgressHUD showTitle:@"绑定成功"];
+            self.tipLable.text = @"手机绑定成功！";
         }
         else
         {
             [MBProgressHUD showTitle:@"绑定失败"];
+            self.tipLable.text = @"手机绑定失败！";
+        }
+    }];
+}
+
+- (IBAction)getPhone
+{
+    [MobPush getPhoneNumWithResult:^(NSString *phoneNum, NSError *error) {
+        if (!error)
+        {
+            if (phoneNum.length > 0)
+            {
+                self.tipLable.text = [NSString stringWithFormat:@"线上手机号为：%@", phoneNum];
+            }
+            else
+            {
+                self.tipLable.text = @"线上未绑定过手机号";
+            }
+        }
+        else
+        {
+            self.tipLable.text = @"手机获取失败！Api返回错误";
         }
     }];
 }
@@ -159,7 +191,14 @@
     content.badge = ([UIApplication sharedApplication].applicationIconBadgeNumber < 0 ? 0 : [UIApplication sharedApplication].applicationIconBadgeNumber) + 1;
     content.body = @"消息body";
     content.action = @"action";// iOS10以下使用
-    content.userInfo = @{@"attachment":@"https://static.mob.com/img/f641a28.png", @"key01":@"value01"};//扩展信息(attachment为多媒体信息，亦可通过content.attachments添加UNNotificationAttachment对象)
+    if (self.attachmentField.text.length > 0 && [NSURL URLWithString:self.attachmentField.text])
+    {
+        content.userInfo = @{@"attachment":self.attachmentField.text, @"key01":@"value01"};//扩展信息(attachment为多媒体信息，亦可通过content.attachments添加UNNotificationAttachment对象)
+    }
+    else
+    {
+        content.userInfo = @{@"key01":@"value01"};
+    }
     content.sound = @"warn.caf"; //本地资源警告音
     //category、threadIdentifier、targetContentIdentifier、...
     
@@ -266,4 +305,8 @@
   });
 }
 
+- (IBAction)onEditAttachmentURL:(id)sender
+{
+    Const.shared.DemoAttachmentURL = self.attachmentField.text;
+}
 @end
