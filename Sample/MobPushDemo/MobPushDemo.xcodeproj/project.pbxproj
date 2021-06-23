@@ -459,7 +459,7 @@
 				TargetAttributes = {
 					3CD9A218212D15580032AFF6 = {
 						CreatedOnToolsVersion = 9.4.1;
-						DevelopmentTeam = C87V99P45A;
+						DevelopmentTeam = Q87QUX3533;
 						ProvisioningStyle = Manual;
 					};
 					44543BFA20BFACB200B6B45E = {
@@ -469,7 +469,7 @@
 					};
 					DE2B9A251F7B52C60077BE5F = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = C87V99P45A;
+						DevelopmentTeam = Q87QUX3533;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -638,18 +638,18 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = C87V99P45A;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = Q87QUX3533;
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../../SDK\"/**";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = MobPushServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 3.0.2;
-				PRODUCT_BUNDLE_IDENTIFIER = QWE.KejiGou.KejiGouEx;
+				MARKETING_VERSION = 3.0.3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MobTech.allkeys.Extension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = kejiEXP12;
+				PROVISIONING_PROFILE_SPECIFIER = com.MobTech.allkeys.ExtensionDev;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -664,20 +664,20 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "Apple Distribution: Yong Lian Niu (C87V99P45A)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = C87V99P45A;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = Q87QUX3533;
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../../SDK\"/**";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = MobPushServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 3.0.2;
-				PRODUCT_BUNDLE_IDENTIFIER = QWE.KejiGou.KejiGouEx;
+				MARKETING_VERSION = 3.0.3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MobTech.allkeys.Extension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = adEX1111;
+				PROVISIONING_PROFILE_SPECIFIER = "Estion-Adhoc";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -692,7 +692,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../../SDK\"/**";
@@ -703,6 +704,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mob.MobPushDemoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MobPushDemo.app/MobPushDemo";
 			};
@@ -717,7 +719,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../../SDK\"/**";
@@ -728,6 +731,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mob.MobPushDemoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MobPushDemo.app/MobPushDemo";
 			};
@@ -846,8 +850,8 @@
 				CODE_SIGN_ENTITLEMENTS = MobPushDemo/MobPushDemo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = C87V99P45A;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = Q87QUX3533;
 				ENABLE_BITCODE = NO;
 				EXPORTED_SYMBOLS_FILE = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -858,12 +862,12 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_GENERATE_MAP_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 3.0.2;
+				MARKETING_VERSION = 3.0.3;
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = QWE.KejiGou;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MobTech.allkeys;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = KeJiDevelopP12;
+				PROVISIONING_PROFILE_SPECIFIER = "Mobtech-Dev";
 			};
 			name = Debug;
 		};
@@ -872,10 +876,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MobPushDemo/MobPushDemo.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Distribution: Yong Lian Niu (C87V99P45A)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = C87V99P45A;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = Q87QUX3533;
 				ENABLE_BITCODE = NO;
 				EXPORTED_SYMBOLS_FILE = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -886,12 +890,12 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_GENERATE_MAP_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 3.0.2;
+				MARKETING_VERSION = 3.0.3;
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = QWE.KejiGou;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MobTech.allkeys;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = adHoc1111;
+				PROVISIONING_PROFILE_SPECIFIER = "mobtech-adhoc";
 			};
 			name = Release;
 		};

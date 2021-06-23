@@ -16,7 +16,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         instance = [[Const alloc] init];
-        instance.DemoAttachmentURL = @"https://static.mob.com/www_mob_com/.nuxt/dist/client/img/f641a28.png";
+        instance.DemoAttachmentURL = @"http://download.sdk.mob.com/2021/05/11/18/16207285804677.20.png";
     });
     return instance;
 }
