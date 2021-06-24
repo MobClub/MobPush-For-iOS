@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0B63B8B92320F20300219CFC /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B63B8B82320F20300219CFC /* Bugly.framework */; };
+		0BED5FE924D128C00017B8B5 /* Const.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BED5FE824D128C00017B8B5 /* Const.m */; };
 		2F1C7E0821F1A7240041D287 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F1C7E0621F1A7240041D287 /* SettingViewController.m */; };
 		2F1C7E0921F1A7240041D287 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F1C7E0721F1A7240041D287 /* SettingViewController.xib */; };
 		2F1D906C22B73E2B002DCD2A /* TagsAndAliasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F1D906A22B73E2B002DCD2A /* TagsAndAliasViewController.m */; };
@@ -35,7 +36,6 @@
 		4441D2C02084B0F1000B879B /* localNotication@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4441D29D2084B0F1000B879B /* localNotication@2x.png */; };
 		4441D2C42084B0F1000B879B /* pushVC@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4441D2A12084B0F1000B879B /* pushVC@2x.png */; };
 		4441D2C62084B0F1000B879B /* TimeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4441D2A32084B0F1000B879B /* TimeTableViewCell.m */; };
-		4441D2C72084B0F1000B879B /* AlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4441D2A62084B0F1000B879B /* AlertViewController.m */; };
 		4441D2C82084B0F1000B879B /* OpenPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4441D2A82084B0F1000B879B /* OpenPageViewController.xib */; };
 		4441D2C92084B0F1000B879B /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4441D2AB2084B0F1000B879B /* MBProgressHUD.m */; };
 		4441D2CA2084B0F1000B879B /* MBProgressHUD+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4441D2AE2084B0F1000B879B /* MBProgressHUD+Extension.m */; };
@@ -46,10 +46,10 @@
 		5092A2202382570D0068EFA8 /* warn.caf in Resources */ = {isa = PBXBuildFile; fileRef = 5092A21D2382570D0068EFA8 /* warn.caf */; };
 		5092A2212382570D0068EFA8 /* tech.caf in Resources */ = {isa = PBXBuildFile; fileRef = 5092A21E2382570D0068EFA8 /* tech.caf */; };
 		5092A2222382570D0068EFA8 /* bomb.caf in Resources */ = {isa = PBXBuildFile; fileRef = 5092A21F2382570D0068EFA8 /* bomb.caf */; };
-		50F7D0432370164D004B75C1 /* MobPushServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50F7D03F2370164D004B75C1 /* MobPushServiceExtension.framework */; };
 		50F7D0442370164D004B75C1 /* MobPushServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50F7D03F2370164D004B75C1 /* MobPushServiceExtension.framework */; };
 		50F7D0452370164D004B75C1 /* MobPush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50F7D0402370164D004B75C1 /* MobPush.framework */; };
 		50F7D0472370164D004B75C1 /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50F7D0422370164D004B75C1 /* MOBFoundation.framework */; };
+		8D03B93D255BE8E800AF3625 /* AlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D03B93B255BE8E800AF3625 /* AlertViewController.m */; };
 		DE1CB8A71FC3D60200F60342 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1CB8981FC3D60200F60342 /* ViewController.m */; };
 		DE2B9A2B1F7B52C60077BE5F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DE2B9A2A1F7B52C60077BE5F /* main.m */; };
 		DE2B9A2E1F7B52C60077BE5F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DE2B9A2D1F7B52C60077BE5F /* AppDelegate.m */; };
@@ -92,6 +92,8 @@
 
 /* Begin PBXFileReference section */
 		0B63B8B82320F20300219CFC /* Bugly.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bugly.framework; sourceTree = "<group>"; };
+		0BED5FE724D128C00017B8B5 /* Const.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
+		0BED5FE824D128C00017B8B5 /* Const.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Const.m; sourceTree = "<group>"; };
 		2F1C7E0521F1A7240041D287 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		2F1C7E0621F1A7240041D287 /* SettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		2F1C7E0721F1A7240041D287 /* SettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
@@ -128,8 +130,6 @@
 		4441D29D2084B0F1000B879B /* localNotication@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "localNotication@2x.png"; sourceTree = "<group>"; };
 		4441D2A12084B0F1000B879B /* pushVC@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pushVC@2x.png"; sourceTree = "<group>"; };
 		4441D2A32084B0F1000B879B /* TimeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTableViewCell.m; sourceTree = "<group>"; };
-		4441D2A62084B0F1000B879B /* AlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertViewController.m; sourceTree = "<group>"; };
-		4441D2A72084B0F1000B879B /* AlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertViewController.h; sourceTree = "<group>"; };
 		4441D2A82084B0F1000B879B /* OpenPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpenPageViewController.xib; sourceTree = "<group>"; };
 		4441D2A92084B0F1000B879B /* UITextView+MPushPlaceholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+MPushPlaceholder.h"; sourceTree = "<group>"; };
 		4441D2AB2084B0F1000B879B /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
@@ -151,6 +151,8 @@
 		50F7D03F2370164D004B75C1 /* MobPushServiceExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MobPushServiceExtension.framework; sourceTree = "<group>"; };
 		50F7D0402370164D004B75C1 /* MobPush.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MobPush.framework; sourceTree = "<group>"; };
 		50F7D0422370164D004B75C1 /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
+		8D03B93B255BE8E800AF3625 /* AlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertViewController.m; sourceTree = "<group>"; };
+		8D03B93C255BE8E800AF3625 /* AlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertViewController.h; sourceTree = "<group>"; };
 		DE1CB8971FC3D60200F60342 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		DE1CB8981FC3D60200F60342 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		DE2B9A261F7B52C60077BE5F /* MobPushDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobPushDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -190,7 +192,6 @@
 				DE40B87E1FC3FE110067EF79 /* CoreLocation.framework in Frameworks */,
 				50F7D0452370164D004B75C1 /* MobPush.framework in Frameworks */,
 				0B63B8B92320F20300219CFC /* Bugly.framework in Frameworks */,
-				50F7D0432370164D004B75C1 /* MobPushServiceExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,8 +272,8 @@
 		4441D2A52084B0F1000B879B /* AlertView */ = {
 			isa = PBXGroup;
 			children = (
-				4441D2A72084B0F1000B879B /* AlertViewController.h */,
-				4441D2A62084B0F1000B879B /* AlertViewController.m */,
+				8D03B93C255BE8E800AF3625 /* AlertViewController.h */,
+				8D03B93B255BE8E800AF3625 /* AlertViewController.m */,
 			);
 			path = AlertView;
 			sourceTree = "<group>";
@@ -357,6 +358,8 @@
 				4441D2CE2084B120000B879B /* MOBNavigationViewController.m */,
 				DE1CB8971FC3D60200F60342 /* ViewController.h */,
 				DE1CB8981FC3D60200F60342 /* ViewController.m */,
+				0BED5FE724D128C00017B8B5 /* Const.h */,
+				0BED5FE824D128C00017B8B5 /* Const.m */,
 				DE2B9A3A1F7B52C60077BE5F /* Info.plist */,
 				DE2B9A291F7B52C60077BE5F /* Supporting Files */,
 				0B63B8B72320F20300219CFC /* ThirdLibs */,
@@ -456,7 +459,7 @@
 				TargetAttributes = {
 					3CD9A218212D15580032AFF6 = {
 						CreatedOnToolsVersion = 9.4.1;
-						DevelopmentTeam = LW5266U92D;
+						DevelopmentTeam = Q87QUX3533;
 						ProvisioningStyle = Manual;
 					};
 					44543BFA20BFACB200B6B45E = {
@@ -466,7 +469,7 @@
 					};
 					DE2B9A251F7B52C60077BE5F = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = LW5266U92D;
+						DevelopmentTeam = Q87QUX3533;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -573,11 +576,12 @@
 				4441D2CC2084B0F1000B879B /* OpenPageViewController.m in Sources */,
 				2F1D906C22B73E2B002DCD2A /* TagsAndAliasViewController.m in Sources */,
 				4441D2CA2084B0F1000B879B /* MBProgressHUD+Extension.m in Sources */,
+				8D03B93D255BE8E800AF3625 /* AlertViewController.m in Sources */,
 				3C5EDF0220E9CE30002D1670 /* RestoreViewController.m in Sources */,
 				4441D2B32084B0F1000B879B /* MainItemView.m in Sources */,
-				4441D2C72084B0F1000B879B /* AlertViewController.m in Sources */,
 				4441D2B62084B0F1000B879B /* WebViewController.m in Sources */,
 				DE1CB8A71FC3D60200F60342 /* ViewController.m in Sources */,
+				0BED5FE924D128C00017B8B5 /* Const.m in Sources */,
 				4441D2B52084B0F1000B879B /* PushViewController.m in Sources */,
 				4441D2CF2084B120000B879B /* MOBNavigationViewController.m in Sources */,
 				4441D2B42084B0F1000B879B /* UITextView+MPushPlaceholder.m in Sources */,
@@ -632,21 +636,20 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer: 永超 李 (6L4556Q7ET)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 永超 李 (6L4556Q7ET)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = LW5266U92D;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = Q87QUX3533;
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../../SDK\"/**";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = MobPushServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.3.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mob.MobPush.MobPushServiceExtension;
+				MARKETING_VERSION = 3.0.3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MobTech.allkeys.Extension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "71b95e15-a886-4234-9dc0-356dd4ab09ad";
-				PROVISIONING_PROFILE_SPECIFIER = alex;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = com.MobTech.allkeys.ExtensionDev;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -661,21 +664,20 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Guangzhou ZhangTao Network Technology Co., Ltd.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Guangzhou ZhangTao Network Technology Co., Ltd.";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = LW5266U92D;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = Q87QUX3533;
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../../SDK\"/**";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = MobPushServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 2.3.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mob.MobPush.MobPushServiceExtension;
+				MARKETING_VERSION = 3.0.3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MobTech.allkeys.Extension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d33dbcd9-44b9-44a8-8617-3955ddfa1d0f";
-				PROVISIONING_PROFILE_SPECIFIER = MobPushServiceExtensionInHouse;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Estion-Adhoc";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -690,7 +692,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../../SDK\"/**";
@@ -701,6 +704,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mob.MobPushDemoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MobPushDemo.app/MobPushDemo";
 			};
@@ -715,7 +719,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../../SDK\"/**";
@@ -726,6 +731,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mob.MobPushDemoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MobPushDemo.app/MobPushDemo";
 			};
@@ -842,12 +848,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MobPushDemo/MobPushDemo.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 永超 李 (6L4556Q7ET)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = LW5266U92D;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = Q87QUX3533;
 				ENABLE_BITCODE = NO;
+				EXPORTED_SYMBOLS_FILE = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../../SDK/**",
 					"$(PROJECT_DIR)/MobPushDemo/ThirdLibs",
@@ -856,11 +862,12 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_GENERATE_MAP_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mob.MobPush;
+				MARKETING_VERSION = 3.0.3;
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.MobTech.allkeys;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8f5453ab-a204-4262-8284-300ca5f7e0c1";
-				PROVISIONING_PROFILE_SPECIFIER = al;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Mobtech-Dev";
 			};
 			name = Debug;
 		};
@@ -869,12 +876,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MobPushDemo/MobPushDemo.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Guangzhou ZhangTao Network Technology Co., Ltd.";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = LW5266U92D;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = Q87QUX3533;
 				ENABLE_BITCODE = NO;
+				EXPORTED_SYMBOLS_FILE = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../../SDK/**",
 					"$(PROJECT_DIR)/MobPushDemo/ThirdLibs",
@@ -883,11 +890,12 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_GENERATE_MAP_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mob.MobPush;
+				MARKETING_VERSION = 3.0.3;
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.MobTech.allkeys;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "efeb3893-17c6-4c68-ab60-37eb29ed9da0";
-				PROVISIONING_PROFILE_SPECIFIER = MobPushInHouse;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "mobtech-adhoc";
 			};
 			name = Release;
 		};

@@ -9,7 +9,7 @@
 #import "TagsAndAliasViewController.h"
 #import <MobPush/MobPush.h>
 
-@interface TagsAndAliasViewController ()
+@interface TagsAndAliasViewController ()<UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *aliasTF;
 @property (weak, nonatomic) IBOutlet UITextField *tagsTF;
@@ -180,7 +180,8 @@
         
         if (!error)
         {
-            [self inputContent:[NSString stringWithFormat:@"%@成功,tags:%@", content,tags]];
+            NSString *tagStr = [tags count]>0?[tags componentsJoinedByString:@","]:@"";
+            [self inputContent:[NSString stringWithFormat:@"%@成功,tags:%@", content,tagStr]];
         }
         else
         {
@@ -193,6 +194,16 @@
 - (IBAction)clearInput:(id)sender
 {
     self.textView.text = nil;
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self.view endEditing:YES];
+}
+
+- (IBAction)endediting:(UITextField *)sender
+{
+    [sender resignFirstResponder];
 }
 
 @end

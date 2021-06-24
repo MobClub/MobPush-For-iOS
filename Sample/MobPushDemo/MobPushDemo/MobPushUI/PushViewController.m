@@ -12,6 +12,7 @@
 #import "MBProgressHUD+Extension.h"
 #import <MOBFoundation/MOBFoundation.h>
 #import <MobPush/UIViewController+MobPush.h>
+#import "Const.h"
 
 @interface PushViewController () <UITableViewDelegate, UITableViewDataSource>
 {
@@ -356,34 +357,104 @@
             
             if (self.tag == 4)//本地通知
             {
-                MPushMessage *message = [[MPushMessage alloc] init];
-                message.identifier = @"111";
-                message.extraInfomation = @{@"test":@2222};
-                message.messageType = MPushMessageTypeLocal;
-                MPushNotification *noti = [[MPushNotification alloc] init];
-                noti.body = self.content.text;
-                noti.title = @"标题";
-                noti.subTitle = @"子标题";
-                noti.sound = _sound;
-                noti.badge = ([UIApplication sharedApplication].applicationIconBadgeNumber < 0 ? 0 : [UIApplication sharedApplication].applicationIconBadgeNumber) + 1;
-                message.notification = noti;
+                
+                //  本地通知添加方式 此方式v3.0.1开始弃用
+                {
+//                MPushMessage *message = [[MPushMessage alloc] init];
+//                message.identifier = @"111";
+//                message.extraInfomation = @{@"test":@2222};
+//                message.messageType = MPushMessageTypeLocal;
+//                MPushNotification *noti = [[MPushNotification alloc] init];
+//                noti.body = self.content.text;
+//                noti.title = @"标题";
+//                noti.subTitle = @"子标题";
+//                noti.sound = _sound;
+//                noti.badge = ([UIApplication sharedApplication].applicationIconBadgeNumber < 0 ? 0 : [UIApplication sharedApplication].applicationIconBadgeNumber) + 1;
+//                message.notification = noti;
+//
+//                if (self.timeValue)
+//                {
+//                    // 设置几分钟后发起本地推送
+//                    NSDate *currentDate = [NSDate dateWithTimeIntervalSinceNow:0];
+//                    NSTimeInterval nowtime = [currentDate timeIntervalSince1970] * 1000;
+//                    NSTimeInterval taskDate = nowtime + self.timeValue*60*1000;
+//                    message.taskDate = taskDate;
+//                }
+//                else
+//                {
+//                    message.isInstantMessage = YES;
+//                }
+//
+//                [MobPush addLocalNotification:message];
+                }
+                
+                
+                //  v3.0.1及以上建议使用方式
+                
+                MPushNotificationRequest *request = [MPushNotificationRequest new];
+                // 推送通知唯一标识
+                request.requestIdentifier = @"111";//”推送通知“标识，相同值的“推送通知”将覆盖旧“推送通知”(iOS10及以上)
+                
+                MPushNotification *content = [MPushNotification new];
+                content.title = @"标题";
+                content.subTitle = @"子标题";
+                content.badge = ([UIApplication sharedApplication].applicationIconBadgeNumber < 0 ? 0 : [UIApplication sharedApplication].applicationIconBadgeNumber) + 1;
+                content.body = self.content.text;
+                content.action = @"action";// iOS10以下使用
+                
+                if (Const.shared.DemoAttachmentURL.length > 0 && [NSURL URLWithString:Const.shared.DemoAttachmentURL])
+                {
+                    content.userInfo = @{@"attachment":Const.shared.DemoAttachmentURL, @"key01":@"value01"};//扩展信息(attachment为多媒体信息，亦可通过content.attachments添加UNNotificationAttachment对象)
+                }
+                else
+                {
+                    content.userInfo = @{@"key01":@"value01"};
+                }
+                
+                content.sound = _sound; //本地资源警告音
+                //category、threadIdentifier、targetContentIdentifier、...
+                
+                // 推送通知内容
+                request.content = content;
+                
+                // 推送通知触发条件
+                MPushNotificationTrigger *trigger = [MPushNotificationTrigger new];
                 
                 if (self.timeValue)
                 {
                     // 设置几分钟后发起本地推送
                     NSDate *currentDate = [NSDate dateWithTimeIntervalSinceNow:0];
                     NSTimeInterval nowtime = [currentDate timeIntervalSince1970] * 1000;
-                    NSTimeInterval taskDate = nowtime + self.timeValue*60*1000;
-                    message.taskDate = taskDate;
+                    NSTimeInterval tasktimeInterval = nowtime + self.timeValue*60*1000;
+                    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0)
+                    {
+                        trigger.timeInterval = self.timeValue*60;
+                    }
+                    else
+                    {
+                        trigger.fireDate = [NSDate dateWithTimeIntervalSince1970:tasktimeInterval];
+                    }
                 }
-                else
-                {
-                    message.isInstantMessage = YES;
-                }
-              
-                [MobPush addLocalNotification:message];
                 
-//                [MBProgressHUD showTitle:@"发送成功"];
+                // 根据需求设置条件 trigger.fireDate(iOS10以下)、trigger.dateComponents、trigger.timeInterval、trigger.region
+                request.trigger = trigger;//不设置条件或者传nil 认为即时推送
+                
+                // 添加本地推送
+                [MobPush addLocalNotification:request result:^(id result, NSError *error) {
+                    if (!error)
+                    {
+                        //iOS10以上result为UNNotificationRequest对象、iOS10以下成功result为UILocalNotification对象
+                        if (result)
+                        {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                [MBProgressHUD showTitle:@"发送成功"];
+                                NSLog(@"本地通知添加成功：%@", result);
+                            });
+                        }
+                        
+                    }
+                }];
+                
             }
             else//Apns推送
             {

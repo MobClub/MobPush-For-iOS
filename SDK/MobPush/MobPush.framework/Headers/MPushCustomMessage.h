@@ -11,6 +11,7 @@
 /**
  自定义消息类型
  */
+DEPRECATED_MSG_ATTRIBUTE("MobPush 3.0.1 版本此类已弃用 信息可在MPushMessage对象下notification.userInfo key为'mobpushCustomTitle'、'mobpushCustomType' 获取")
 @interface MPushCustomMessage : NSObject
 
 /**

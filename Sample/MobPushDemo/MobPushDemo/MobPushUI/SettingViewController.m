@@ -10,8 +10,9 @@
 #import <MobPush/MobPush.h>
 #import "MBProgressHUD+Extension.h"
 #import "TagsAndAliasViewController.h"
+#import "Const.h"
 
-@interface SettingViewController ()
+@interface SettingViewController ()<UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *sdkVerLable;
 
@@ -19,9 +20,13 @@
 @property (weak, nonatomic) IBOutlet UISwitch *switchBtn;
 @property (weak, nonatomic) IBOutlet UIButton *bindBtn;
 @property (weak, nonatomic) IBOutlet UITextField *addIdTextField;
-@property (weak, nonatomic) IBOutlet UITextField *deleteIdTextField;
 @property (weak, nonatomic) IBOutlet UISwitch *switchBtn1;
 @property (weak, nonatomic) IBOutlet UITextField *badgeTF;
+@property (weak, nonatomic) IBOutlet UISwitch *switchDelivered;
+
+@property (weak, nonatomic) IBOutlet UILabel *tipLable;
+
+@property (weak, nonatomic) IBOutlet UITextField *attachmentField;
 
 @end
 
@@ -43,6 +48,8 @@
     [self.bindBtn addTarget:self action:@selector(onBind) forControlEvents:UIControlEventTouchUpInside];
     
     self.switchBtn1.on = ![[NSUserDefaults standardUserDefaults] boolForKey:@"NotAPNsShowForeground"];
+    
+    self.attachmentField.text = Const.shared.DemoAttachmentURL;
 }
 
 - (void)onSwitch:(UISwitch *)sender
@@ -61,59 +68,164 @@
 
 - (void)onBind
 {
-    if ([self.textField.text isEqualToString:@""] || !self.textField.text)
-    {
-        [MBProgressHUD showTitle:@"请填写手机号"];
-        return;
-    }
+//    if ([self.textField.text isEqualToString:@""] || !self.textField.text)
+//    {
+//        [MBProgressHUD showTitle:@"请填写手机号"];
+//        return;
+//    }
     
-    [MobPush bindPhoneNum:self.textField.text result:^(NSError *error) {
+    NSString *phoneNum = [self.textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    [MobPush bindPhoneNum:phoneNum result:^(NSError *error) {
         if (!error)
         {
             [MBProgressHUD showTitle:@"绑定成功"];
+            self.tipLable.text = @"手机绑定成功！";
         }
         else
         {
             [MBProgressHUD showTitle:@"绑定失败"];
+            self.tipLable.text = @"手机绑定失败！";
         }
     }];
 }
 
-- (IBAction)onCacel:(id)sender
+- (IBAction)getPhone
 {
-    if ([self.deleteIdTextField.text isEqualToString:@""] || !self.deleteIdTextField.text)
+    [MobPush getPhoneNumWithResult:^(NSString *phoneNum, NSError *error) {
+        if (!error)
+        {
+            if (phoneNum.length > 0)
+            {
+                self.tipLable.text = [NSString stringWithFormat:@"线上手机号为：%@", phoneNum];
+            }
+            else
+            {
+                self.tipLable.text = @"线上未绑定过手机号";
+            }
+        }
+        else
+        {
+            self.tipLable.text = @"手机获取失败！Api返回错误";
+        }
+    }];
+}
+
+- (IBAction)openSystemSettings:(id)sender
+{
+    [MobPush openSettingsForNotification:^(BOOL success) {
+        [MBProgressHUD showTitle:@"打开成功"];
+    }];
+}
+
+- (IBAction)onDeleteNotification:(id)sender
+{
+    if ([self.addIdTextField.text isEqualToString:@""] || !self.addIdTextField.text)
     {
         [MobPush removeNotificationWithIdentifiers:nil];
     }
     else
     {
-        [MobPush removeNotificationWithIdentifiers:@[self.deleteIdTextField.text]];
+        [MobPush removeNotificationWithIdentifiers:@[self.addIdTextField.text]];
     }
 }
 
-- (IBAction)onAdd:(id)sender
+- (IBAction)onSelectNotification:(id)sender
 {
-    MPushMessage *message = [[MPushMessage alloc] init];
-    message.messageType = MPushMessageTypeLocal;
-    MPushNotification *noti = [[MPushNotification alloc] init];
-    noti.body = self.addIdTextField.text;
-    noti.title = @"标题";
-    noti.subTitle = @"子标题";
-    noti.badge = ([UIApplication sharedApplication].applicationIconBadgeNumber < 0 ? 0 : [UIApplication sharedApplication].applicationIconBadgeNumber) + 1;
-    message.notification = noti;
+    if ([self.addIdTextField.text isEqualToString:@""] || !self.addIdTextField.text)
+    {
+        [MBProgressHUD showTitle:@"通知唯一标识identity"];
+        return;
+    }
+    else
+    {
+        __weak typeof(self) weakSelf = self;
+        [MobPush findNotificationWithIdentifiers:@[self.addIdTextField.text] delivered:self.switchDelivered.on handler:^(NSArray *result, NSError *error) {
+            if (error == nil)
+            {
+                NSString *title = [NSString stringWithFormat:@"查找所有通知 %ld 条",result.count];
+                NSString *message = [NSString stringWithFormat:@"%@",result];
+                [weakSelf showAlertControllerWithTitle:title message:message];
+            }
+        }];
+    }
+}
+
+- (IBAction)onAddNotification:(id)sender
+{
+//  本地通知添加方式 此方式v3.0.1开始弃用
+    {
+//    MPushMessage *message = [[MPushMessage alloc] init];
+//    message.messageType = MPushMessageTypeLocal;
+//    MPushNotification *noti = [[MPushNotification alloc] init];
+//    noti.body = self.addIdTextField.text;
+//    noti.title = @"标题";
+//    noti.subTitle = @"子标题";
+//    noti.badge = ([UIApplication sharedApplication].applicationIconBadgeNumber < 0 ? 0 : [UIApplication sharedApplication].applicationIconBadgeNumber) + 1;
+//    message.notification = noti;
+//
+//    // 立即触发
+//    message.isInstantMessage = YES;
+//
+//    //设置几分钟后发起本地推送
+////    NSDate *currentDate = [NSDate dateWithTimeIntervalSinceNow:0];
+////    NSTimeInterval nowtime = [currentDate timeIntervalSince1970] * 1000;
+////    NSTimeInterval taskDate = nowtime + 5*60*1000;
+////    message.taskDate = taskDate;
+//
+//    // 创建通知标示，两条通知不能唯一，否则会覆盖旧推送
+//    message.identifier = self.addIdTextField.text;// 这边以输入的文字为ID，ID一样，新的消息会覆盖旧的
+//    [MobPush addLocalNotification:message];
     
-    // 立即触发
-    message.isInstantMessage = YES;
+    }
     
-    //设置几分钟后发起本地推送
-//    NSDate *currentDate = [NSDate dateWithTimeIntervalSinceNow:0];
-//    NSTimeInterval nowtime = [currentDate timeIntervalSince1970] * 1000;
-//    NSTimeInterval taskDate = nowtime + 5*60*1000;
-//    message.taskDate = taskDate;
+//  v3.0.1及以上建议使用方式
     
-    // 创建通知标示，两条通知不能唯一，否则会覆盖旧推送
-    message.identifier = self.addIdTextField.text;// 这边以输入的文字为ID，ID一样，新的消息会覆盖旧的
-    [MobPush addLocalNotification:message];
+    MPushNotificationRequest *request = [MPushNotificationRequest new];
+    // 推送通知唯一标识
+    request.requestIdentifier = self.addIdTextField.text;//”推送通知“标识，相同值的“推送通知”将覆盖旧“推送通知”(iOS10及以上)
+    
+    MPushNotification *content = [MPushNotification new];
+    content.title = @"标题";
+    content.subTitle = @"子标题";
+    content.badge = ([UIApplication sharedApplication].applicationIconBadgeNumber < 0 ? 0 : [UIApplication sharedApplication].applicationIconBadgeNumber) + 1;
+    content.body = @"消息body";
+    content.action = @"action";// iOS10以下使用
+    if (self.attachmentField.text.length > 0 && [NSURL URLWithString:self.attachmentField.text])
+    {
+        content.userInfo = @{@"attachment":self.attachmentField.text, @"key01":@"value01"};//扩展信息(attachment为多媒体信息，亦可通过content.attachments添加UNNotificationAttachment对象)
+    }
+    else
+    {
+        content.userInfo = @{@"key01":@"value01"};
+    }
+    content.sound = @"warn.caf"; //本地资源警告音
+    //category、threadIdentifier、targetContentIdentifier、...
+    
+    // 推送通知内容
+    request.content = content;
+    
+    // 推送通知触发条件
+    MPushNotificationTrigger *trigger = [MPushNotificationTrigger new];
+    // 根据需求设置条件 trigger.fireDate(iOS10以下)、trigger.dateComponents、trigger.timeInterval、trigger.region
+    request.trigger = trigger;//不设置条件或者传nil 认为即时推送
+    
+    // 添加本地推送
+    [MobPush addLocalNotification:request result:^(id result, NSError *error) {
+        if (!error)
+        {
+            //iOS10以上result为UNNotificationRequest对象、iOS10以下成功result为UILocalNotification对象
+            if (result)
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [MBProgressHUD showTitle:@"发送成功"];
+                    NSLog(@"本地通知添加成功：%@", result);
+                });
+            }
+        }
+    }];
+    
+    
 }
 
 - (IBAction)onSwitch1:(UISwitch *)sender
@@ -158,4 +270,43 @@
     [self.view endEditing:YES];
 }
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self.view endEditing:YES];
+}
+
+- (IBAction)endediting:(UITextField *)sender
+{
+    [sender resignFirstResponder];
+}
+
+- (void)showAlertControllerWithTitle:(NSString *)title message:(NSString *)message
+{
+  dispatch_async(dispatch_get_main_queue(), ^{
+    if([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+    {
+      UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"关闭" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+      [alert addAction: closeAction];
+      [self presentViewController:alert animated:YES completion:nil];
+    }
+    else
+    {
+      UIAlertView *alert =
+      [[UIAlertView alloc] initWithTitle:title
+                                 message:message
+                                delegate:self
+                       cancelButtonTitle:@"确定"
+                       otherButtonTitles:nil, nil];
+      [alert show];
+    }
+  });
+}
+
+- (IBAction)onEditAttachmentURL:(id)sender
+{
+    Const.shared.DemoAttachmentURL = self.attachmentField.text;
+}
 @end

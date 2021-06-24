@@ -19,6 +19,9 @@
 
 @interface ViewController () <IMainItemViewDelegate>
 
+@property (nonatomic, weak) UILabel *statusLable;
+@property (nonatomic, weak) UILabel *registLable;
+
 @end
 
 @implementation ViewController
@@ -93,7 +96,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-
+    
 //#ifdef DEBUG
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 50)];
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -105,8 +108,27 @@
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
+    UILabel *statusLable = [[UILabel alloc] init];
+    statusLable.frame = CGRectMake(8, 8, self.view.frame.size.width - 8 * 2, 26);
+    statusLable.text = @"未连接";
+    statusLable.textAlignment = NSTextAlignmentLeft;
+    statusLable.font = [UIFont systemFontOfSize:13];
+    statusLable.textColor = [UIColor redColor];
+    [self.view addSubview:statusLable];
+    self.statusLable = statusLable;
+    
+    UILabel *registLable = [[UILabel alloc] init];
+    registLable.frame = CGRectMake(80, 8, self.view.frame.size.width - 80 , 26);
+    registLable.text = @"RegistrationID:";
+    registLable.textAlignment = NSTextAlignmentLeft;
+    registLable.font = [UIFont systemFontOfSize:13];
+    registLable.textColor = [UIColor blueColor];
+    [self.view addSubview:registLable];
+    self.registLable = registLable;
+    
+    
     UILabel *selectedLabel = [[UILabel alloc] init];
-    selectedLabel.frame = CGRectMake(self.view.frame.size.width*0.1, 16, self.view.frame.size.width*0.8, 40);
+    selectedLabel.frame = CGRectMake(self.view.frame.size.width*0.1, 30, self.view.frame.size.width*0.8, 36);
     selectedLabel.text = @"选择你想测试的推送类型:";
     selectedLabel.textAlignment = NSTextAlignmentCenter;
     selectedLabel.font = [UIFont systemFontOfSize:20];
@@ -167,6 +189,8 @@
     linkItemView.frame = CGRectMake(self.view.frame.size.width*0.55, CGRectGetMaxY(schedulePush.frame) + 20, self.view.frame.size.width*0.35, self.view.frame.size.width*0.4);
     [self.view addSubview:linkItemView];
     
+    
+    [self addAllObserverAboutNetworkNotifications];
 }
 
 - (void)itemClicked:(UIButton *)sender
@@ -233,6 +257,111 @@
         default:
             break;
     }
+}
+
+- (void)addAllObserverAboutNetworkNotifications
+{
+    NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
+    [defaultCenter addObserver:self selector:@selector(networkDidRegister:) name:MobPushNetworkDidRegisterNotification object:nil];
+    [defaultCenter addObserver:self selector:@selector(networkFailedRegister:) name:MobPushNetworkFailedRegisterNotification object:nil];
+    [defaultCenter addObserver:self selector:@selector(networkConnecting:) name:MobPushNetworkConnectingNotification object:nil];
+    [defaultCenter addObserver:self selector:@selector(networkConnected:) name:MobPushNetworkConnectedNotification object:nil];
+    [defaultCenter addObserver:self selector:@selector(networkDidLogin:) name:MobPushNetworkDidLoginNotification object:nil];
+    [defaultCenter addObserver:self selector:@selector(networkDidClose:) name:MobPushNetworkDidCloseNotification object:nil];
+    
+}
+
+- (void)removeAllObserverAboutNetworkNotifications
+{
+    NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
+    [defaultCenter removeObserver:self name:MobPushNetworkDidRegisterNotification object:nil];
+    [defaultCenter removeObserver:self name:MobPushNetworkFailedRegisterNotification object:nil];
+    [defaultCenter removeObserver:self name:MobPushNetworkConnectingNotification object:nil];
+    [defaultCenter removeObserver:self name:MobPushNetworkConnectedNotification object:nil];
+    [defaultCenter removeObserver:self name:MobPushNetworkDidLoginNotification object:nil];
+    [defaultCenter removeObserver:self name:MobPushNetworkDidCloseNotification object:nil];
+}
+
+- (void)dealloc
+{
+    [self removeAllObserverAboutNetworkNotifications];
+}
+
+// 注册成功
+- (void)networkDidRegister:(NSNotification *)notification
+{
+    NSString *regId = [[notification userInfo] valueForKey:@"RegistrationID"]?:@"";
+    self.registLable.text = [NSString stringWithFormat:@"RegistrationID:%@",regId];
+        
+    self.statusLable.text = @"已注册";
+    self.statusLable.textColor = [UIColor blueColor];
+    
+    NSLog(@"networkStatus:已注册");
+}
+
+// 注册失败
+- (void)networkFailedRegister:(NSNotification *)notification
+{
+    self.registLable.text = @"RegistrationID:";
+    
+    self.statusLable.text = @"注册失败";
+    self.statusLable.textColor = [UIColor redColor];
+
+    NSError *error = notification.object;
+    if (error && [error isKindOfClass:NSError.class])
+    {
+        NSLog(@"error:%@",error.description);
+    }
+    
+    NSLog(@"networkStatus:注册失败");
+}
+
+// 正在连接中
+- (void)networkConnecting:(NSNotification *)notification
+{
+    self.statusLable.text = @"正在连接中...";
+    self.statusLable.textColor = [UIColor blueColor];
+
+    NSLog(@"networkStatus:正在连接中...");
+}
+
+// 连接成功
+- (void)networkConnected:(NSNotification *)notification
+{
+    self.statusLable.text = @"连接成功";
+    self.statusLable.textColor = [UIColor blueColor];
+
+    NSLog(@"networkStatus:连接成功");
+}
+
+// 登录成功
+- (void)networkDidLogin:(NSNotification *)notification
+{
+    
+    self.statusLable.text = @"登录成功";
+    self.statusLable.textColor = [UIColor blueColor];
+    
+    __weak typeof(self) weakSelf = self;
+    [MobPush getRegistrationID:^(NSString *registrationID, NSError *error) {
+        if (!error)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSString *regId = registrationID?:@"";
+                weakSelf.registLable.text = [NSString stringWithFormat:@"RegistrationID:%@",regId];
+            });
+        }
+    }];
+    
+    NSLog(@"networkStatus:登录成功");
+}
+
+// 连接关闭
+- (void)networkDidClose:(NSNotification *)notification
+{
+    self.statusLable.text = @"未连接";
+    self.statusLable.textColor = [UIColor redColor];
+    
+    NSLog(@"networkStatus:未连接");
 }
 
 @end

@@ -13,12 +13,15 @@
 #import "AlertViewController.h"
 #import "MBProgressHUD+Extension.h"
 #import "WebViewController.h"
-// bugly
-#import <Bugly/Bugly.h>
 #import <MOBFoundation/MobSDK.h>
 #import <MOBFoundation/MobSDK+Privacy.h>
+
+// bugly
+#import <Bugly/Bugly.h>
 // bugly app id
 #define BUGLY_APP_ID @"5abda4b390"
+
+//#import <UserNotifications/UserNotifications.h>
 
 @interface AppDelegate () <UIAlertViewDelegate, IAlertViewControllerDelegate, BuglyDelegate>
 
@@ -41,10 +44,23 @@
     [MobPush setAPNsForProduction:YES];
 #endif
     
+    //设置地区：regionId 默认0（国内），1:海外
+//    [MobPush setRegionID:1];
+    
     //外部demo
-    [MobSDK registerAppKey:@"moba6b6c6d6" appSecret:@"b89d2427a3bc7ad1aea1e1e8c1d36bf3"];
+//    [MobSDK registerAppKey:@"moba6b6c6d6" appSecret:@"b89d2427a3bc7ad1aea1e1e8c1d36bf3"];
     //内部调试
 //    [MobSDK registerAppKey:@"2dbe655e88c80" appSecret:@"a7b9f1918c596eacbff8a172ba8ed158"];
+    
+//    [MobSDK registerAppKey:@"2ecbc7bc53712" appSecret:@"785544d9f64bf1f51e7aa3b8f21d07e8"];
+    
+//    [MobSDK registerAppKey:@"2c574691c6986" appSecret:@"4b5cd595eb07b5cf17bb269f7a51391d"];
+    
+    // 更新证书后: 测试环境
+//    [MobSDK registerAppKey:@"m2edc0a7974b00" appSecret:@"6867f7cf3c3a7bb53a438f4ea4cac8cf"];
+
+    // 更新证书后: 生产环境
+    [MobSDK registerAppKey:@"3276d3e413040" appSecret:@"4280a3a6df667cfce37528dec03fd9c3"];
     
     //MobPush推送设置（获得角标、声音、弹框提醒权限）
     MPushNotificationConfiguration *configuration = [[MPushNotificationConfiguration alloc] init];
@@ -60,15 +76,11 @@
     [MobPush getRegistrationID:^(NSString *registrationID, NSError *error) {
         NSLog(@"registrationID = %@--error = %@", registrationID, error);
     }];
-        
-    self.window = [[UIWindow alloc] init];
-    self.window.frame = [UIScreen mainScreen].bounds;
-    ViewController *viewC = [[ViewController alloc] init];
-    MOBNavigationViewController *nav = [[MOBNavigationViewController alloc] initWithRootViewController:viewC];
-    self.window.rootViewController = nav;
-    self.window.backgroundColor = [UIColor whiteColor];
     
+    // 监听推送通知 MobPush整合了系统iOS10以上及以下不同方式获取推送统一通过此监听获取，开发者通过原始方式亦不影响。
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveMessage:) name:MobPushDidReceiveMessageNotification object:nil];
+    
+    // 注意：上传隐私协议接口，具体查看官方文档(http://www.mob.com/wiki/detailed?wiki=MobTechprivacypushios&id=136)
     [MobSDK uploadPrivacyPermissionStatus:YES onResult:^(BOOL success) {
         NSLog(@"-------------->上传结果：%d",success);
     }];
@@ -88,16 +100,18 @@
     
 }
 
-// 收到通知回调
+// 收到推送通知回调
 - (void)didReceiveMessage:(NSNotification *)notification
 {
     MPushMessage *message = notification.object;
-        
+    
+    NSLog(@"message:%@", message.convertDictionary);
+    
     switch (message.messageType)
     {
         case MPushMessageTypeCustom:
         {// 自定义消息回调
-            self.alertVC = [[AlertViewController alloc] initWithTitle:@"收到推送" content:message.content];
+            self.alertVC = [[AlertViewController alloc] initWithTitle:@"收到推送" content:message.notification.body];
             self.alertVC.delegate = self;
             
             _alertWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -109,8 +123,7 @@
             break;
         case MPushMessageTypeAPNs:
         {// APNs回调
-            NSLog(@"msgInfo---%@--%@", message.msgInfo, message.extraInfomation);
-            [[[UIAlertView alloc] initWithTitle:message.msgInfo.description message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
+            [[[UIAlertView alloc] initWithTitle:message.notification.userInfo.description message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
         }
             break;
         case MPushMessageTypeLocal:
@@ -125,6 +138,8 @@
             break;
         case MPushMessageTypeClicked:
         {// 点击通知回调
+            
+            // 测试
             if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive)
             { // 前台
                 [self showAlertWithMessage:message];
@@ -159,7 +174,7 @@
 
 - (void)showAlertWithMessage:(MPushMessage *)message
 {
-    NSString *url = message.msgInfo[@"url"];
+    NSString *url = message.notification.userInfo[@"url"];
     
     if (url)
     {
@@ -175,7 +190,7 @@
 
 - (void)pushVCWithMessage:(MPushMessage *)message
 {
-    NSString *url = message.msgInfo[@"url"];
+    NSString *url = message.notification.userInfo[@"url"];
     
     if (url)
     {
