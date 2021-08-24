@@ -51,8 +51,13 @@ Carthage/Build
 # For more information about the recommended setup visit:
 # https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Gitignore.md
 
-fastlane/report.xml
-fastlane/screenshots
+Fastlane/
+# fastlane/report.xml
+# fastlane/screenshots
+
+# Gems
+Gemfile
+Gemfile.lock
 
 #Code Injection
 #
