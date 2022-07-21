@@ -1,0 +1,12 @@
+options:
+  :username: 'pangjj'
+  :password: '!Cs:WF8u_iV0'
+  :site: http://j.mob.com
+  :context_path: ''
+  :auth_type: :basic
+  :use_ssl: false
+client_info:
+  ed: 'https://oss-cn-hangzhou.aliyuncs.com'
+  id: 'LTAI5tDCmPP1e58J4fLhDChN'
+  secret: 'MQ1sPxTMyiUqU6teQmXbayGgfDD6Dp'
+  bucket: 'sdk-dev-ios'  
