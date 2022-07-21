@@ -59,6 +59,9 @@ Fastlane/
 Gemfile
 Gemfile.lock
 
+# Config Files
+c_files/
+
 #Code Injection
 #
 # After new code Injection tools there's a generated folder /iOSInjectionProject
