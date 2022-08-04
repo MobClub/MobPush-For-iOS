@@ -459,7 +459,7 @@
 				TargetAttributes = {
 					3CD9A218212D15580032AFF6 = {
 						CreatedOnToolsVersion = 9.4.1;
-						DevelopmentTeam = Q87QUX3533;
+						DevelopmentTeam = 6726N8K77K;
 						ProvisioningStyle = Manual;
 					};
 					44543BFA20BFACB200B6B45E = {
@@ -469,7 +469,7 @@
 					};
 					DE2B9A251F7B52C60077BE5F = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = Q87QUX3533;
+						DevelopmentTeam = 6726N8K77K;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -639,17 +639,17 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = Q87QUX3533;
+				DEVELOPMENT_TEAM = 6726N8K77K;
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../../SDK\"/**";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = MobPushServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 3.0.3;
-				PRODUCT_BUNDLE_IDENTIFIER = com.MobTech.allkeys.Extension;
+				MARKETING_VERSION = 4.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yyds.Push.Extesion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = com.MobTech.allkeys.ExtensionDev;
+				PROVISIONING_PROFILE_SPECIFIER = com.yyds.Push.ExtesionDev;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -667,17 +667,17 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = Q87QUX3533;
+				DEVELOPMENT_TEAM = 6726N8K77K;
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../../SDK\"/**";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = MobPushServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 3.0.3;
-				PRODUCT_BUNDLE_IDENTIFIER = com.MobTech.allkeys.Extension;
+				MARKETING_VERSION = 4.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yyds.Push.Extesion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "Estion-Adhoc";
+				PROVISIONING_PROFILE_SPECIFIER = com.yyds.Push.ExtesionAdhoc;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -851,7 +851,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = Q87QUX3533;
+				DEVELOPMENT_TEAM = 6726N8K77K;
 				ENABLE_BITCODE = NO;
 				EXPORTED_SYMBOLS_FILE = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -862,12 +862,12 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_GENERATE_MAP_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 3.0.3;
+				MARKETING_VERSION = 4.0.0;
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.MobTech.allkeys;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yyds.Push;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "Mobtech-Dev";
+				PROVISIONING_PROFILE_SPECIFIER = com.yyds.PushDev;
 			};
 			name = Debug;
 		};
@@ -879,7 +879,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = Q87QUX3533;
+				DEVELOPMENT_TEAM = 6726N8K77K;
 				ENABLE_BITCODE = NO;
 				EXPORTED_SYMBOLS_FILE = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -890,12 +890,12 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_GENERATE_MAP_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 3.0.3;
+				MARKETING_VERSION = 4.0.0;
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.MobTech.allkeys;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yyds.Push;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "mobtech-adhoc";
+				PROVISIONING_PROFILE_SPECIFIER = com.yyds.push.AdHoc;
 			};
 			name = Release;
 		};

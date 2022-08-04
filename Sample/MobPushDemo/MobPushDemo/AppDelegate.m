@@ -134,6 +134,7 @@
             NSInteger badge = message.notification.badge;
             NSString *sound = message.notification.sound;
             NSLog(@"收到本地通知:{\nbody:%@，\ntitle:%@,\nsubtitle:%@,\nbadge:%ld,\nsound:%@,\n}",body, title, subtitle, (long)badge, sound);
+            [[[UIAlertView alloc] initWithTitle:message.notification.userInfo.description message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
         }
             break;
         case MPushMessageTypeClicked:
