@@ -200,6 +200,13 @@ typedef NS_ENUM(NSInteger, MPushNotificationRequestStatus) {
 #pragma mark - other
 
 /**
+ 用户手动上报设备deviceToken
+
+ @param handler 结果
+ */
++ (void)uploadDeviceToken:(NSString *)deviceToken handler:(void (^)(NSError *error))handler;
+
+/**
  获取注册id（可与用户id绑定，实现向指定用户推送消息）
 
  @param handler 结果
