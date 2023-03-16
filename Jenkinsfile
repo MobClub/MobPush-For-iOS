@@ -1,6 +1,6 @@
 node {
 	properties([parameters([
-		choice(name: 'Credential_ID', choices: ['', 'yz'], description: 'Required, Used to checkout the config files and source code.'),
+		choice(name: 'Credential_ID', choices: ['', 'pangjj', 'yz'], description: 'Required, Used to checkout the config files and source code.'),
 		choice(name: 'Xcode', choices: ['Xcode_12', 'Xcode'], description: 'Required, Change the default xcode to pod trunk.'),
 		string(name: 'Job_Name', defaultValue: 'MobPush', description: 'The target job name.'),
 		string(name: 'Branch', defaultValue: 'master', description: 'The target branch name.'),
