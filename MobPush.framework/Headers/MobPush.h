@@ -267,4 +267,17 @@ typedef NS_ENUM(NSInteger, MPushNotificationRequestStatus) {
 /// @param regionId 默认0（国内），1:海外
 + (void)setRegionID:(int)regionId;
 
+/*!
+ * @abstract 注册LiveActivity并上报PushToken
+ * 在PushToken更新时，需同步调用该接口
+ * 在LiveActivity结束时，需同步调用该接口，PushToken为nil
+ *
+ * @param liveActivityId 标识某一个LiveActivity
+ * @param pushToken 对应LiveActivity的PushToken
+ * @param handler 结果回调
+ */
++ (void)registerLiveActivityWithID:(NSString *)liveActivityId
+                         pushToken:(NSData *)pushToken
+                        completion:(void(^)(NSError *error))handler;
+
 @end
