@@ -1,0 +1,6 @@
+framework module MobPush {
+    umbrella header "MobPush_H.h"
+    
+    export *
+    module * { export * }
+}

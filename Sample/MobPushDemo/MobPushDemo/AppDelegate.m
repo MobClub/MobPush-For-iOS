@@ -15,6 +15,7 @@
 #import "WebViewController.h"
 #import <MOBFoundation/MobSDK.h>
 #import <MOBFoundation/MobSDK+Privacy.h>
+#import "MobPushDemo-Swift.h"
 
 // bugly
 #import <Bugly/Bugly.h>
@@ -80,10 +81,27 @@
     // 监听推送通知 MobPush整合了系统iOS10以上及以下不同方式获取推送统一通过此监听获取，开发者通过原始方式亦不影响。
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveMessage:) name:MobPushDidReceiveMessageNotification object:nil];
     
-    // 注意：上传隐私协议接口，具体查看官方文档(http://www.mob.com/wiki/detailed?wiki=MobTechprivacypushios&id=136)
+    // 注意：上传隐私协议接口，具体查看官方文档(https://policy.zztfly.com/sdk/share/privacy)
     [MobSDK uploadPrivacyPermissionStatus:YES onResult:^(BOOL success) {
         NSLog(@"-------------->上传结果：%d",success);
     }];
+    
+    // 注册实时活动
+    if (@available(iOS 16.1, *)) {
+#if !TARGET_OS_MACCATALYST
+        [LiveActivityUtils startActivityWithPushTokenUpdate:^(BOOL enable, NSData *token) {
+            if(enable && token.length) {
+                [MobPush registerLiveActivityWithID:@"mpLiveActivity"
+                                          pushToken:token
+                                         completion:^(NSError *error) {
+                    if (error) {
+                        NSLog(@"Register LiveActivity Failed: %@", error.localizedDescription);
+                    }
+                }];
+            }
+        }];
+#endif
+    }
     
     return YES;
 }
