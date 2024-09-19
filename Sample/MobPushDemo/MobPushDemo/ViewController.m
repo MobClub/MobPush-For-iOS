@@ -297,6 +297,10 @@
     self.statusLable.textColor = [UIColor blueColor];
     
     NSLog(@"networkStatus:已注册");
+    
+    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.Mob.HeartNote.group"];
+    [defaults setObject:regId forKey:@"c_regId"];
+    [defaults synchronize];
 }
 
 // 注册失败

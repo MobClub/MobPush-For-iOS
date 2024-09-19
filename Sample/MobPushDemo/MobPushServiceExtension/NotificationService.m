@@ -7,7 +7,10 @@
 //
 
 #import "NotificationService.h"
+#import "ViewController.h"
 #import <MobPushServiceExtension/MobPushServiceExtension.h>
+
+#define APP_SECRET @"6867f7cf3c3a7bb53a438f4ea4cac8cf"
 
 @interface NotificationService ()
 
@@ -29,7 +32,9 @@
 //    self.bestAttemptContent.title = @"我是修改后的标题";
 //    self.bestAttemptContent.subtitle = @"我是修改后的子标题";
 //    self.bestAttemptContent.body = @"来自MobPush";
-    
+    [MobPushServiceExtension deliverNotificationRequest:request
+                                           MobAppSecret:APP_SECRET
+                                                   with:nil];
 #pragma mark ----将APNs信息交由MobPush处理----
     //获取富媒体附件下载地址
     NSString *attachUrl = request.content.userInfo[@"attachment"];

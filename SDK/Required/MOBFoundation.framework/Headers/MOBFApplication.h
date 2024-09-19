@@ -75,7 +75,7 @@
  *
  *  @param url 链接
  */
-+ (BOOL)openUrl:(NSURL *)url;
++ (void)openUrl:(NSURL *)url;
 
 /**
  *  获取显示名称

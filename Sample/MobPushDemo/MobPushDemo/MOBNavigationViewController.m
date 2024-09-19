@@ -27,12 +27,20 @@
 
 - (void)configureNavBarTheme
 {
-    self.navigationBar.tintColor = [UIColor blackColor];
-    
-    // 设置导航栏的标题颜色，字体
-    NSDictionary *textAttrs = @{NSForegroundColorAttributeName : [UIColor blackColor],
-                                NSFontAttributeName : [UIFont fontWithName:@"Helvetica" size:16.0]};
-    [self.navigationBar setTitleTextAttributes:textAttrs];
+    if (@available(iOS 13.0, *)) {
+        UINavigationBarAppearance *appearance = [UINavigationBarAppearance new];
+        [appearance configureWithOpaqueBackground];//重置导航栏背景颜色和阴影
+        appearance.backgroundColor = [UIColor whiteColor];
+        self.navigationBar.standardAppearance = appearance;
+        self.navigationBar.scrollEdgeAppearance = appearance;
+    } else {
+        self.navigationBar.tintColor = [UIColor whiteColor];
+        
+        // 设置导航栏的标题颜色，字体
+        NSDictionary *textAttrs = @{NSForegroundColorAttributeName : [UIColor blackColor],
+                                    NSFontAttributeName : [UIFont fontWithName:@"Helvetica" size:16.0]};
+        [self.navigationBar setTitleTextAttributes:textAttrs];
+    }
 }
 
 #pragma mark - UIGestureRecognizerDelegate

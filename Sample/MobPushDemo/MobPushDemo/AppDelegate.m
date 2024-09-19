@@ -15,6 +15,7 @@
 #import "WebViewController.h"
 #import <MOBFoundation/MobSDK.h>
 #import <MOBFoundation/MobSDK+Privacy.h>
+#import "MobPushDemo-Swift.h"
 
 // bugly
 #import <Bugly/Bugly.h>
@@ -84,6 +85,23 @@
     [MobSDK uploadPrivacyPermissionStatus:YES onResult:^(BOOL success) {
         NSLog(@"-------------->上传结果：%d",success);
     }];
+    
+    // 注册实时活动
+    if (@available(iOS 16.1, *)) {
+#if !TARGET_OS_MACCATALYST
+        [LiveActivityUtils startActivityWithPushTokenUpdate:^(BOOL enable, NSData *token) {
+            if(enable && token.length) {
+                [MobPush registerLiveActivityWithID:@"mpLiveActivity"
+                                          pushToken:token
+                                         completion:^(NSError *error) {
+                    if (error) {
+                        NSLog(@"Register LiveActivity Failed: %@", error.localizedDescription);
+                    }
+                }];
+            }
+        }];
+#endif
+    }
     
     return YES;
 }

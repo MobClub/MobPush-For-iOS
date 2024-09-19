@@ -28,6 +28,9 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *attachmentField;
 
+@property (nonatomic, strong) NSMutableDictionary *configParams;
+@property (nonatomic, strong) dispatch_semaphore_t wrLock;
+
 @end
 
 @implementation SettingViewController
@@ -50,6 +53,9 @@
     self.switchBtn1.on = ![[NSUserDefaults standardUserDefaults] boolForKey:@"NotAPNsShowForeground"];
     
     self.attachmentField.text = Const.shared.DemoAttachmentURL;
+    
+    self.configParams = [[NSMutableDictionary alloc] init];
+    self.wrLock = dispatch_semaphore_create(1);
 }
 
 - (void)onSwitch:(UISwitch *)sender
@@ -280,6 +286,73 @@
     [sender resignFirstResponder];
 }
 
+- (IBAction)setupCustomParams:(UIButton *)sender {
+    [self showInputCustomParamsAlert];
+}
+
+- (IBAction)updateCustomParamsDefines:(UIButton *)sender {
+    __weak typeof(self) weakSelf = self;
+    dispatch_semaphore_wait(self.wrLock, DISPATCH_TIME_FOREVER);
+    NSDictionary *dict = [[self configParams] copy];
+    [MobPush addCustomParamsWith:dict handler:^(NSArray *successKeys, NSArray *failedKeys, NSError *error) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        NSString *successKeyStr = @"";
+        NSString *failedKeyStr = @"";
+        NSString *desc = error ? error.localizedDescription : @"";
+        if ([successKeys count]) {
+            successKeyStr = [successKeys componentsJoinedByString:@","];
+        }
+        if ([failedKeys count]) {
+            failedKeyStr = [failedKeys componentsJoinedByString:@","];
+        }
+        
+        [strongSelf.configParams removeAllObjects];
+        dispatch_semaphore_signal(strongSelf.wrLock);
+        
+        NSString *msg = [NSString stringWithFormat:@"Success: %@, Failed: %@, Error: %@", successKeyStr, failedKeyStr, desc];
+        [strongSelf showAlertControllerWithTitle:@"添加或更新参数定义" message:msg];
+    }];
+}
+
+- (IBAction)deleteCustomParamsDefines:(UIButton *)sender {
+    __weak typeof(self) weakSelf = self;
+    dispatch_semaphore_wait(self.wrLock, DISPATCH_TIME_FOREVER);
+    
+    NSDictionary *dict = [[self configParams] copy];
+    [MobPush deleteCustomParamsWith:dict handler:^(NSArray *successKeys, NSArray *failedKeys, NSError *error) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        NSString *successKeyStr = @"";
+        NSString *failedKeyStr = @"";
+        NSString *desc = error ? error.localizedDescription : @"";
+        if ([successKeys count]) {
+            successKeyStr = [successKeys componentsJoinedByString:@","];
+        }
+        if ([failedKeys count]) {
+            failedKeyStr = [failedKeys componentsJoinedByString:@","];
+        }
+        NSString *msg = [NSString stringWithFormat:@"Success: %@, Failed: %@, Error: %@", successKeyStr, failedKeyStr, desc];
+        
+        [strongSelf.configParams removeAllObjects];
+        dispatch_semaphore_signal(strongSelf.wrLock);
+        
+        [strongSelf showAlertControllerWithTitle:@"删除参数定义" message:msg];
+    }];
+}
+
+- (IBAction)deleteAllCustomParamsDefines:(UIButton *)sender {
+    __weak typeof(self) weakSelf = self;
+    dispatch_semaphore_wait(self.wrLock, DISPATCH_TIME_FOREVER);
+    [MobPush deleteAllCustomParamsWith:^(NSError *error) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        NSString *msg = error ? error.localizedDescription : @"success";
+        
+        [strongSelf.configParams removeAllObjects];
+        dispatch_semaphore_signal(strongSelf.wrLock);
+        
+        [strongSelf showAlertControllerWithTitle:@"删除全部参数定义" message:msg];
+    }];
+}
+
 - (void)showAlertControllerWithTitle:(NSString *)title message:(NSString *)message
 {
   dispatch_async(dispatch_get_main_queue(), ^{
@@ -303,6 +376,42 @@
       [alert show];
     }
   });
+}
+
+- (void)showInputCustomParamsAlert {
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"参数含义" message:@"配置参数含义" preferredStyle:UIAlertControllerStyleAlert];
+    
+    static UITextField *nameField = nil;
+    [alertVC addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @"参数名";
+        nameField = textField;
+    }];
+    static UITextField *valueField = nil;
+    [alertVC addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @"含义";
+        valueField = textField;
+    }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        /// 取消操作不更新自定义参数配置
+    }];
+    
+    __weak typeof(self) weakSelf = self;
+    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        NSString *name = nameField.text ? :@"";
+        NSString *value = valueField.text ? :@"";
+        if (name && [name isKindOfClass:[NSString class]] && [name length] && value && [value isKindOfClass:[NSString class]]) {
+            dispatch_semaphore_wait(strongSelf.wrLock, DISPATCH_TIME_FOREVER);
+            [strongSelf.configParams setObject:value forKey:name];
+            dispatch_semaphore_signal(strongSelf.wrLock);
+        }
+    }];
+    
+    [alertVC addAction:cancelAction];
+    [alertVC addAction:sureAction];
+    
+    [self presentViewController:alertVC animated:YES completion:nil];
 }
 
 - (IBAction)onEditAttachmentURL:(id)sender
