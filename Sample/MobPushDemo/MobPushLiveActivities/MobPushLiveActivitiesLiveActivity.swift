@@ -47,6 +47,8 @@ public enum PrograssState: Int, Codable, Hashable {
 
 struct MobPushLiveActivitiesAttributes: ActivityAttributes {
     public struct ContentState: Codable, Hashable {
+        public var useable: Bool
+        public var userName: String
         public var prograssState: PrograssState
     }
     

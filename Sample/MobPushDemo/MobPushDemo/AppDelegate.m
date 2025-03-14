@@ -16,15 +16,18 @@
 #import <MOBFoundation/MobSDK.h>
 #import <MOBFoundation/MobSDK+Privacy.h>
 #import "MobPushDemo-Swift.h"
+#import <MOBFoundation/MOBFData.h>
 
 // bugly
-#import <Bugly/Bugly.h>
+//#import <Bugly/Bugly.h>
 // bugly app id
 #define BUGLY_APP_ID @"5abda4b390"
 
 //#import <UserNotifications/UserNotifications.h>
 
-@interface AppDelegate () <UIAlertViewDelegate, IAlertViewControllerDelegate, BuglyDelegate>
+@interface AppDelegate () <UIAlertViewDelegate, IAlertViewControllerDelegate, MPushGeofenceDelegate, MPushInAppDelegate> {
+    CLLocationManager * _locationManager;
+}
 
 @property (nonatomic, strong) MPushMessage *message;
 @property (nonatomic, strong) AlertViewController *alertVC;
@@ -51,8 +54,7 @@
     //外部demo
 //    [MobSDK registerAppKey:@"moba6b6c6d6" appSecret:@"b89d2427a3bc7ad1aea1e1e8c1d36bf3"];
     //内部调试
-//    [MobSDK registerAppKey:@"2dbe655e88c80" appSecret:@"a7b9f1918c596eacbff8a172ba8ed158"];
-    
+    [MobSDK registerAppKey:@"2dbe655e88c80" appSecret:@"a7b9f1918c596eacbff8a172ba8ed158"];
 //    [MobSDK registerAppKey:@"2ecbc7bc53712" appSecret:@"785544d9f64bf1f51e7aa3b8f21d07e8"];
     
 //    [MobSDK registerAppKey:@"2c574691c6986" appSecret:@"4b5cd595eb07b5cf17bb269f7a51391d"];
@@ -61,7 +63,7 @@
 //    [MobSDK registerAppKey:@"m2edc0a7974b00" appSecret:@"6867f7cf3c3a7bb53a438f4ea4cac8cf"];
 
     // 更新证书后: 生产环境
-    [MobSDK registerAppKey:@"3276d3e413040" appSecret:@"4280a3a6df667cfce37528dec03fd9c3"];
+//    [MobSDK registerAppKey:@"3276d3e413040" appSecret:@"4280a3a6df667cfce37528dec03fd9c3"];
     
     //MobPush推送设置（获得角标、声音、弹框提醒权限）
     MPushNotificationConfiguration *configuration = [[MPushNotificationConfiguration alloc] init];
@@ -73,6 +75,14 @@
         // 设置后，应用在前台时不展示通知横幅、角标、声音。（iOS 10 以后有效，iOS 10 以前本来就不展示）
         [MobPush setAPNsShowForegroundType:MPushAuthorizationOptionsNone];
     }
+    
+    // 如果使用地理围栏，需先获取地理围栏权限
+    [self requestLocationAuthority];
+    // 如果使用地理围栏功能，需要注册地理围栏代理
+    [MobPush registerLBSGeofenceWith:self withLaunchOptions:launchOptions];
+    
+    // 如果使用应用内消息功能，需要配置enterPageTo:和leavePageFrom:接口，且可以通过设置该代理获取应用内消息的展示和点击事件
+    [MobPush setUpInAppMessageDelegate:self];
     
     [MobPush getRegistrationID:^(NSString *registrationID, NSError *error) {
         NSLog(@"registrationID = %@--error = %@", registrationID, error);
@@ -90,10 +100,13 @@
     if (@available(iOS 16.1, *)) {
 #if !TARGET_OS_MACCATALYST
         [LiveActivityUtils startActivityWithPushTokenUpdate:^(BOOL enable, NSData *token) {
+            NSString *pushToken = [MOBFData hexStringByData:token];
+            NSLog(@"push token: %@", pushToken);
             if(enable && token.length) {
-                [MobPush registerLiveActivityWithID:@"mpLiveActivity"
+                [MobPush registerLiveActivityWithID:@"mpTestLiveActivity"
                                           pushToken:token
                                          completion:^(NSError *error) {
+                    NSLog(@"Register LiveActivity Failed: %@", error);
                     if (error) {
                         NSLog(@"Register LiveActivity Failed: %@", error.localizedDescription);
                     }
@@ -226,6 +239,7 @@
 // Bugly
 - (void)setupBugly
 {
+#if 0
     // Get the default config
     BuglyConfig * config = [[BuglyConfig alloc] init];
     
@@ -271,12 +285,72 @@
     [Bugly setUserIdentifier:[NSString stringWithFormat:@"User: %@", [UIDevice currentDevice].name]];
     
     [Bugly setUserValue:[NSProcessInfo processInfo].processName forKey:@"Process"];
+#endif
 }
 
 #pragma mark - BuglyDelegate
 - (NSString *)attachmentForException:(NSException *)exception {
     NSLog(@"(%@:%d) %s %@",[[NSString stringWithUTF8String:__FILE__] lastPathComponent], __LINE__, __PRETTY_FUNCTION__,exception);
     return @"This is an attachment";
+}
+
+#pragma mark - LocationAuthority
+- (void)requestLocationAuthority  {
+    dispatch_block_t block = ^{ @autoreleasepool {
+#pragma clang diagnostic push
+#pragma clang diagnostic warning "-Wimplicit-retain-self"
+        
+#if defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+        BOOL alwaysUse = [CLLocationManager instancesRespondToSelector:@selector(requestAlwaysAuthorization)];
+        BOOL whenInUse = [CLLocationManager instancesRespondToSelector:@selector(requestWhenInUseAuthorization)];
+        
+        self->_locationManager = [[CLLocationManager alloc] init];
+        NSDictionary *infoDict = [[[NSBundle mainBundle] infoDictionary] copy];
+        if (whenInUse && infoDict[@"NSLocationWhenInUseUsageDescription"]) {
+            [self->_locationManager requestWhenInUseAuthorization];
+        }
+        
+        if (alwaysUse &&
+            (infoDict[@"NSLocationAlwaysUsageDescription"] ||
+             infoDict[@"NSLocationAlwaysAndWhenInUseUsageDescription"])) {
+            [self->_locationManager requestAlwaysAuthorization];
+        }
+#endif
+#pragma clang diagnostic pop
+    }};
+    
+    if ([NSThread isMainThread]) {
+        block();
+    } else {
+        dispatch_async(dispatch_get_main_queue(), block);
+    }
+}
+
+#pragma mark - MPushGeofenceDelegate
+- (void)mpushGeofenceRegion:(NSDictionary *)regionInfo error:(NSError *)error {
+    NSLog(@"Geofence Stay Event: %@, Err: %@", regionInfo, [error localizedDescription]);
+}
+
+- (void)mpushGeofenceIdentifier:(NSString *)geofenceID didEnterRegion:(NSDictionary *)regionInfo error:(NSError *)error {
+    NSLog(@"Geofence Enter Event At: %@, Info: %@ ,Err: %@", geofenceID, regionInfo, [error localizedDescription]);
+}
+
+- (void)mpushGeofenceIdentifier:(NSString *)geofenceID didExitRegion:(NSDictionary *)regionInfo error:(NSError *)error {
+    NSLog(@"Geofence Leave Event At: %@, Info: %@ ,Err: %@", geofenceID, regionInfo, [error localizedDescription]);
+}
+
+#pragma mark ---
+#pragma mark MPushInAppMessageDelegate
+- (void)mpushInAppMessageDidReceive:(MPushMessage *)msg {
+    NSLog(@"MPush receive inappmsg: %@", [msg messageID]);
+}
+
+- (void)mpushInAppMessageDidShow:(MPushMessage *)msg {
+    NSLog(@"MPush show inappmsg: %@", [msg messageID]);
+}
+
+- (void)mpushInAppMessageDidClick:(MPushMessage *)msg {
+    NSLog(@"MPush click inappmsg: %@", [msg notification].userInfo);
 }
 
 @end

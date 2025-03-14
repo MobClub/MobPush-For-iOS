@@ -46,6 +46,19 @@
     return @"/path/PushViewController";
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [MobPush enterPageTo:@"/path/PushViewController"];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    
+    [MobPush leavePageFrom:@"/path/PushViewController"];
+}
+
+
 //点击推送场景还原页面参数
 - (instancetype)initWithMobPushScene:(NSDictionary *)params
 {

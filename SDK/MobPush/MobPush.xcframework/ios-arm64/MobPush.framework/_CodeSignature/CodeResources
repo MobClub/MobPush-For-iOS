@@ -8,9 +8,13 @@
 		<data>
 		vmJs8OTZPVttUka18J8yuRyQVec=
 		</data>
+		<key>Headers/MPushLocationNotification.h</key>
+		<data>
+		JKnNIE80Qox2+7qeo3rpvI9UgoA=
+		</data>
 		<key>Headers/MPushMessage.h</key>
 		<data>
-		Z60WvN6l+uAckhfnSAMHYlAVd4c=
+		iLeZOaQlcfWbqakazFVYMfMnPDM=
 		</data>
 		<key>Headers/MPushNotification.h</key>
 		<data>
@@ -22,7 +26,7 @@
 		</data>
 		<key>Headers/MPushNotificationRequest.h</key>
 		<data>
-		oaJMndMJspqmzZAgVLt3fhvAGtA=
+		5Ln/nYARzwPGjbjBSLyMxQPk+7Y=
 		</data>
 		<key>Headers/MPushNotificationTrigger.h</key>
 		<data>
@@ -34,7 +38,7 @@
 		</data>
 		<key>Headers/MobPush.h</key>
 		<data>
-		XdDjNGNiuFMvkdbQGuy/WxHsPDk=
+		H9pws7h5RoCSzfiA1JJVK9Shpzs=
 		</data>
 		<key>Headers/MobPush_H.h</key>
 		<data>
@@ -46,7 +50,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		z0Y+ubEWpRFxPac7L6nPR9I2kbM=
+		4KokvGFV6IR98JlYVbJkzt9H9zo=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -70,15 +74,26 @@
 			Qwrc/GLvRV9C6ug2uRu64uupYlNRClEWwnucU45JdrY=
 			</data>
 		</dict>
+		<key>Headers/MPushLocationNotification.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			JKnNIE80Qox2+7qeo3rpvI9UgoA=
+			</data>
+			<key>hash2</key>
+			<data>
+			bLQ3oSBbh1kGo72NotCELtxxhK59wg/Co71Er3R0hDU=
+			</data>
+		</dict>
 		<key>Headers/MPushMessage.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Z60WvN6l+uAckhfnSAMHYlAVd4c=
+			iLeZOaQlcfWbqakazFVYMfMnPDM=
 			</data>
 			<key>hash2</key>
 			<data>
-			8N9yDqsbZmht43QTGUWh4sPCYjtRJnQcYOCpD7U1VOc=
+			wy/sZ5iSrGpqbFspUDrWnqWRbgbbTkJzDXofufabkWE=
 			</data>
 		</dict>
 		<key>Headers/MPushNotification.h</key>
@@ -107,11 +122,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			oaJMndMJspqmzZAgVLt3fhvAGtA=
+			5Ln/nYARzwPGjbjBSLyMxQPk+7Y=
 			</data>
 			<key>hash2</key>
 			<data>
-			yW8B05+Kv4dWOO633Y8vGPI5RltGpsXLA4sqB8KX26w=
+			5Hd2sozwTChlREEGvcuCGhFe0vJZ0aei9+Ff8Mr7TJA=
 			</data>
 		</dict>
 		<key>Headers/MPushNotificationTrigger.h</key>
@@ -140,11 +155,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			XdDjNGNiuFMvkdbQGuy/WxHsPDk=
+			H9pws7h5RoCSzfiA1JJVK9Shpzs=
 			</data>
 			<key>hash2</key>
 			<data>
-			cVEuh7oRCQ1WPhEaZ4rfUETFTj2+bMlnG4NoRaCi3RI=
+			kYlAKtByvuEfbTwf/9FIhRPsfSzA0gqDo4eEkwHuIQg=
 			</data>
 		</dict>
 		<key>Headers/MobPush_H.h</key>

@@ -51,6 +51,52 @@ typedef NS_ENUM(NSInteger, MPushNotificationRequestStatus) {
     MPushNotificationRequestStatusDelivered     = 1,    //在系统通知栏里的推送
 };
 
+@protocol MPushInAppDelegate <NSObject>
+
+/// 接收到应用内消息回调
+/// - Parameter msg: msg
+- (void)mpushInAppMessageDidReceive:(MPushMessage *)msg;
+
+/// 应用内消息已显示回调
+/// - Parameter msg: msg
+- (void)mpushInAppMessageDidShow:(MPushMessage *)msg;
+
+/// 应用内消息已点击
+/// - Parameter msg: msg
+- (void)mpushInAppMessageDidClick:(MPushMessage *)msg;
+
+@end
+
+@protocol MPushGeofenceDelegate <NSObject>
+
+@optional
+/// 触发地理围栏时回调
+/// - Parameters:
+///   - info: 地理围栏相关信息
+///   - error: 错误信息
+- (void)mpushGeofenceRegion:(NSDictionary *)regionInfo
+                      error:(NSError *)error;
+
+/// 进入地理围栏时回调
+/// - Parameters:
+///   - geofenceID: 地理围栏唯一ID
+///   - regionInfo: 出发地理围栏时回调相关信息
+///   - error: 错误信息
+- (void)mpushGeofenceIdentifier:(NSString *)geofenceID
+                 didEnterRegion:(NSDictionary *)regionInfo
+                          error:(NSError *)error;
+
+/// 离开地理围栏时回调
+/// - Parameters:
+///   - geofenceID: 地理围栏唯一ID
+///   - regionInfo: 出发地理围栏时回调相关信息
+///   - error: 错误信息
+- (void)mpushGeofenceIdentifier:(NSString *)geofenceID
+                  didExitRegion:(NSDictionary *)regionInfo
+                            error:(NSError *)error;
+
+@end
+
 /**
  推送SDK的核心类
  */
@@ -304,5 +350,50 @@ typedef NS_ENUM(NSInteger, MPushNotificationRequestStatus) {
  * @param handler 结果回调，error为错误信息
  */
 + (void)deleteAllCustomParamsWith:(void(^)(NSError *error))handler;
+
+/// 添加地理围栏回调代理方法
+/// @param delegate 代理MPushGeofenceDelegate类型
+/// @param launchOptions application:didFinishlaunchOptions:中传入的字典
++ (void)registerLBSGeofenceWith:(id<MPushGeofenceDelegate>)delegate
+              withLaunchOptions:(NSDictionary *)launchOptions;
+
+/// 返回地理围栏开关
++ (BOOL)isGeofenceOpend;
+
+/// 配置地理围栏功能
+/// @param isOpen 是否打开
+/// @param handler 结果回调
++ (void)setLBSGeofence:(BOOL)isOpen
+              callback:(void(^)(NSError *))handler;
+
+/// 删除目标地理围栏
+/// @param geofenceID 地理围栏ID
+/// @param handler 结果回调
++ (void)removeGeofenceWithIdentifier:(NSString *)geofenceID callback:(void (^)(NSError *))handler;
+
+/// 应用内消息进入界面监听
+/// @param pagePath 监听界面地址
++ (void)enterPageTo:(NSString *)pagePath;
+
+
+/// 应用内消息离开界面监听
+/// @param pagePath 监听界面地址
++ (void)leavePageFrom:(NSString *)pagePath;
+
++ (void)setUpInAppMessageDelegate:(id<MPushInAppDelegate>)delegate;
+
+/// 手动输入DeviceToekn
+/// Objective-C开发环境中可不调用
+/// @param deviceToken deviceToken
++ (void)registerDeviceToken:(NSData *)deviceToken;
+
+/// 重新打开应用内指定页面能力，重启生效
++ (void)restartMobPushScene;
+
+/// 关闭打开应用内指定页面能力，即时生效
++ (void)stopMobPushScene;
+
+/// 是否打开了跳转应用内指定页面能力
++ (BOOL)isOpenMobPushScene;
 
 @end

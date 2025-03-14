@@ -28,6 +28,12 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *attachmentField;
 
+@property (weak, nonatomic) IBOutlet UITextField *regionIDField;
+@property (weak, nonatomic) IBOutlet UIButton *deleteBtn;
+@property (weak, nonatomic) IBOutlet UISwitch *switchGeofence;
+
+@property (weak, nonatomic) IBOutlet UISwitch *mpushSceneSwitch;
+
 @property (nonatomic, strong) NSMutableDictionary *configParams;
 @property (nonatomic, strong) dispatch_semaphore_t wrLock;
 
@@ -56,6 +62,11 @@
     
     self.configParams = [[NSMutableDictionary alloc] init];
     self.wrLock = dispatch_semaphore_create(1);
+    
+    self.switchGeofence.on = [MobPush isGeofenceOpend];
+    
+    self.mpushSceneSwitch.on = [MobPush isOpenMobPushScene];
+    [self.mpushSceneSwitch addTarget:self action:@selector(configMobPushScene:) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)onSwitch:(UISwitch *)sender
@@ -270,6 +281,33 @@
 - (IBAction)setAliasOrTags:(id)sender {
     TagsAndAliasViewController *vc = [TagsAndAliasViewController new];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (IBAction)geofenceStatus:(BOOL)status {
+    BOOL value = self.switchGeofence.on;
+    [MobPush setLBSGeofence:value callback:nil];
+}
+
+- (IBAction)deleteTargetRegion:(id)sender {
+    if (!self.regionIDField) return;
+    
+    NSString *regionID = [self.regionIDField text];
+    if (!regionID
+        || [regionID isKindOfClass:[NSString class]]
+        || ![regionID length]) {
+        return;
+    }
+    [MobPush removeGeofenceWithIdentifier:regionID callback:nil];
+}
+
+- (void)configMobPushScene:(BOOL)status {
+    BOOL value = self.mpushSceneSwitch.on;
+    if (value) {
+        [MobPush restartMobPushScene];
+    } else {
+        [MobPush stopMobPushScene];
+    }
+    NSLog(@"Current MobPushScene Status: %@", @([MobPush isOpenMobPushScene]));
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

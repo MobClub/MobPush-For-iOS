@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0B63B8B92320F20300219CFC /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B63B8B82320F20300219CFC /* Bugly.framework */; };
 		0BED5FE924D128C00017B8B5 /* Const.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BED5FE824D128C00017B8B5 /* Const.m */; };
 		2F1C7E0821F1A7240041D287 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F1C7E0621F1A7240041D287 /* SettingViewController.m */; };
 		2F1C7E0921F1A7240041D287 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F1C7E0721F1A7240041D287 /* SettingViewController.xib */; };
@@ -46,10 +45,13 @@
 		5092A2202382570D0068EFA8 /* warn.caf in Resources */ = {isa = PBXBuildFile; fileRef = 5092A21D2382570D0068EFA8 /* warn.caf */; };
 		5092A2212382570D0068EFA8 /* tech.caf in Resources */ = {isa = PBXBuildFile; fileRef = 5092A21E2382570D0068EFA8 /* tech.caf */; };
 		5092A2222382570D0068EFA8 /* bomb.caf in Resources */ = {isa = PBXBuildFile; fileRef = 5092A21F2382570D0068EFA8 /* bomb.caf */; };
-		50F7D0472370164D004B75C1 /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50F7D0422370164D004B75C1 /* MOBFoundation.framework */; };
 		8D03B93D255BE8E800AF3625 /* AlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D03B93B255BE8E800AF3625 /* AlertViewController.m */; };
+		BC56705E2D2FB58A00CC85CF /* FlyVerifyCSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC56705C2D2FB58A00CC85CF /* FlyVerifyCSDK.xcframework */; };
+		BC56705F2D2FB58A00CC85CF /* MOBFoundation.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC56705D2D2FB58A00CC85CF /* MOBFoundation.xcframework */; };
 		BC632AAA2BB178AC0069A5DB /* MobPushServiceExtension.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC632AA82BB178AC0069A5DB /* MobPushServiceExtension.xcframework */; };
-		BC632AAB2BB178AC0069A5DB /* MobPush.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC632AA92BB178AC0069A5DB /* MobPush.xcframework */; };
+		BC7F55A62D22AF6C00E77BC4 /* MobPush.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC7F55A52D22AF6C00E77BC4 /* MobPush.xcframework */; };
+		BC81FE642CB7D6EC006E2986 /* StayLocation.gpx in Resources */ = {isa = PBXBuildFile; fileRef = BC81FE632CB7D6EC006E2986 /* StayLocation.gpx */; };
+		BC842BB22D1AC3D2005C5CE5 /* MobPush.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BC842BB12D1AC3D2005C5CE5 /* MobPush.bundle */; };
 		BC8C470E2BB2AD0D0017CB42 /* AppIntents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC8C470D2BB2AD0D0017CB42 /* AppIntents.framework */; };
 		BC9D13C52940834200E7A4BD /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CF9386B214F981B0000AD18 /* libc++.tbd */; };
 		BC9D84DC2A6E1DC700A67586 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC9D84DB2A6E1DC700A67586 /* WidgetKit.framework */; };
@@ -115,7 +117,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0B63B8B82320F20300219CFC /* Bugly.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bugly.framework; sourceTree = "<group>"; };
 		0BED5FE724D128C00017B8B5 /* Const.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
 		0BED5FE824D128C00017B8B5 /* Const.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Const.m; sourceTree = "<group>"; };
 		2F1C7E0521F1A7240041D287 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
@@ -172,12 +173,15 @@
 		5092A21D2382570D0068EFA8 /* warn.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = warn.caf; sourceTree = "<group>"; };
 		5092A21E2382570D0068EFA8 /* tech.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tech.caf; sourceTree = "<group>"; };
 		5092A21F2382570D0068EFA8 /* bomb.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = bomb.caf; sourceTree = "<group>"; };
-		50F7D0422370164D004B75C1 /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
 		8D03B93B255BE8E800AF3625 /* AlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertViewController.m; sourceTree = "<group>"; };
 		8D03B93C255BE8E800AF3625 /* AlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertViewController.h; sourceTree = "<group>"; };
+		BC56705C2D2FB58A00CC85CF /* FlyVerifyCSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FlyVerifyCSDK.xcframework; sourceTree = "<group>"; };
+		BC56705D2D2FB58A00CC85CF /* MOBFoundation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = MOBFoundation.xcframework; sourceTree = "<group>"; };
 		BC632AA82BB178AC0069A5DB /* MobPushServiceExtension.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = MobPushServiceExtension.xcframework; sourceTree = "<group>"; };
-		BC632AA92BB178AC0069A5DB /* MobPush.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = MobPush.xcframework; sourceTree = "<group>"; };
 		BC74B1DA2941F4D200ED2E5E /* MobPushDemoRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MobPushDemoRelease.entitlements; sourceTree = "<group>"; };
+		BC7F55A52D22AF6C00E77BC4 /* MobPush.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = MobPush.xcframework; sourceTree = "<group>"; };
+		BC81FE632CB7D6EC006E2986 /* StayLocation.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = StayLocation.gpx; sourceTree = "<group>"; };
+		BC842BB12D1AC3D2005C5CE5 /* MobPush.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MobPush.bundle; sourceTree = "<group>"; };
 		BC8C470D2BB2AD0D0017CB42 /* AppIntents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppIntents.framework; path = System/Library/Frameworks/AppIntents.framework; sourceTree = SDKROOT; };
 		BC9D84DA2A6E1DC700A67586 /* MobPushLiveActivitiesExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MobPushLiveActivitiesExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC9D84DB2A6E1DC700A67586 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -236,13 +240,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC9D84F62A6E1FF100A67586 /* ActivityKit.framework in Frameworks */,
-				BC632AAB2BB178AC0069A5DB /* MobPush.xcframework in Frameworks */,
-				50F7D0472370164D004B75C1 /* MOBFoundation.framework in Frameworks */,
+				BC7F55A62D22AF6C00E77BC4 /* MobPush.xcframework in Frameworks */,
 				3CF9386C214F981B0000AD18 /* libc++.tbd in Frameworks */,
 				DE40B87E1FC3FE110067EF79 /* CoreLocation.framework in Frameworks */,
+				BC56705E2D2FB58A00CC85CF /* FlyVerifyCSDK.xcframework in Frameworks */,
+				BC56705F2D2FB58A00CC85CF /* MOBFoundation.xcframework in Frameworks */,
 				BC632AAA2BB178AC0069A5DB /* MobPushServiceExtension.xcframework in Frameworks */,
 				BC8C470E2BB2AD0D0017CB42 /* AppIntents.framework in Frameworks */,
-				0B63B8B92320F20300219CFC /* Bugly.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,7 +256,6 @@
 		0B63B8B72320F20300219CFC /* ThirdLibs */ = {
 			isa = PBXGroup;
 			children = (
-				0B63B8B82320F20300219CFC /* Bugly.framework */,
 			);
 			path = ThirdLibs;
 			sourceTree = "<group>";
@@ -362,7 +365,8 @@
 		50F7D03E2370164D004B75C1 /* MobPush */ = {
 			isa = PBXGroup;
 			children = (
-				BC632AA92BB178AC0069A5DB /* MobPush.xcframework */,
+				BC7F55A52D22AF6C00E77BC4 /* MobPush.xcframework */,
+				BC842BB12D1AC3D2005C5CE5 /* MobPush.bundle */,
 				BC632AA82BB178AC0069A5DB /* MobPushServiceExtension.xcframework */,
 			);
 			path = MobPush;
@@ -371,7 +375,8 @@
 		50F7D0412370164D004B75C1 /* Required */ = {
 			isa = PBXGroup;
 			children = (
-				50F7D0422370164D004B75C1 /* MOBFoundation.framework */,
+				BC56705C2D2FB58A00CC85CF /* FlyVerifyCSDK.xcframework */,
+				BC56705D2D2FB58A00CC85CF /* MOBFoundation.xcframework */,
 			);
 			path = Required;
 			sourceTree = "<group>";
@@ -394,6 +399,7 @@
 		DE2B9A1D1F7B52C50077BE5F = {
 			isa = PBXGroup;
 			children = (
+				BC81FE632CB7D6EC006E2986 /* StayLocation.gpx */,
 				DE2B9A281F7B52C60077BE5F /* MobPushDemo */,
 				3CD9A21A212D15580032AFF6 /* MobPushServiceExtension */,
 				44543BFC20BFACB200B6B45E /* MobPushDemoTests */,
@@ -566,9 +572,7 @@
 					};
 					DE2B9A251F7B52C60077BE5F = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 6726N8K77K;
 						LastSwiftMigration = 1430;
-						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -637,6 +641,7 @@
 				DE2B9A361F7B52C60077BE5F /* Assets.xcassets in Resources */,
 				2F1D906D22B73E2B002DCD2A /* TagsAndAliasViewController.xib in Resources */,
 				4441D2C82084B0F1000B879B /* OpenPageViewController.xib in Resources */,
+				BC842BB22D1AC3D2005C5CE5 /* MobPush.bundle in Resources */,
 				2F1C7E0921F1A7240041D287 /* SettingViewController.xib in Resources */,
 				4441D2C02084B0F1000B879B /* localNotication@2x.png in Resources */,
 				4441D2B82084B0F1000B879B /* selectRed@3x.png in Resources */,
@@ -647,6 +652,7 @@
 				3C5EDF0320E9CE30002D1670 /* RestoreViewController.xib in Resources */,
 				4441D2BF2084B0F1000B879B /* remote@2x.png in Resources */,
 				5092A2212382570D0068EFA8 /* tech.caf in Resources */,
+				BC81FE642CB7D6EC006E2986 /* StayLocation.gpx in Resources */,
 				3C5EDF0B20E9D3B3002D1670 /* select@2x.png in Resources */,
 				4441D2BE2084B0F1000B879B /* schedule@2x.png in Resources */,
 				3C5EDEFE20E9CA8E002D1670 /* linkitem@2x.png in Resources */,
@@ -777,7 +783,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.0.8;
+				MARKETING_VERSION = 4.2.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Mob.HeartNote.HeartNoteExertion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -810,7 +816,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.0.8;
+				MARKETING_VERSION = 4.2.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Mob.HeartNote.HeartNoteExertion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -911,7 +917,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.0.8;
+				MARKETING_VERSION = 4.2.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Mob.HeartNote.MobPushLiveActivities;
@@ -952,7 +958,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.0.8;
+				MARKETING_VERSION = 4.2.5;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Mob.HeartNote.MobPushLiveActivities;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1090,12 +1096,13 @@
 				);
 				INFOPLIST_FILE = MobPushDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
-				LD_GENERATE_MAP_FILE = YES;
+				LD_GENERATE_MAP_FILE = NO;
+				LD_MAP_FILE_PATH = "$(SRCROOT)/$(PRODUCT_NAME)-LinkMap-$(CURRENT_VARIANT)-$(CURRENT_ARCH).txt";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.0.8;
+				MARKETING_VERSION = 4.2.5;
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Mob.HeartNote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1126,12 +1133,13 @@
 				);
 				INFOPLIST_FILE = MobPushDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
-				LD_GENERATE_MAP_FILE = YES;
+				LD_GENERATE_MAP_FILE = NO;
+				LD_MAP_FILE_PATH = "$(SRCROOT)/$(PRODUCT_NAME)-LinkMap-$(CURRENT_VARIANT)-$(CURRENT_ARCH).txt";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.0.8;
+				MARKETING_VERSION = 4.2.5;
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Mob.HeartNote;
 				PRODUCT_NAME = "$(TARGET_NAME)";

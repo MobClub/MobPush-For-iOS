@@ -21,6 +21,7 @@ typedef NS_ENUM(NSUInteger, MPushMessageType)
     MPushMessageTypeAPNs = 3, //APNs推送
     MPushMessageTypeLocal = 4, //本地推送
     MPushMessageTypeClicked = 5,//点击通知
+    MPushMessageTypeLocalMsg = MPushMessageTypeAPNs, //应用内消息
 };
 
 /**

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "MPushNotificationTrigger.h"
 #import "MPushNotification.h"
+#import "MPushLocationNotification.h"
 
 /**
  * 本地消息推送请求体
@@ -24,6 +25,9 @@
 
 // 推送消息触发方式,nil时为即时消息，立即推送
 @property(nonatomic, strong) MPushNotificationTrigger *trigger;
+
+// 标识地理围栏信息
+@property(nonatomic, strong) MPushLocationNotification *geofenceContent;
 
 @end
 

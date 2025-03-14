@@ -34,7 +34,7 @@ public class LiveActivityUtils : NSObject {
 
         endPreActivity()
 
-        let state = MobPushLiveActivitiesAttributes.ContentState(prograssState: .Car)
+        let state = MobPushLiveActivitiesAttributes.ContentState(useable: true, userName: "Demo", prograssState: .Car)
         let attri = MobPushLiveActivitiesAttributes(name: "MPLiveActivities")
         do {
             let current = try Activity.request(attributes: attri, contentState: state, pushType: .token)
@@ -47,7 +47,7 @@ public class LiveActivityUtils : NSObject {
             Task {
                 for await state in current.contentStateUpdates {
                     //监听state状态 开发者可自行编写回调监听
-                    print("content state update: tip=\(state.prograssState)")
+                    print("content state update: name=\(state) sss=\(state.prograssState) isTrue:\(state.useable == true)")
                 }
             }
             Task {
@@ -69,7 +69,7 @@ public class LiveActivityUtils : NSObject {
                 return
             }
             
-            let state = MobPushLiveActivitiesAttributes.ContentState(prograssState: PrograssState(rawValue: value) ?? .Arrived)
+            let state = MobPushLiveActivitiesAttributes.ContentState(useable: true, userName: "demo", prograssState: PrograssState(rawValue: value) ?? .Arrived)
             let alertConfiguration = AlertConfiguration(title: "Delivery Update ", body: "Delivery Update State to \(state.prograssState.rawValue)", sound: .default)
             await current.update(using: state, alertConfiguration: alertConfiguration)
         }
