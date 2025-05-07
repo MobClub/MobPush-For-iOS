@@ -783,7 +783,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.2.5;
+				MARKETING_VERSION = 4.2.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Mob.HeartNote.HeartNoteExertion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -816,7 +816,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.2.5;
+				MARKETING_VERSION = 4.2.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Mob.HeartNote.HeartNoteExertion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -917,7 +917,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.2.5;
+				MARKETING_VERSION = 4.2.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Mob.HeartNote.MobPushLiveActivities;
@@ -958,7 +958,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.2.5;
+				MARKETING_VERSION = 4.2.6;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Mob.HeartNote.MobPushLiveActivities;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1102,7 +1102,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.2.5;
+				MARKETING_VERSION = 4.2.6;
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Mob.HeartNote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1139,7 +1139,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.2.5;
+				MARKETING_VERSION = 4.2.6;
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Mob.HeartNote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
