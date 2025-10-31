@@ -1,0 +1,27 @@
+PODS:
+  - FlyVerifyCSDK (1.0.13)
+  - mob_pushsdk (4.3.3):
+    - mob_pushsdk/MobPush (= 4.3.3)
+    - MOBFoundation
+  - mob_pushsdk/MobPush (4.3.3):
+    - MOBFoundation
+  - MOBFoundation (20250902):
+    - FlyVerifyCSDK (>= 0.0.7)
+
+DEPENDENCIES:
+  - mob_pushsdk
+
+SPEC REPOS:
+  trunk:
+    - FlyVerifyCSDK
+    - mob_pushsdk
+    - MOBFoundation
+
+SPEC CHECKSUMS:
+  FlyVerifyCSDK: 7a10dbb6fc369ea3f389fa0bba7e6b8efc320996
+  mob_pushsdk: e92474004b8d3c9063e414af1ec9f17c028fe062
+  MOBFoundation: c6bd307e44929a19a4c0c4a2f4b17cc4a12fb12f
+
+PODFILE CHECKSUM: 4d19ed19154e1d13c3af2c4a3e27ca0d5b83fd54
+
+COCOAPODS: 1.16.2

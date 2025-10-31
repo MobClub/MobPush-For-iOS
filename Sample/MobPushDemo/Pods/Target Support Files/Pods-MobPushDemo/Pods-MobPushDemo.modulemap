@@ -1,0 +1,6 @@
+framework module Pods_MobPushDemo {
+  umbrella header "Pods-MobPushDemo-umbrella.h"
+
+  export *
+  module * { export * }
+}
