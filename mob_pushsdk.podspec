@@ -1,12 +1,12 @@
 Pod::Spec.new do |s|
   s.name                  = 'mob_pushsdk'
-  s.version               = "4.3.2"
+  s.version               = "4.3.3"
   s.summary               = 'mob.com 官方提供的推送SDK'
   s.license               = 'MIT'
   s.author                = { "mob" => "mobproducts@163.com" }
 
   s.homepage              = 'http://www.mob.com'
-  s.source                = { :http => 'https://sdk-dev-ios.oss-cn-hangzhou.aliyuncs.com/files/download/pushsdk/MobPush_For_iOS_v4.3.2.zip' }
+  s.source                = { :http => 'https://sdk-dev-ios.oss-cn-hangzhou.aliyuncs.com/files/download/pushsdk/MobPush_For_iOS_v4.3.3.zip' }
   s.platform              = :ios
   s.ios.deployment_target = "9.0"
   s.default_subspecs      = 'MobPush'
@@ -15,7 +15,12 @@ Pod::Spec.new do |s|
   s.resources             = 'MobPush/MobPush.bundle'
 
   s.subspec 'MobPush' do |sp|
-      sp.vendored_frameworks   = 'MobPush/MobPush.xcframework','MobPush/MobPushServiceExtension.xcframework'
+      sp.vendored_frameworks   = 'MobPush/MobPush.xcframework'
   end
 
+  s.subspec 'Extensions' do |sp|
+      sp.subspec 'ServiceExtension' do |ssp|
+        ssp.vendored_frameworks = 'MobPush/MobPushServiceExtension.xcframework'
+      end
+  end
 end
